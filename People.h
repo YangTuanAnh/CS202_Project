@@ -1,18 +1,19 @@
 #include "Global.h"
 #include "Vehicle.h"
-#include "Animal.h"
-    class CPEOPLE{
+    class Player{
     public:
         int mX, mY;
         bool mState;
     public:
-        CPEOPLE();
-        void Up(int&);
-        void Left(int&);
-        void Right(int&);
+        Player(int,int);
+        int getmX();
+        int getmY();
+        void Up();
+        void Down();
+        void Left();
+        void Right();
         void movement();
-        bool isImpact(const CVEHICLE*&);
-        bool isImpact(const CANIMAL*&);
         bool isFinish();
         bool isDead();
+        bool Collision(Object*);
     };

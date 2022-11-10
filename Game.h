@@ -1,6 +1,5 @@
 #include "Global.h"
 #include "People.h"
-#include "Animal.h"
 #include "Vehicle.h"
 class CGAME
 {
@@ -26,4 +25,4 @@ class CGAME
     void updatePosPeople(char); //Thực hiện điều khiển di chuyển của CPEOPLE
     void updatePosVehicle(); //Thực hiện cho CTRUCK & CCAR di chuyển
     void updatePosAnimal();//Thực hiện cho CDINAUSOR & CBIRD di chuyển
-}
+};

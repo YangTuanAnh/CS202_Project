@@ -1,38 +1,40 @@
 #include "People.h"
 
-void CPEOPLE::Up(int& x)
-{
-    x++;
-}
-void CPEOPLE::Left(int& y)
-{
-    y++;
-}
-void CPEOPLE::Right(int&y)
-{
-    y--;
-}
-void CPEOPLE::movement()
-{
-    char n='e';
-    while(!this->isDead())
-    {
-        n = _getch();
-        if(n=='w')
-            Up(this->mX);
-        if(n=='a')
-            Left(this->mY);
-        if(n=='d')
-            Right(this->mY);
-    }
+Player::Player(int mX,int mY){
+    this->mX = mX;
+    this->mY = mY;
+    this->mState = false;
 }
 
-bool CPEOPLE::isDead()
-{
-    for(int i = 0 ; i < animal[mX].size();i++)
-    {
-        if (mY == animal[mX][i].second)
-            return true;
+int Player::getmX(){
+    return this->mX;
+}
+int Player::getmY(){
+    return this->mY;
+}
+//follow by frame
+void Player::Up(){
+    this->mY++;
+}
+void Player::Down(){
+    this->mY--;
+}
+void Player::Left(){
+    this->mX --;
+}
+void Player::Right(){
+    this->mX++;
+}
+bool Player::Collision(Object*ob){
+    int X = ob->getmX();
+    int Y = ob->getmY();
+
+    if(this->mX == X && this->mY == ob->size){
+        this->mState = true;
+        return true;
     }
     return false;
+}   
+bool Player::isDead(){
+    return this->mState;
 }
