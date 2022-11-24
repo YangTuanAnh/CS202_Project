@@ -4,6 +4,7 @@ Player::Player(int mX,int mY){
     this->mX = mX;
     this->mY = mY;
     this->mState = false;
+    this->point = 0;
 }
 
 int Player::getmX(){
@@ -15,6 +16,7 @@ int Player::getmY(){
 //follow by frame
 void Player::Up(){
     this->mY++;
+    this->point++;
 }
 void Player::Down(){
     this->mY--;
@@ -25,11 +27,13 @@ void Player::Left(){
 void Player::Right(){
     this->mX++;
 }
+
+
 bool Player::Collision(Object*ob){
     int X = ob->getmX();
     int Y = ob->getmY();
 
-    if(this->mX == X && this->mY == ob->size){
+    if(this->mX == X && this->mY == Y && this->mX == (ob->getsize()-1)){
         this->mState = true;
         return true;
     }
@@ -37,4 +41,16 @@ bool Player::Collision(Object*ob){
 }   
 bool Player::isDead(){
     return this->mState;
+}
+int Player::getPoint(){
+    return this->point;
+}
+void Player::setX(int x){
+    this->mX = x;
+}
+void Player::setY(int y){
+    this->mY  =y;
+}
+void Player::setPoint(int p){
+    this->point = p;
 }

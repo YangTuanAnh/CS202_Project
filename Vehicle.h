@@ -1,18 +1,22 @@
 #include "Global.h"
-
 class Object{
-private:
+protected:
     int mX,mY;
     int direct;
     int counter;
+    int size;
 public:
     //art
     Object(int,int,int,int);
     int getmX();
     int getmY();
+    int getsize();
     int getDirect();
-    void move();
-    void random();
+    void setmX(int);
+    void setmY(int);
+    void setsize(int);
+    void setDirect(int);
+    void move(Player*p);
 };
 vector<Object>obstacle;
 
