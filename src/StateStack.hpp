@@ -3,9 +3,10 @@
 #include <vector>
 #include <functional>
 #include <map>
+#include <memory>
 
 #include "State.h"
-#include "ResourceIdentifiers.hpp"
+#include "Player.h"
 
 class StateStack {
 public:
@@ -20,7 +21,7 @@ public:
     template <typename T>
     void registerState(States::ID stateID) {
         mFactories[stateID] = [this] () {
-            return State::Ptr(new T(this));
+            return State::Ptr(new T(this, mContext));
         };
     }
     void update(float dt);

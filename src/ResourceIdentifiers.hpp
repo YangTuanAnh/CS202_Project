@@ -1,6 +1,6 @@
+#pragma once
 // List of states
-class States {
-public:
+namespace States {
     enum ID {
         None,
         Menu,
@@ -14,8 +14,7 @@ public:
 };
 
 // List of textures
-class Textures {
-public:
+namespace Textures {
     enum ID {
         None,
         TitleScreen,

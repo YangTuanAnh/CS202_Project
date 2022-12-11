@@ -1,6 +1,9 @@
-#include "State.h"
+// #include "State.h"
+#include "StateStack.hpp"
 
 State::State(StateStack* stack, Context context) : mStack(stack), mContext(context) {}
+
+State::Context::Context(TextureHolder* textures, Player* player) : textures(textures), player(player) {}
 
 State::~State() {}
 

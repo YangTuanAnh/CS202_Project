@@ -2,16 +2,18 @@
 
 #include <memory>
 
-#include "StateStack.h"
+// #include "StateStack.hpp"
 #include "ResourceIdentifiers.hpp"
 #include "TextureHolder.h"
 #include "Player.h"
+
+class StateStack;
 
 class State {
 public:
     typedef std::unique_ptr<State> Ptr;
     struct Context {
-        Context(TextureHolder& textures, Player& player);
+        Context(TextureHolder* textures, Player* player);
 
         TextureHolder* textures;
         // FontHolder* fonts;

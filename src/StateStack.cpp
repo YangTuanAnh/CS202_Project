@@ -1,9 +1,10 @@
-#include "StateStack.h"
+#include "StateStack.hpp"
 
 #include <cassert>
 
-StateStack::StateStack(State::Context context) : mContext(context) {
-}
+// #include "State.h"
+
+StateStack::StateStack(State::Context context) : mContext(context) {}
 
 void StateStack::update(float dt) {
     for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr) {
@@ -15,8 +16,8 @@ void StateStack::update(float dt) {
 }
 
 void StateStack::draw() {
-    for (State::Ptr& state : mStack) {
-        state->draw();
+    for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr) {
+        (*itr)->draw();
     }
 }
 
