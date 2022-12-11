@@ -1,19 +1,17 @@
 #include "Global.h"
-#include "People.h"
+#include "Player.h"
 #include "Vehicle.h"
-vector<pair<int,Object>>ob;
-vector<Object> animal;
-vector<Object> vehicle;
+
 class Game
 {
-    Truck* axt;
-    Car* axh;
-    Dinausor* akl;
-    Bird* ac;
+    vector<Object> animal;
+    vector<Object> vehicle;
+    vector<Object*> obstacle;
     Player cn;
     public:
     Game(); //Chuẩn bị dữ liệu cho tất cả các đối tượng
     void drawGame(); //Thực hiện vẽ trò chơi ra màn hình sau khi có dữ liệu
+    void Random();
     ~Game(); // Hủy tài nguyên đã cấp phát
     Player getPeople();//Lấy thông tin người
     Object* getVehicle();//Lấy danh sách các xe

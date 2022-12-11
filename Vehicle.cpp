@@ -65,3 +65,36 @@ void Object::setsize(int s){
 void Object::setDirect(int d){
     this->direct = d;
 }
+Dinausor::~Dinausor(){
+    this->counter = 0 ;
+    this->direct = 0;
+    this->mX = 0;
+    this->mY = 0;
+    this->size = 0;
+}
+Car::~Car(){
+    this->counter = 0 ;
+    this->direct = 0;
+    this->mX = 0;
+    this->mY = 0;
+    this->size = 0;
+}
+Truck::~Truck(){
+    this->counter = 0 ;
+    this->direct = 0;
+    this->mX = 0;
+    this->mY = 0;
+    this->size = 0;
+}
+Bird::~Bird(){
+    this->counter = 0 ;
+    this->direct = 0;
+    this->mX = 0;
+    this->mY = 0;
+    this->size = 0;
+}
+Object::~Object(){
+    this->counter= 0;
+    this->direct=0;
+    this->size=0;
+}

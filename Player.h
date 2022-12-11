@@ -6,7 +6,7 @@ public:
     bool mState;
     int point;
 public:
-    Player(int,int);
+    Player(int,int,int);
     int getmX();
     int getmY();
     int getPoint();
@@ -18,7 +18,7 @@ public:
     void Left();
     void Right();
     void movement();
-    bool isFinish();
     bool isDead();
     bool Collision(Object*);
+    ~Player();
 };

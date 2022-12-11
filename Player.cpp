@@ -1,12 +1,31 @@
-#include "People.h"
+#include "Player.h"
 
-Player::Player(int mX,int mY){
+Player::Player(int mX,int mY,int Point){
     this->mX = mX;
     this->mY = mY;
     this->mState = false;
-    this->point = 0;
+    this->point = Point;
 }
-
+void Player::movement(){
+    char a;
+    cin>>a;
+    switch (a)
+    {
+    case 'w':
+        Up();
+        break;
+    case 'a':
+        Left();
+        break;
+    case 'd':
+        Right();
+        break;
+    case 's':
+        Down();
+    default:
+        break;
+    }
+}
 int Player::getmX(){
     return this->mX;
 }
@@ -17,6 +36,7 @@ int Player::getmY(){
 void Player::Up(){
     this->mY++;
     this->point++;
+    
 }
 void Player::Down(){
     this->mY--;
@@ -53,4 +73,10 @@ void Player::setY(int y){
 }
 void Player::setPoint(int p){
     this->point = p;
+}
+Player::~Player(){
+    this->mState = true;
+    this->mX = 0;
+    this->mY = 0;
+    this->point = 0;
 }
