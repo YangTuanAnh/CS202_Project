@@ -23,30 +23,29 @@ void Game::startGame()//setting a 30x30 map
     cn.mX =rand()%30;
     cn.mY= 0;
     //set obstacle
-    for(int i = 0 ; i < 30 ; i++){
-        int s = rand()%4;//random types
-        int pos = rand()%30;//random position in column
-        Object * base;
-        if(s==1){
-            Car obe(s,pos,((rand()%2)-1),0);
-            base  =&obe;
-            obstacle.push_back(base);
+    for (int j = 0; j < 30; j++) {
+        int s = rand() % 5;
+        int pos = rand() % 30;
+        if (s == 1) {
+            map.push_back(new Car(j, pos, rand() % 2));
+            continue;
         }
-        if(s==2){
-            Truck obe(s,pos,((rand()%2)-1),0);
-            base  =&obe;
-            obstacle.push_back(base);
+        if (s == 2) {
+            map.push_back(new Truck(j,pos,  rand() % 2));
+            continue;
         }
-        if(s==3){
-            Bird obe(s,pos,((rand()%2)-1),0);
-            base  =&obe;
-            obstacle.push_back(base);
+        if (s == 3) {
+            map.push_back(new Bird(j,pos,  rand() % 2));
+            continue;
         }
-        else{
-            Dinausor obe(s,pos,((rand()%2)-1),0);
-            base  =&obe;
-            obstacle.push_back(base);
-        }  
+        if (s==4) {
+            map.push_back(new Dinausor(j,pos, rand() % 2));
+            continue;
+        }
+        else
+        {
+            map.push_back(new Obstacle(j, pos, rand() % 2));
+        }
     }
     drawGame();
     int tmp = cn.getPoint();
@@ -64,30 +63,30 @@ void Game::drawGame(){
     //draw UI
 }
 void Game::Random(){
-    int s = rand()%4;
-    int pos = rand()%30;
-    obstacle.pop_back();
-    Object * base;
-        if(s==1){
-            Car obe(s,pos,((rand()%2)-1),0);
-            base  =&obe;
-            obstacle.push_back(base);
-        }
-        if(s==2){
-            Truck obe(s,pos,((rand()%2)-1),0);
-            base  =&obe;
-            obstacle.push_back(base);
-        }
-        if(s==3){
-            Bird obe(s,pos,((rand()%2)-1),0);
-            base  =&obe;
-            obstacle.push_back(base);
-        }
-        else{
-            Dinausor obe(s,pos,((rand()%2)-1),0);
-            base  =&obe;
-            obstacle.push_back(base);
-        }   
+    int s = rand() % 4;
+    int pos = rand() % 30;
+    map.erase(map.begin());
+    if (s == 1) {
+        map.push_back(new Car(map[map.size()-1]->getX()+1,pos, rand() % 2));
+        return;
+    }
+    if (s == 2) {
+        map.push_back(new Truck( map[map.size() - 1]->getX()+1, pos, rand() % 2));
+        return;
+    }
+    if (s == 3) {
+        map.push_back(new Bird(map[map.size() - 1]->getX()+1, pos, rand() % 2));
+        return;
+    }
+    if (s == 4) {
+        map.push_back(new Dinausor(map[map.size() - 1]->getX()+1, pos, rand() % 2));
+        return;
+    }
+    else
+    {
+        map.push_back(new Obstacle(map[map.size() - 1]->getX()+1,pos, rand() % 2));
+        return;
+    }  
 }
 void Game::resetGame(){
     startGame();

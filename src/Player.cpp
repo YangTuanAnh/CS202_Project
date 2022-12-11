@@ -7,24 +7,21 @@ Player::Player(int mX,int mY,int Point){
     this->point = Point;
 }
 void Player::movement(){
-    char a;
-    cin>>a;
-    switch (a)
-    {
-    case 'w':
-        Up();
-        break;
-    case 'a':
-        Left();
-        break;
-    case 'd':
-        Right();
-        break;
-    case 's':
-        Down();
-    default:
-        break;
-    }
+    string in;
+	in =_getch();
+	if (in == "w") {
+		this->Y++;
+		this->score++;
+	}
+	if (in == "s") {
+		this->Y--;
+	}
+	if (in == "a") {
+		this->X--;
+	}
+	if (in == "d") {
+		this->X++;
+	}
 }
 int Player::getmX(){
     return this->mX;

@@ -3,7 +3,6 @@ class Object{
 protected:
     int mX,mY;
     int direct;
-    int counter;
     int size;
 public:
     //art
