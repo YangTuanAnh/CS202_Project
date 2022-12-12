@@ -7,9 +7,6 @@ int Object::getX(){
 int Object::getY(){
     return this->Y;
 }
-int Object::getDirect(){
-    return this->direct;
-}
 Dinausor::~Dinausor(){
     this->direct = 0;
     this->X = 0;
