@@ -4,13 +4,13 @@
 
 GameState::GameState(StateStack* stack, Context context) : State(stack, context) {
     // TODO: Load from TextureHolder
-    // Image image = LoadImage("../asset/img/CrossyRoadBg.png"); // Path relative to executable
-    // mBackgroundTexture = new Texture2D(LoadTextureFromImage(image));
+    Image image = LoadImage("../asset/img/CrossyRoadBg.png"); // Path relative to executable
+    mBackgroundTexture = new Texture2D(LoadTextureFromImage(image));
 }
 
 GameState::~GameState() {
-    // UnloadTexture(*mBackgroundTexture);
-    // delete mBackgroundTexture;
+    UnloadTexture(*mBackgroundTexture);
+    delete mBackgroundTexture;
 }
 
 void GameState::draw() {
