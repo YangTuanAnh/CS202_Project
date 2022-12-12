@@ -10,17 +10,17 @@ void Player::movement(){
     string in;
 	in =_getch();
 	if (in == "w") {
-		this->Y++;
-		this->score++;
+		this->mY++;
+		this->point++;
 	}
 	if (in == "s") {
-		this->Y--;
+		this->mY--;
 	}
 	if (in == "a") {
-		this->X--;
+		this->mX--;
 	}
 	if (in == "d") {
-		this->X++;
+		this->mX++;
 	}
 }
 int Player::getmX(){
@@ -47,10 +47,10 @@ void Player::Right(){
 
 
 bool Player::Collision(Object*ob){
-    int X = ob->getmX();
-    int Y = ob->getmY();
+    int X = ob->getX();
+    int Y = ob->getY();
 
-    if(this->mX == X && this->mY == Y && this->mX == (ob->getsize()-1)){
+    if(this->mX == X && this->mY == Y && this->mX == (ob->type()%2-1)){
         this->mState = true;
         return true;
     }
