@@ -1,5 +1,5 @@
 #include "Vehicle.h"
-#include "People.h"
+#include "Player.h"
 
 Object::Object(int mX,int mY,int direct,int counter){
     this->mX = mX;
