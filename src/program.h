@@ -1,6 +1,6 @@
 #pragma once
 #include <raylib.h>
-#include "../include/raygui.h"
+#include <raygui.h>
 #include "StateStack.hpp"
 
 const int WIDTH = 1200, HEIGHT = 600;

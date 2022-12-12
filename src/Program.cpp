@@ -2,8 +2,11 @@
 #include "States/GameState.h"
 #include "Player.h"
 
+#include <iostream>
+
 Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(), mPlayer = new Player())) {
     registerStates();
+    mStateStack.pushState(States::Game);
 }
 
 Program::~Program() {
@@ -12,10 +15,10 @@ Program::~Program() {
 }
 
 void Program::run() {
-    mStateStack.pushState(States::Game);
+    mStateStack.update(1.0f / 60.0f);
     mStateStack.draw();
 }
 
 void Program::registerStates() {
-    mStateStack.registerState<GameState>(States::ID::Game);
+    mStateStack.registerState<GameState>(States::Game);
 }
