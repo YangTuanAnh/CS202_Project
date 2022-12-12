@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <string>
 
 #include "../include/raygui.h"
 #include "ResourceIdentifiers.hpp"

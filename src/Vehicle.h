@@ -1,10 +1,12 @@
 #include "Global.h"
+#include "TextureHolder.h"
 class Object{
 protected:
     int mX,mY;
     int direct;
     int counter;
     int size;
+    TextureHolder textureHolder;
 public:
     //art
     Object(int,int,int,int);//constructor
