@@ -1,5 +1,5 @@
 #include "Global.h"
-#include "Vehicle.h"
+#include "Object.h"
 class Player{
 public:
     int mX, mY;

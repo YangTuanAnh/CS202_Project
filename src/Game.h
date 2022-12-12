@@ -1,12 +1,11 @@
 #include "Global.h"
 #include "Player.h"
-#include "Vehicle.h"
+#include "Object.h"
 
 class Game
 {
-    vector<Object> animal;
-    vector<Object> vehicle;
-    vector<Object*> obstacle;
+    vector<Object*>map;
+	Player *a;
     Player cn;
     public:
     Game(); //Chuẩn bị dữ liệu cho tất cả các đối tượng
