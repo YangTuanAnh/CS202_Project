@@ -10,13 +10,6 @@ int Object::getY(){
 int Object::getDirect(){
     return this->direct;
 }
-
-void Object::setmX(int x){
-    this->X = x;
-}
-void Object::setmY(int y){
-    this->Y = y;
-}
 Dinausor::~Dinausor(){
     this->direct = 0;
     this->X = 0;
