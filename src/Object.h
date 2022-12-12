@@ -1,3 +1,5 @@
+#ifndef OBJECT_H
+#define OBJECT_H
 #include "Global.h"
 class Object{
 protected:
@@ -63,3 +65,4 @@ public:
 	int getDirect() { return this->direct; }
 	~Obstacle();
 };
+#endif
