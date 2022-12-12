@@ -20,7 +20,6 @@ public:
 	void display();
 	virtual ~Object();
 };
-vector<Object>obstacle;
 
 class Car:public Object{
 public:
