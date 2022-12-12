@@ -10,6 +10,7 @@ class TextureHolder {
 private:
     std::map<Textures::ID, Texture> mTextureMap;
 public:
+    ~TextureHolder();
     void load(Textures::ID id, const std::string& filename);
     Texture& get(Textures::ID id);
     const Texture& get(Textures::ID id) const;
