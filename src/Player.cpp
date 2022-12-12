@@ -50,7 +50,7 @@ bool Player::Collision(Object*ob){
     int X = ob->getX();
     int Y = ob->getY();
 
-    if(this->mX == X && this->mY == Y && this->mX == (ob->type()%2-1)){
+    if(this->mX == X && this->mY == Y && this->mX == (ob->type()%2+1)){
         this->mState = true;
         return true;
     }

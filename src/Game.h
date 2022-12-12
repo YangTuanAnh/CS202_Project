@@ -1,6 +1,6 @@
 #include "Global.h"
 #include "Player.h"
-#include "Vehicle.h"
+#include "Object.h"
 
 class Game
 {
