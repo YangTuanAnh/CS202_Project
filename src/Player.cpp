@@ -1,7 +1,7 @@
 #include "Player.h"
 
-#define PLAYER_BASE_SIZE    20.0f
-#define PLAYER_SPEED        20.0f
+#define PLAYER_BASE_SIZE    40.0f
+#define PLAYER_SPEED        40.0f
 Player::Player(float mX,float mY,int Point){
     this->mX = mX;
     this->mY = mY;
@@ -35,7 +35,15 @@ void Player::DrawPlayer(){
     BeginDrawing();
         ClearBackground(RAYWHITE);
         if(!this->isDead()){
-            DrawRectangle(this->mX,this->mY,PLAYER_BASE_SIZE,PLAYER_BASE_SIZE,RED);
+            Texture2D chicken = LoadTexture("D:\\College\\CS202\\CS202_Project\\3.png");
+            int frameWidth = chicken.width;
+            int frameHeight = chicken.height;
+            Rectangle source = {0.0f,0.0f, (float) frameWidth,(float) frameHeight};
+            Vector2 position;
+            position.x = this->mX;
+            position.y = this->mY;
+            DrawTextureRec(chicken,source,position,RED);
+            //DrawRectangle(this->mX,this->mY,PLAYER_BASE_SIZE,PLAYER_BASE_SIZE,RED);
         }
     EndDrawing();
 }
@@ -56,7 +64,7 @@ void Player::UpdatePlayer(){
         if (this->mX < 0) this->mX = 0;
         else if ((this->mX + PLAYER_BASE_SIZE) > WIDTH) this->mX = WIDTH - PLAYER_BASE_SIZE;
         if (this->mY < 0) this->mY = 0;
-        else if ((this->mY + PLAYER_BASE_SIZE) > HEIGHT) this->mY = HEIGHT - PLAYER_BASE_SIZE;
+        else if ((this->mY + PLAYER_BASE_SIZE+30) > HEIGHT) this->mY = HEIGHT - PLAYER_BASE_SIZE-30;
 
     }
 }
