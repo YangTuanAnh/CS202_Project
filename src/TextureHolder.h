@@ -12,6 +12,6 @@ private:
 public:
     ~TextureHolder();
     void load(Textures::ID id, const std::string& filename);
-    Texture& get(Textures::ID id);
-    const Texture& get(Textures::ID id) const;
+    Texture2D& get(Textures::ID id);
+    const Texture2D& get(Textures::ID id) const;
 };

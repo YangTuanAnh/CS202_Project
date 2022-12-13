@@ -17,13 +17,13 @@ void TextureHolder::load(Textures::ID id, const std::string& filename) {
     assert(inserted.second);
 }
 
-Texture& TextureHolder::get(Textures::ID id) {
+Texture2D& TextureHolder::get(Textures::ID id) {
     auto found = mTextureMap.find(id);
     assert(found != mTextureMap.end());
     return found->second;
 }
 
-const Texture& TextureHolder::get(Textures::ID id) const {
+const Texture2D& TextureHolder::get(Textures::ID id) const {
     auto found = mTextureMap.find(id);
     assert(found != mTextureMap.end());
     return found->second;

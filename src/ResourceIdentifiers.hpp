@@ -17,8 +17,7 @@ namespace States {
 namespace Textures {
     enum ID {
         None,
-        TitleScreen,
-        Buttons,
+        GameBackground,
         // ...
     };
 };

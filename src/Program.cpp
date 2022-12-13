@@ -7,6 +7,9 @@
 Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(), mPlayer = new Player())) {
     registerStates();
     mStateStack.pushState(States::Game);
+
+    // Load textures
+    mTextures->load(Textures::GameBackground, "../asset/img/CrossyRoadBg.png");
 }
 
 Program::~Program() {
