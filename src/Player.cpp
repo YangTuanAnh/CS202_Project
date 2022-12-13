@@ -7,24 +7,21 @@ Player::Player(int mX,int mY,int Point){
     this->point = Point;
 }
 void Player::movement(){
-    char a;
-    cin>>a;
-    switch (a)
-    {
-    case 'w':
-        Up();
-        break;
-    case 'a':
-        Left();
-        break;
-    case 'd':
-        Right();
-        break;
-    case 's':
-        Down();
-    default:
-        break;
-    }
+    string in;
+	in =_getch();
+	if (in == "w") {
+		this->mY++;
+		this->point++;
+	}
+	if (in == "s") {
+		this->mY--;
+	}
+	if (in == "a") {
+		this->mX--;
+	}
+	if (in == "d") {
+		this->mX++;
+	}
 }
 int Player::getmX(){
     return this->mX;
@@ -50,10 +47,10 @@ void Player::Right(){
 
 
 bool Player::Collision(Object*ob){
-    int X = ob->getmX();
-    int Y = ob->getmY();
+    int X = ob->getX();
+    int Y = ob->getY();
 
-    if(this->mX == X && this->mY == Y && this->mX == (ob->getsize()-1)){
+    if(this->mX == X && this->mY == Y && this->mX == (ob->type()%2+1)){
         this->mState = true;
         return true;
     }
