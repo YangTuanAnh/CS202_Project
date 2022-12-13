@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Global.h"
 #include "Object.h"
 class Player{
@@ -6,6 +8,7 @@ public:
     bool mState;
     int point;
 public:
+    Player() {}
     Player(int,int,int);
     int getmX();
     int getmY();

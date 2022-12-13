@@ -3,7 +3,12 @@
 #include <cassert>
 #include <memory>
 
-#include "../include/raylib.h"
+#include <raylib.h>
+
+TextureHolder::~TextureHolder() {
+    for (auto& pair : mTextureMap)
+        UnloadTexture(pair.second);
+}
 
 void TextureHolder::load(Textures::ID id, const std::string& filename) {
     std::unique_ptr<Texture> texture(new Texture());
