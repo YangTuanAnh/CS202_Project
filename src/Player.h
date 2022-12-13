@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Global.h"
 #include "Object.h"
 #include "raylib.h"
