@@ -19,6 +19,10 @@ namespace Textures {
         None,
         TitleScreen,
         Buttons,
+        Car,
+        Trunk,
+        Bird,
+        Dinasor,
         // ...
     };
 };
