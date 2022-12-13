@@ -36,6 +36,7 @@ float Player::getmX(){
 float Player::getmY(){
     return this->mY;
 }
+
 void Player::draw(){
     // BeginDrawing();
         // ClearBackground(RAYWHITE);
