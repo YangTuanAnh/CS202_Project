@@ -2,25 +2,29 @@
 
 #include "Global.h"
 #include "Object.h"
+#include "raylib.h"
+#include "raygui.h"
+const int WIDTH = 1200, HEIGHT = 600;
+
+static bool gameOver = false;
+static bool pause = false;
 class Player{
 public:
-    int mX, mY;
+    float mX, mY;
     bool mState;
     int point;
 public:
-    Player() {}
-    Player(int,int,int);
-    int getmX();
-    int getmY();
+    Player();
+    Player(float,float,int);
+    float getmX();
+    float getmY();
     int getPoint();
-    void setX(int);
-    void setY(int);
+    void setX(float);
+    void setY(float);
     void setPoint(int);
-    void Up();
-    void Down();
-    void Left();
-    void Right();
     void movement();
+    void DrawPlayer();
+    void UpdatePlayer();
     bool isDead();
     bool Collision(Object*);
     ~Player();

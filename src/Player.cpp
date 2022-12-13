@@ -1,6 +1,8 @@
 #include "Player.h"
 
-Player::Player(int mX,int mY,int Point){
+#define PLAYER_BASE_SIZE    40.0f
+#define PLAYER_SPEED        40.0f
+Player::Player(float mX,float mY,int Point){
     this->mX = mX;
     this->mY = mY;
     this->mState = false;
@@ -23,32 +25,52 @@ void Player::movement(){
 		this->mX++;
 	}
 }
-int Player::getmX(){
+float Player::getmX(){
     return this->mX;
 }
-int Player::getmY(){
+float Player::getmY(){
     return this->mY;
 }
-//follow by frame
-void Player::Up(){
-    this->mY++;
-    this->point++;
-    
+void Player::DrawPlayer(){
+    BeginDrawing();
+        ClearBackground(RAYWHITE);
+        if(!this->isDead()){
+            Texture2D chicken = LoadTexture("D:\\College\\CS202\\CS202_Project\\3.png");
+            int frameWidth = chicken.width;
+            int frameHeight = chicken.height;
+            Rectangle source = {0.0f,0.0f, (float) frameWidth,(float) frameHeight};
+            Vector2 position;
+            position.x = this->mX;
+            position.y = this->mY;
+            DrawTextureRec(chicken,source,position,RED);
+            //DrawRectangle(this->mX,this->mY,PLAYER_BASE_SIZE,PLAYER_BASE_SIZE,RED);
+        }
+    EndDrawing();
 }
-void Player::Down(){
-    this->mY--;
-}
-void Player::Left(){
-    this->mX --;
-}
-void Player::Right(){
-    this->mX++;
-}
+void Player::UpdatePlayer(){
+    if(!this->isDead()){
+        if(IsKeyPressed('S')){
+            this->mY+=PLAYER_SPEED;
+        }
+        if(IsKeyPressed('W')){
+            this->mY-=PLAYER_SPEED;
+        }
+        if(IsKeyPressed('D')){
+            this->mX+=PLAYER_SPEED;
+        }
+        if(IsKeyPressed('A')){
+            this->mX-=PLAYER_SPEED;
+        }
+        if (this->mX < 0) this->mX = 0;
+        else if ((this->mX + PLAYER_BASE_SIZE) > WIDTH) this->mX = WIDTH - PLAYER_BASE_SIZE;
+        if (this->mY < 0) this->mY = 0;
+        else if ((this->mY + PLAYER_BASE_SIZE+30) > HEIGHT) this->mY = HEIGHT - PLAYER_BASE_SIZE-30;
 
-
+    }
+}
 bool Player::Collision(Object*ob){
-    int X = ob->getX();
-    int Y = ob->getY();
+    float X = ob->getX();
+    float Y = ob->getY();
 
     if(this->mX == X && this->mY == Y && this->mX == (ob->type()%2+1)){
         this->mState = true;
@@ -62,10 +84,10 @@ bool Player::isDead(){
 int Player::getPoint(){
     return this->point;
 }
-void Player::setX(int x){
+void Player::setX(float x){
     this->mX = x;
 }
-void Player::setY(int y){
+void Player::setY(float y){
     this->mY  =y;
 }
 void Player::setPoint(int p){
