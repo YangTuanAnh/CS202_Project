@@ -18,6 +18,7 @@ namespace Textures {
     enum ID {
         None,
         GameBackground,
+        Player,
         // ...
     };
 };
