@@ -1,11 +1,14 @@
+#pragma once
+
 #include "Global.h"
-#include "Vehicle.h"
+#include "Object.h"
 class Player{
 public:
     int mX, mY;
     bool mState;
     int point;
 public:
+    Player() {}
     Player(int,int,int);
     int getmX();
     int getmY();

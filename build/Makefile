@@ -6,6 +6,7 @@ TARGET   := CrashCourse.exe
 INCLUDES  := -I ../include/ 
 SRC      :=                      \
    $(wildcard ../src/*.cpp)         \
+   $(wildcard ../src/States/*.cpp) \
    $(wildcard ../src/pages/*.cpp)   \
    $(wildcard ../src/utility/*.cpp) \
 
