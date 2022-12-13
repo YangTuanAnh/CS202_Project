@@ -10,6 +10,9 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
 
     // Load textures
     mTextures->load(Textures::GameBackground, "../asset/img/CrossyRoadBg.png");
+    mTextures->load(Textures::Player, "../asset/img/3.png");
+
+    mPlayer->init(&mTextures->get(Textures::Player));
 }
 
 Program::~Program() {
@@ -18,8 +21,10 @@ Program::~Program() {
 }
 
 void Program::run() {
+    BeginDrawing();
     mStateStack.update(1.0f / 60.0f);
     mStateStack.draw();
+    EndDrawing();
 }
 
 void Program::registerStates() {

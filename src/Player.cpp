@@ -8,6 +8,11 @@ Player::Player(float mX,float mY,int Point){
     this->mState = false;
     this->point = Point;
 }
+
+void Player::init(Texture2D* texture) {
+    chicken = texture;
+}
+
 void Player::movement(){
     string in;
 	in =_getch();
@@ -31,23 +36,23 @@ float Player::getmX(){
 float Player::getmY(){
     return this->mY;
 }
-void Player::DrawPlayer(){
-    BeginDrawing();
-        ClearBackground(RAYWHITE);
+
+void Player::draw(){
+    // BeginDrawing();
+        // ClearBackground(RAYWHITE);
         if(!this->isDead()){
-            Texture2D chicken = LoadTexture("D:\\College\\CS202\\CS202_Project\\3.png");
-            int frameWidth = chicken.width;
-            int frameHeight = chicken.height;
+            int frameWidth = chicken->width;
+            int frameHeight = chicken->height;
             Rectangle source = {0.0f,0.0f, (float) frameWidth,(float) frameHeight};
             Vector2 position;
             position.x = this->mX;
             position.y = this->mY;
-            DrawTextureRec(chicken,source,position,RED);
+            DrawTextureRec(*chicken,source,position,RED);
             //DrawRectangle(this->mX,this->mY,PLAYER_BASE_SIZE,PLAYER_BASE_SIZE,RED);
         }
-    EndDrawing();
+    // EndDrawing();
 }
-void Player::UpdatePlayer(){
+void Player::update(){
     if(!this->isDead()){
         if(IsKeyPressed('S')){
             this->mY+=PLAYER_SPEED;
@@ -68,7 +73,7 @@ void Player::UpdatePlayer(){
 
     }
 }
-bool Player::Collision(Object*ob){
+bool Player::collision(Object*ob){
     float X = ob->getX();
     float Y = ob->getY();
 
