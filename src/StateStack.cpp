@@ -1,6 +1,7 @@
 #include "StateStack.hpp"
 
 #include <cassert>
+#include <iostream>
 
 // #include "State.h"
 
@@ -16,9 +17,8 @@ void StateStack::update(float dt) {
 }
 
 void StateStack::draw() {
-    for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr) {
-        (*itr)->draw();
-    }
+    auto itr = mStack.rbegin();
+    (*itr)->draw();
 }
 
 // void StateStack::handleEvent(Event event) {
@@ -59,9 +59,11 @@ void StateStack::applyPendingChanges() {
     for (PendingChange change : mPendingList) {
         switch (change.action) {
             case Push:
+                std::cerr << "Pushing state " << change.stateID << std::endl;
                 mStack.push_back(createState(change.stateID));
                 break;
             case Pop:
+                std::cerr << "Popping state" << std::endl;
                 mStack.pop_back();
                 break;
             case Clear:
