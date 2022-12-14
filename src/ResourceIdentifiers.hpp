@@ -20,9 +20,10 @@ namespace Textures {
         TitleScreen,
         Buttons,
         Car,
-        Trunk,
+        Truck,
         Bird,
         Dinasor,
+        Obstacle,
         // ...
     };
 };

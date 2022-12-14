@@ -7,8 +7,9 @@ class Game
     vector<Object*>map;
 	Player *a;
     Player cn;
+    TextureHolder* mTextures;
     public:
-    Game(); //Chuẩn bị dữ liệu cho tất cả các đối tượng
+    Game(TextureHolder* mTextures); //Chuẩn bị dữ liệu cho tất cả các đối tượng
     void drawGame(); //Thực hiện vẽ trò chơi ra màn hình sau khi có dữ liệu
     void Random();
     ~Game(); // Hủy tài nguyên đã cấp phát

@@ -8,8 +8,9 @@
 Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(), mPlayer = new Player())) {
     registerStates();
     mStateStack.pushState(States::Game);
+    mTextures = new TextureHolder;
     mTextures->load(Textures::Car, "../image/vehicle_car.png");
-    mTextures->load(Textures::Trunk, "../image/vehicle_trunk.png");
+    mTextures->load(Textures::Truck, "../image/vehicle_truck.png");
     mTextures->load(Textures::Bird, "../image/vehicle_bird.png");
     mTextures->load(Textures::Dinasor, "../image/vehicle_dinosaur.png");
 }
