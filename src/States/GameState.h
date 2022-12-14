@@ -15,8 +15,8 @@ private:
 public:
     GameState(StateStack* stack, Context context);
     ~GameState();
-    virtual void draw();
-    virtual bool update(float dt);
+    void draw();
+    bool update(float dt);
     // virtual bool handleEvent(Event event);
     void random();
     Player getPeople();//Lấy thông tin người

@@ -17,8 +17,12 @@ void GameState::draw() {
 }
 
 bool GameState::update(float dt) {
-    player->update();
     bool updatePrevState = false;
+    if (IsKeyPressed(KEY_TAB)) {
+        requestStackPush(States::Pause);
+        return updatePrevState;
+    }
+    player->update();
     return updatePrevState;
 }
 

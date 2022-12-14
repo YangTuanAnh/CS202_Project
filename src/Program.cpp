@@ -1,5 +1,6 @@
 #include "Program.h"
 #include "States/GameState.h"
+#include "States/PausedState.h"
 #include "Player.h"
 
 #include <iostream>
@@ -9,8 +10,9 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
     mStateStack.pushState(States::Game);
 
     // Load textures
-    mTextures->load(Textures::GameBackground, "../asset/img/CrossyRoadBg.png");
+    mTextures->load(Textures::GameBackground, "../asset/img/CrossyRoadBg.png", WIDTH, HEIGHT);
     mTextures->load(Textures::Player, "../asset/img/3.png");
+    mTextures->load(Textures::PausedBackground, "../asset/img/PausedScreen.png", WIDTH, HEIGHT);
 
     mPlayer->init(&mTextures->get(Textures::Player));
 }
@@ -29,4 +31,5 @@ void Program::run() {
 
 void Program::registerStates() {
     mStateStack.registerState<GameState>(States::Game);
+    mStateStack.registerState<PausedState>(States::Pause);
 }
