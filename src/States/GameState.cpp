@@ -24,13 +24,8 @@ bool GameState::update(float dt) {
         requestStackPush(States::Pause);
         return updatePrevState;
     }
-    player->update();
+    player->update(dt);
     return updatePrevState;
-}
-
-void GameState::registerStates() {
-    player->registerState<IdleState>(PlayerStates::Idle);
-    player->registerState<JumpingState>(PlayerStates::Jumping);
 }
 
 // Object* GameState::getAnimal(){

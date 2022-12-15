@@ -12,6 +12,7 @@ private:
     const float jumpTime = 0.5f;
 public:
     JumpingState(Player& player);
-    float ease(float d);
+    void setTarget(Vector2, Directions::ID);
+    float ease();
     void update(float dt) override;
 };

@@ -1,10 +1,20 @@
 #include "Player.hpp"
 
 #include <cassert>
+#include <iostream>
 
 #define PLAYER_BASE_SIZE 40.0f
 #define PLAYER_SPEED 40.0f
+
+Player::Player() {
+    std::cerr << "Player constructor" << std::endl;
+    this->mX = 0.0f;
+    this->mY = 0.0f;
+    this->point = 0;
+}
+
 Player::Player(float mX, float mY, int Point) {
+    std::cerr << "Player constructor" << std::endl;
     this->mX = mX;
     this->mY = mY;
     this->point = Point;
@@ -12,6 +22,7 @@ Player::Player(float mX, float mY, int Point) {
 
 void Player::init(Texture2D *texture) {
     chicken = texture;
+    mState = createState(PlayerStates::Idle);
 }
 
 PlayerState::Ptr Player::createState(PlayerStates::ID stateID) {
@@ -56,40 +67,50 @@ void Player::draw() {
         int frameWidth = chicken->width;
         int frameHeight = chicken->height;
         Rectangle source = {0.0f, 0.0f, (float)frameWidth, (float)frameHeight};
-        Vector2 position;
-        position.x = this->mX;
-        position.y = this->mY;
-        DrawTextureRec(*chicken, source, position, RED);
+        Vector2 position{this->mX, this->mY};
+        switch (this->mState->stateID) {
+        case PlayerStates::Idle:
+            DrawTextureRec(*chicken, source, position, RED);
+            break;
+        case PlayerStates::Jumping:
+            DrawTextureRec(*chicken, source, position, WHITE);
+            break;
+        default:
+            break;
+        }
+        
         // DrawRectangle(this->mX,this->mY,PLAYER_BASE_SIZE,PLAYER_BASE_SIZE,RED);
     }
 }
-void Player::update() {
-    if (!this->isDead()) {
-        if (IsKeyPressed('S'))
-        {
-            this->mY += PLAYER_SPEED;
-        }
-        if (IsKeyPressed('W'))
-        {
-            this->mY -= PLAYER_SPEED;
-        }
-        if (IsKeyPressed('D'))
-        {
-            this->mX += PLAYER_SPEED;
-        }
-        if (IsKeyPressed('A'))
-        {
-            this->mX -= PLAYER_SPEED;
-        }
-        if (this->mX < 0)
-            this->mX = 0;
-        else if ((this->mX + PLAYER_BASE_SIZE) > WIDTH)
-            this->mX = WIDTH - PLAYER_BASE_SIZE;
-        if (this->mY < 0)
-            this->mY = 0;
-        else if ((this->mY + PLAYER_BASE_SIZE + 30) > HEIGHT)
-            this->mY = HEIGHT - PLAYER_BASE_SIZE - 30;
-    }
+
+void Player::update(float dt) {
+    // if (!this->isDead()) {
+    //     if (IsKeyPressed('S'))
+    //     {
+    //         this->mY += PLAYER_SPEED;
+    //     }
+    //     if (IsKeyPressed('W'))
+    //     {
+    //         this->mY -= PLAYER_SPEED;
+    //     }
+    //     if (IsKeyPressed('D'))
+    //     {
+    //         this->mX += PLAYER_SPEED;
+    //     }
+    //     if (IsKeyPressed('A'))
+    //     {
+    //         this->mX -= PLAYER_SPEED;
+    //     }
+    //     if (this->mX < 0)
+    //         this->mX = 0;
+    //     else if ((this->mX + PLAYER_BASE_SIZE) > WIDTH)
+    //         this->mX = WIDTH - PLAYER_BASE_SIZE;
+    //     if (this->mY < 0)
+    //         this->mY = 0;
+    //     else if ((this->mY + PLAYER_BASE_SIZE + 30) > HEIGHT)
+    //         this->mY = HEIGHT - PLAYER_BASE_SIZE - 30;
+    // }
+    mState->update(dt);
 }
 
 bool Player::collision(Object *ob) {
