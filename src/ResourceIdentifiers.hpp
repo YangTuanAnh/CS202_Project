@@ -23,3 +23,24 @@ namespace Textures {
         // ...
     };
 };
+
+// List of player states
+namespace PlayerStates {
+    enum ID {
+        None,
+        Idle,
+        Jumping,
+        Dead,
+        // ...
+    };
+};
+
+namespace Directions {
+    enum ID {
+        Left,
+        Right,
+        Up,
+        Down,
+        // ...
+    };
+};

@@ -1,7 +1,7 @@
 #include "Program.h"
 #include "States/GameState.h"
 #include "States/PausedState.h"
-#include "Player.h"
+#include "Player.hpp"
 
 #include <iostream>
 

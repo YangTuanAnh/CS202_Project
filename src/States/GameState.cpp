@@ -1,4 +1,6 @@
 #include "GameState.h"
+#include "../PlayerStates/IdleState.h"
+#include "../PlayerStates/JumpingState.h"
 
 #include <iostream>
 
@@ -26,6 +28,11 @@ bool GameState::update(float dt) {
     return updatePrevState;
 }
 
+void GameState::registerStates() {
+    player->registerState<IdleState>(PlayerStates::Idle);
+    player->registerState<JumpingState>(PlayerStates::Jumping);
+}
+
 // Object* GameState::getAnimal(){
 //     for(int i=0; i < obstacle.size();i++){
 //         if(obstacle[i]->type() == 2||obstacle[i]->type()==3){
@@ -40,9 +47,9 @@ bool GameState::update(float dt) {
 //         }
 //     }
 // }
-Player GameState::getPeople() {
-    return *player;
-}
+// Player GameState::getPeople() {
+//     return *player;
+// }
 
 void GameState::startGame() // setting a 30x30 map
 {
@@ -128,8 +135,8 @@ void GameState::saveGame(ostream fout) {
         fout << map[i]->getDirect() << '\n';
     }
 
-    fout << player->getmX() << '\n';
-    fout << player->getmY() << '\n';
+    fout << player->getX() << '\n';
+    fout << player->getY() << '\n';
     fout << player->getPoint() << '\n';
 }
 

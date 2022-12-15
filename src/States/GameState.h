@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../State.h"
-#include "../Player.h"
+#include "../Player.hpp"
 #include "../Object.h"
 
 #include <iostream>
@@ -31,4 +31,5 @@ public:
     //void resumeGame(HANDLE); //Quay lai Thread
     void updatePosPeople(char); //Thực hiện điều khiển di chuyển của CPEOPLE
     void updatePos(); //Thực hiện cho CTRUCK & CCAR di chuyển
+    void registerStates();
 };
