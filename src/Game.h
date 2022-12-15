@@ -2,6 +2,14 @@
 #include "Player.h"
 #include "Object.h"
 
+// Object velocity define
+#define V_OBSTACLE 0.0f
+// normal mode
+#define V_CAR_N 2.0f
+#define V_TRUCK_N 2.5f
+#define V_BIRD_N 3.5f
+#define V_DINAUSOR_N 1.5f
+
 class Game
 {
     vector<Object*>map;

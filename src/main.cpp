@@ -11,6 +11,7 @@ int main()
     Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
     ImageFlipHorizontal(&inverseDirect);
     Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
+    Vector2 pos = { 10.0f, 10.0f };
 
     while (!WindowShouldClose()) {
         // Color* pixels = LoadImageColors(inverseDirect);
@@ -20,7 +21,9 @@ int main()
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
-        DrawTexture(inverseTexture, WIDTH/2 - texture.width/2, HEIGHT/2 - texture.height/2, WHITE);
+        // DrawTexture(inverseTexture, WIDTH/2 - texture.width/2, HEIGHT/2 - texture.height/2, WHITE);
+        DrawTextureV(inverseTexture, pos, WHITE);
+        pos.x += 2.0f;
 
         EndDrawing();
     }

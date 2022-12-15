@@ -2,21 +2,18 @@
 #include "Player.h"
 #include "program.h"
 
-int Object::getX(){
+float Object::getX(){
     return this->X;
 }
-int Object::getY(){
+float Object::getY(){
     return this->Y;
 }
 
 void Dinausor::draw() {
     Texture2D texture = mTextures->get(Textures::Dinasor);  // get texture
     if (this->direct == 1) {
-        BeginDrawing();
-
-        DrawTexture(texture, this->X, this->Y, WHITE);
-
-        EndDrawing();
+        Vector2 pos = { this->X, this->Y };
+        DrawTextureV(texture, pos, WHITE);
     }
     else {  // flip texture to the suitable direction
         Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
@@ -26,11 +23,8 @@ void Dinausor::draw() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
 
-        BeginDrawing();
-
-        DrawTexture(inverseTexture, this->X, this->Y, WHITE);
-
-        EndDrawing();
+        Vector2 pos = { this->X, this->Y };
+        DrawTextureV(inverseTexture, pos, WHITE);
     }
 }
 
@@ -43,11 +37,8 @@ Dinausor::~Dinausor(){
 void Car::draw() {
     Texture2D texture = mTextures->get(Textures::Car);  // get texture
     if (this->direct == 1) {
-        BeginDrawing();
-
-        DrawTexture(texture, this->X, this->Y, WHITE);
-
-        EndDrawing();
+        Vector2 pos = { this->X, this->Y };
+        DrawTextureV(texture, pos, WHITE);
     }
     else {  // flip texture to the suitable direction
         Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
@@ -57,11 +48,8 @@ void Car::draw() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
 
-        BeginDrawing();
-
-        DrawTexture(inverseTexture, this->X, this->Y, WHITE);
-
-        EndDrawing();
+        Vector2 pos = { this->X, this->Y };
+        DrawTextureV(inverseTexture, pos, WHITE);
     }
 }
 
@@ -74,11 +62,8 @@ Car::~Car(){
 void Truck::draw() {
     Texture2D texture = mTextures->get(Textures::Truck);  // get texture
     if (this->direct == 1) {
-        BeginDrawing();
-
-        DrawTexture(texture, this->X, this->Y, WHITE);
-
-        EndDrawing();
+        Vector2 pos = { this->X, this->Y };
+        DrawTextureV(texture, pos, WHITE);
     }
     else {  // flip texture to the suitable direction
         Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
@@ -88,11 +73,8 @@ void Truck::draw() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
 
-        BeginDrawing();
-
-        DrawTexture(inverseTexture, this->X, this->Y, WHITE);
-
-        EndDrawing();
+        Vector2 pos = { this->X, this->Y };
+        DrawTextureV(inverseTexture, pos, WHITE);
     }
 }
 
@@ -105,11 +87,8 @@ Truck::~Truck(){
 void Bird::draw() {
     Texture2D texture = mTextures->get(Textures::Bird);  // get texture
     if (this->direct == 1) {
-        BeginDrawing();
-
-        DrawTexture(texture, this->X, this->Y, WHITE);
-
-        EndDrawing();
+        Vector2 pos = { this->X, this->Y };
+        DrawTextureV(texture, pos, WHITE);
     }
     else {  // flip texture to the suitable direction
         Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
@@ -119,11 +98,8 @@ void Bird::draw() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
 
-        BeginDrawing();
-
-        DrawTexture(inverseTexture, this->X, this->Y, WHITE);
-
-        EndDrawing();
+        Vector2 pos = { this->X, this->Y };
+        DrawTextureV(inverseTexture, pos, WHITE);
     }
 }
 
@@ -143,11 +119,8 @@ Object::~Object(){
 void Obstacle::draw() {
     Texture2D texture = mTextures->get(Textures::Obstacle);  // get texture
     if (this->direct == 1) {
-        BeginDrawing();
-
-        DrawTexture(texture, this->X, this->Y, WHITE);
-
-        EndDrawing();
+        Vector2 pos = { this->X, this->Y };
+        DrawTextureV(texture, pos, WHITE);
     }
     else {  // flip texture to the suitable direction
         Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
@@ -156,12 +129,8 @@ void Obstacle::draw() {
         // Color* pixels = LoadImageColors(inverseDirect);
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
-
-        BeginDrawing();
-
-        DrawTexture(inverseTexture, this->X, this->Y, WHITE);
-
-        EndDrawing();
+        Vector2 pos = { this->X, this->Y };
+        DrawTextureV(inverseTexture, pos, WHITE);
     }
 }
 Obstacle::~Obstacle(){
