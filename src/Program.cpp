@@ -17,6 +17,11 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
     mTextures->load(Textures::PausedBackground, "../asset/img/PausedScreen.png", WIDTH, HEIGHT);
 
     mPlayer->init(&mTextures->get(Textures::Player));
+    mTextures = new TextureHolder;
+    mTextures->load(Textures::Car, "../image/vehicle_car.png");
+    mTextures->load(Textures::Truck, "../image/vehicle_truck.png");
+    mTextures->load(Textures::Bird, "../image/vehicle_bird.png");
+    mTextures->load(Textures::Dinasor, "../image/vehicle_dinosaur.png");
 }
 
 Program::~Program() {
