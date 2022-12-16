@@ -1,7 +1,9 @@
 #include "Program.h"
 #include "States/GameState.h"
 #include "States/PausedState.h"
-#include "Player.h"
+#include "PlayerStates/IdleState.h"
+#include "PlayerStates/JumpingState.h"
+#include "Player.hpp"
 
 #include <iostream>
 
@@ -24,7 +26,7 @@ Program::~Program() {
 
 void Program::run() {
     BeginDrawing();
-    mStateStack.update(1.0f / 60.0f);
+    mStateStack.update(GetFrameTime());
     mStateStack.draw();
     EndDrawing();
 }
@@ -32,4 +34,6 @@ void Program::run() {
 void Program::registerStates() {
     mStateStack.registerState<GameState>(States::Game);
     mStateStack.registerState<PausedState>(States::Pause);
+    mPlayer->registerState<IdleState>(PlayerStates::Idle);
+    mPlayer->registerState<JumpingState>(PlayerStates::Jumping);
 }

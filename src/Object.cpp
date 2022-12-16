@@ -1,5 +1,5 @@
 #include "Object.h"
-#include "Player.h"
+#include "Player.hpp"
 
 int Object::getX(){
     return this->X;

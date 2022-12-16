@@ -5,7 +5,7 @@
 // #include "StateStack.hpp"
 #include "ResourceIdentifiers.hpp"
 #include "TextureHolder.h"
-#include "Player.h"
+#include "Player.hpp"
 
 class StateStack;
 

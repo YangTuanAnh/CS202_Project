@@ -6,7 +6,7 @@
 #include <memory>
 
 #include "State.h"
-#include "Player.h"
+#include "Player.hpp"
 
 class StateStack {
 public:

@@ -1,4 +1,6 @@
 #include "GameState.h"
+#include "../PlayerStates/IdleState.h"
+#include "../PlayerStates/JumpingState.h"
 
 #include <iostream>
 
@@ -22,7 +24,7 @@ bool GameState::update(float dt) {
         requestStackPush(States::Pause);
         return updatePrevState;
     }
-    player->update();
+    player->update(dt);
     return updatePrevState;
 }
 
@@ -40,9 +42,9 @@ bool GameState::update(float dt) {
 //         }
 //     }
 // }
-Player GameState::getPeople() {
-    return *player;
-}
+// Player GameState::getPeople() {
+//     return *player;
+// }
 
 void GameState::startGame() // setting a 30x30 map
 {
@@ -128,8 +130,8 @@ void GameState::saveGame(ostream fout) {
         fout << map[i]->getDirect() << '\n';
     }
 
-    fout << player->getmX() << '\n';
-    fout << player->getmY() << '\n';
+    fout << player->getX() << '\n';
+    fout << player->getY() << '\n';
     fout << player->getPoint() << '\n';
 }
 
