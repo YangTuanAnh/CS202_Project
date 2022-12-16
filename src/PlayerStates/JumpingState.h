@@ -7,7 +7,7 @@
 class JumpingState : public PlayerState {
 private:
     Vector2 target;
-    float elapsedTime;
+    float elapsedTime = 0.0f;
     Directions::ID direction;
     const float jumpTime = 0.5f;
 public:

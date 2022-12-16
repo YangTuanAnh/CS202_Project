@@ -3,29 +3,31 @@
 
 #include <iostream>
 
+const float blockSize = 40.0f;
+
 JumpingState::JumpingState(Player& player) : PlayerState(player, PlayerStates::Jumping) {}
 
 float JumpingState::ease() {
     // 1 - (t - 1)^2
     float t = elapsedTime / jumpTime;
-    float v = (2 * t - 2) * 40.0f;
-    return v * t;
+    float d = (1.0f - (t - 1.0f) * (t - 1.0f)) * blockSize;
+    return d;
 }
 
 void JumpingState::setTarget(Vector2 curPos, Directions::ID direction) {
     this->direction = direction;
     switch (direction) {
     case Directions::Up:
-        target = Vector2{curPos.x, curPos.y - 40.0f};
+        target = Vector2{curPos.x, curPos.y - blockSize};
         break;
     case Directions::Down:
-        target = Vector2{curPos.x, curPos.y + 40.0f};
+        target = Vector2{curPos.x, curPos.y + blockSize};
         break;
     case Directions::Left:
-        target = Vector2{curPos.x - 40.0f, curPos.y};
+        target = Vector2{curPos.x - blockSize, curPos.y};
         break;
     case Directions::Right:
-        target = Vector2{curPos.x + 40.0f, curPos.y};
+        target = Vector2{curPos.x + blockSize, curPos.y};
         break;
     default:
         break;
@@ -42,16 +44,16 @@ void JumpingState::update(float dt) {
     }
     switch (direction) {
     case Directions::Up:
-        player.setY((target.y + 40.0f) + ease());
+        player.setY((target.y + blockSize) - ease());
         break;
     case Directions::Down:
-        player.setY((target.y - 40.0f) - ease());
+        player.setY((target.y - blockSize) + ease());
         break;
     case Directions::Left:
-        player.setX((target.x + 40.0f) + ease());
+        player.setX((target.x + blockSize) - ease());
         break;
     case Directions::Right:
-        player.setX((target.x - 40.0f) - ease());
+        player.setX((target.x - blockSize) + ease());
         break;
     default:
         break;
