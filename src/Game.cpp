@@ -18,9 +18,9 @@ Game::Game(TextureHolder* mTextures) {
 //         }
 //     }
 // }
-// Player Game::getPeople(){
-//     return cn;
-// }
+Player Game::getPeople(){
+    return cn;
+}
 void Game::startGame()//setting a 30x30 map
 {
     //set position of player
@@ -100,52 +100,52 @@ void Game::updatePos(){
     }
 }
 
-// void Game::saveGame(ostream fout){
-//     for(int i  =0 ;  i < map.size() ; i++){
-//         fout << map[i]->type()<<'\n';
-//         fout << map[i]->getX()<<'\n';
-//         fout << map[i]->getY()<<'\n';
-//         fout << map[i]->getDirect()<<'\n'; 
-//     }
+void Game::saveGame(ostream fout){
+    for(int i  =0 ;  i < map.size() ; i++){
+        fout << map[i]->type()<<'\n';
+        fout << map[i]->getX()<<'\n';
+        fout << map[i]->getY()<<'\n';
+        fout << map[i]->getDirect()<<'\n'; 
+    }
 
-//     fout<<cn.getmX()<<'\n';
-//     fout<<cn.getmY()<<'\n';
-//     fout<<cn.getPoint()<<'\n';
-// }
+    fout<<cn.getmX()<<'\n';
+    fout<<cn.getmY()<<'\n';
+    fout<<cn.getPoint()<<'\n';
+}
 
-// void Game::loadGame(istream fin){
-//     int a;
-//     float x, y, v;
-//     int dir, point;
-//     while(!fin.eof()){
-//         fin>>a;
-//         switch(a){
-//         case 2:
-//             fin >> x >> y >> dir >> v;
-//             map.push_back(new Car (x, y, dir, v, mTextures));
-//             break;
-//         case 3:
-//             fin >> x>> y >> dir >> v;
-//             map.push_back(new Truck (x, y, dir, v, mTextures));
-//             break;
-//         case 4:
-//             fin >> x >> y >> dir >> v;         
-//             map.push_back(new Bird (x, y, dir, v, mTextures));
-//             break;
-//         case 5:
-//             fin >> x >> y >> dir >> v;
-//             map.push_back(new Dinausor (x, y, dir, v, mTextures));
-//             break;
-//         case 1:
-//             fin >> x >> y >> dir >> v;
-//             map.push_back(new Obstacle (x, y, dir, v, mTextures));
-//             break;
-//         }
+void Game::loadGame(istream fin){
+    int a;
+    float x, y, v;
+    int dir, point;
+    while(!fin.eof()){
+        fin>>a;
+        switch(a){
+        case 2:
+            fin >> x >> y >> dir >> v;
+            map.push_back(new Car (x, y, dir, v, mTextures));
+            break;
+        case 3:
+            fin >> x>> y >> dir >> v;
+            map.push_back(new Truck (x, y, dir, v, mTextures));
+            break;
+        case 4:
+            fin >> x >> y >> dir >> v;         
+            map.push_back(new Bird (x, y, dir, v, mTextures));
+            break;
+        case 5:
+            fin >> x >> y >> dir >> v;
+            map.push_back(new Dinausor (x, y, dir, v, mTextures));
+            break;
+        case 1:
+            fin >> x >> y >> dir >> v;
+            map.push_back(new Obstacle (x, y, dir, v, mTextures));
+            break;
+        }
 
-//     }
-//     fin>>x>>y>>point;
-//     Player A(x,y,point);
-// }
+    }
+    fin>>x>>y>>point;
+    Player A(x,y,point);
+}
 Game::~Game(){
     map.clear();
 }

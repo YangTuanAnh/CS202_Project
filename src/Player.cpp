@@ -8,8 +8,8 @@
 
 Player::Player() {
     std::cerr << "Player constructor" << std::endl;
-    this->mX = 600.0f;
-    this->mY = 520.0f;
+    this->mX = 0.0f;
+    this->mY = 0.0f;
     this->point = 0;
 }
 

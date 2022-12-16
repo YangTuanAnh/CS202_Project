@@ -18,25 +18,20 @@ void JumpingState::setTarget(Vector2 curPos, Directions::ID direction) {
     this->direction = direction;
     switch (direction) {
     case Directions::Up:
-        curPos.y -= blockSize;
-        if(curPos.y < 0.0f) curPos.y = 0.0f;
+        target = Vector2{curPos.x, curPos.y - blockSize};
         break;
     case Directions::Down:
-        curPos.y += blockSize;
-        if(curPos.y > HEIGHT - 40.0f) curPos.y = HEIGHT - 40.0f; 
+        target = Vector2{curPos.x, curPos.y + blockSize};
         break;
     case Directions::Left:
-        curPos.x -= blockSize;
-        if(curPos.x <0.0f) curPos.x = 0.0f;
+        target = Vector2{curPos.x - blockSize, curPos.y};
         break;
     case Directions::Right:
-        curPos.x += blockSize;
-        if(curPos.x > WIDTH) curPos.x = WIDTH;
+        target = Vector2{curPos.x + blockSize, curPos.y};
         break;
     default:
         break;
     }
-    target = Vector2{curPos.x,curPos.y};
     std::cerr << "Jumping to " << target.x << ", " << target.y << std::endl;
 }
 
