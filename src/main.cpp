@@ -2,7 +2,7 @@
 
 int main()
 {
-    InitWindow(WIDTH, HEIGHT, "Crash Course");
+    InitWindow(WIDTH, HEIGHT, "CS163_Dictionary");
     SetTargetFPS(60);
     Program Program;
     while (!WindowShouldClose())
