@@ -56,23 +56,23 @@ void GameState::startGame() // setting a 30x30 map
         int s = rand() % 5;
         int pos = rand() % 30;
         if (s == 2) {
-            map.push_back(new Car(j, pos, rand() % 2));
+            map.push_back(new Car(j, pos, rand() % 2, V_CAR_N, ));
             continue;
         }
         if (s == 3) {
-            map.push_back(new Truck(j, pos, rand() % 2));
+            map.push_back(new Truck(j, pos, rand() % 2, V_TRUCK_N, ));
             continue;
         }
         if (s == 4) {
-            map.push_back(new Bird(j, pos, rand() % 2));
+            map.push_back(new Bird(j, pos, rand() % 2, V_BIRD_N, ));
             continue;
         }
         if (s == 5) {
-            map.push_back(new Dinausor(j, pos, rand() % 2));
+            map.push_back(new Dinausor(j, pos, rand() % 2, V_DINAUSOR_N, ));
             continue;
         }
         else {
-            map.push_back(new Obstacle(j, pos, rand() % 2));
+            map.push_back(new Obstacle(j, pos, rand() % 2, V_OBSTACLE, ));
         }
     }
     draw();
@@ -91,23 +91,23 @@ void GameState::random() {
     int pos = rand() % 30;
     map.erase(map.begin());
     if (s == 2) {
-        map.push_back(new Car(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
+        map.push_back(new Car(map[map.size() - 1]->getX() + 1, pos, rand() % 2, V_CAR_N, ));
         return;
     }
     if (s == 3) {
-        map.push_back(new Truck(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
+        map.push_back(new Truck(map[map.size() - 1]->getX() + 1, pos, rand() % 2, V_TRUCK_N, ));
         return;
     }
     if (s == 4) {
-        map.push_back(new Bird(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
+        map.push_back(new Bird(map[map.size() - 1]->getX() + 1, pos, rand() % 2, V_BIRD_N, ));
         return;
     }
     if (s == 5) {
-        map.push_back(new Dinausor(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
+        map.push_back(new Dinausor(map[map.size() - 1]->getX() + 1, pos, rand() % 2, V_DINAUSOR_N, ));
         return;
     }
     else {
-        map.push_back(new Obstacle(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
+        map.push_back(new Obstacle(map[map.size() - 1]->getX() + 1, pos, rand() % 2, V_OBSTACLE, ));
         return;
     }
 }
@@ -143,23 +143,23 @@ void GameState::loadGame(istream fin) {
         switch (a) {
         case 2:
             fin >> x >> y >> dir;
-            map.push_back(new Car(x, y, dir));
+            map.push_back(new Car(x, y, dir, V_CAR_N, ));
             break;
         case 3:
             fin >> x >> y >> dir;
-            map.push_back(new Truck(x, y, dir));
+            map.push_back(new Truck(x, y, dir, V_TRUCK_N, ));
             break;
         case 4:
             fin >> x >> y >> dir;
-            map.push_back(new Bird(x, y, dir));
+            map.push_back(new Bird(x, y, dir, V_BIRD_N, ));
             break;
         case 5:
             fin >> x >> y >> dir;
-            map.push_back(new Dinausor(x, y, dir));
+            map.push_back(new Dinausor(x, y, dir, V_DINAUSOR_N, ));
             break;
         case 1:
             fin >> x >> y >> dir;
-            map.push_back(new Obstacle(x, y, dir));
+            map.push_back(new Obstacle(x, y, dir, V_OBSTACLE, ));
             break;
         }
     }

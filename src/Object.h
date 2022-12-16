@@ -4,6 +4,14 @@
 #include "Global.h"
 #include "TextureHolder.h"
 
+// Object velocity define
+#define V_OBSTACLE 0.0f
+// normal mode
+#define V_CAR_N 2.0f
+#define V_TRUCK_N 2.5f
+#define V_BIRD_N 3.5f
+#define V_DINAUSOR_N 1.5f
+
 class Object{
 protected:
     float X, Y;
@@ -28,7 +36,12 @@ public:
 
 class Car:public Object{
 public:
-    void move() { this->X += this->velocity * (float)this->direct; };
+    void move() {
+		if (this->X == WIDTH)
+			this->X = 0.0f;
+		else
+			this->X += this->velocity * (float)this->direct;
+	};
 	Car(int x, int y, int d, float velocity, TextureHolder* mTextures) :Object(x, y, d, velocity, mTextures) {};
 	int type() { this->t = 2; return 2; }
 	int getDirect() { return this->direct; }
@@ -38,7 +51,12 @@ public:
 
 class Truck:public Object{
 public:
-    void move(){ this->X += this->velocity * (float)this->direct; };
+    void move() {
+		if (this->X == WIDTH)
+			this->X = 0.0f;
+		else
+			this->X += this->velocity * (float)this->direct;
+	};
 	Truck(int x, int y, int d, float velocity, TextureHolder* mTextures) :Object(x, y, d, velocity, mTextures) {};
 	int type() { this->t = 3; return 3; }
 	int getDirect() { return this->direct; }
@@ -48,7 +66,12 @@ public:
 
 class Bird:public Object{
 public:
-   	void move(){ this->X += this->velocity * (float)this->direct; };
+   	void move() {
+		if (this->X == WIDTH)
+			this->X = 0.0f;
+		else
+			this->X += this->velocity * (float)this->direct;
+	};
 	Bird(int x, int y, int d, float velocity, TextureHolder* mTextures) :Object(x, y, d, velocity, mTextures) {};
 	int type() { this->t = 4; return 4; }
 	int getDirect() { return this->direct; }
@@ -58,7 +81,12 @@ public:
 
 class Dinausor:public Object{
 public:
-    void move(){ this->X += this->velocity * (float)this->direct; };
+    void move() {
+		if (this->X == WIDTH)
+			this->X = 0.0f;
+		else
+			this->X += this->velocity * (float)this->direct;
+	};
 	Dinausor(int x, int y, int d, float velocity, TextureHolder* mTextures) :Object(x, y, d, velocity, mTextures) {};
 	int type() { this->t = 5; return 5; }
 	int getDirect() { return this->direct; }
