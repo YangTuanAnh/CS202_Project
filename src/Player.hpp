@@ -9,7 +9,7 @@
 #include <functional>
 #include <memory>
 #include <iostream>
-const int WIDTH = 1200, HEIGHT = 600;
+const int WIDTH = 1200, HEIGHT = 580;
 
 class Player {
 public:
