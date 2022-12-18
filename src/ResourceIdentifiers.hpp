@@ -20,11 +20,6 @@ namespace Textures {
         GameBackground,
         PausedBackground,
         Player,
-        Car,
-        Truck,
-        Bird,
-        Dinasor,
-        Obstacle,
         // ...
     };
 };
@@ -46,11 +41,6 @@ namespace Directions {
         Right,
         Up,
         Down,
-        Car,
-        Truck,
-        Bird,
-        Dinasor,
-        Obstacle,
         // ...
     };
 };
