@@ -23,7 +23,7 @@ void JumpingState::setTarget(Vector2 curPos, Directions::ID direction) {
         break;
     case Directions::Down:
         curPos.y += blockSize;
-        if(curPos.y > HEIGHT-40.0f) curPos.y = HEIGHT-40.0f;
+        if(curPos.y > HEIGHT-60.0f) curPos.y = HEIGHT-60.0f;
         break;
     case Directions::Left:
         curPos.x -= blockSize;
