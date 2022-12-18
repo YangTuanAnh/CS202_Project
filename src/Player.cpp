@@ -117,7 +117,7 @@ bool Player::collision(Object *ob) {
     float X = ob->getX();
     float Y = ob->getY();
 
-    if (this->mX == X && this->mY == Y && this->mX == (ob->type() % 2 + 1)) {
+    if (this->mX == X && this->mY == Y && this->mX == (ob->getType() % 2 + 1)) {
         return true;
     }
     return false;
