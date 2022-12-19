@@ -1,14 +1,12 @@
-#pragma once
-
 #include "../Lane.h"
 
-class RoadLane : public Lane {
+class JungleLane : public Lane {
 private:
     float speed;
     ObjectTypes::ID type;
 public:
-    RoadLane(float speed, int direction, ObjectTypes::ID type);
-    ~RoadLane();
+    JungleLane(float speed, int direction, ObjectTypes::ID type);
+    ~JungleLane();
     void update(float dt);
     void draw();
 };

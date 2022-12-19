@@ -56,3 +56,13 @@ namespace ObjectTypes {
         // ...
     };
 };
+
+namespace LaneTypes {
+    enum ID {
+        None,
+        RoadLane,
+        JungleLane,
+        PlainLane,
+        // ...
+    };
+};
