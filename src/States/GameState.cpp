@@ -1,17 +1,27 @@
-#include "GameState.h"
+#include "GameState.hpp"
 #include "../PlayerStates/IdleState.h"
 #include "../PlayerStates/JumpingState.h"
 #include "../Object.h"
+#include "../Lanes/RoadLane.h"
+#include "../Lanes/JungleLane.h"
+#include "../Lanes/PlainLane.h"
 
 #include <iostream>
 
 GameState::GameState(StateStack *stack, Context context) : State(stack, context) {
     mBackgroundTexture = &context.textures->get(Textures::GameBackground);
     player = context.player;
+    map = new Map();
+}
+
+void GameState::registerLanes() {
+    map->registerLane<RoadLane>(Lanes::Road);
+    map->registerLane<JungleLane>(Lanes::Jungle);
+    map->registerLane<PlainLane>(Lanes::Plain);
 }
 
 GameState::~GameState() {
-    map.clear();
+    delete map;
 }
 
 void GameState::draw() {

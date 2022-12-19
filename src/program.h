@@ -1,5 +1,5 @@
 #pragma once
-#include "States/GameState.h"
+#include "States/GameState.hpp"
 #include <raylib.h>
 #include <raygui.h>
 #include "StateStack.hpp"

@@ -2,9 +2,9 @@
 
 class PlainLane : public Lane {
 private:
-    ObjectTypes::ID type;
+    Objects::ID type;
 public:
-    PlainLane(ObjectTypes::ID type);
+    PlainLane(Objects::ID type);
     ~PlainLane();
     void update(float dt);
     void draw();

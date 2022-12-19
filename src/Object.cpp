@@ -2,14 +2,14 @@
 #include "Player.hpp"
 #include "program.h"
 
-Object::Object(float x, float y, int d, ObjectTypes::ID type) {
+Object::Object(float x, float y, int d, Objects::ID type) {
     this->mX = x;
     this->mY = y;
 	this->direction = d;
     this->type = type;
 }
 
-Object::Object(float x, float y, int d, float velocity, TextureHolder *mTextures, ObjectTypes::ID type) {
+Object::Object(float x, float y, int d, float velocity, TextureHolder *mTextures, Objects::ID type) {
 	this->mX = x;
 	this->mY = y;
 	this->direction = d;
@@ -18,25 +18,25 @@ Object::Object(float x, float y, int d, float velocity, TextureHolder *mTextures
     this->type = type;
 }
 
-Car::Car(int x, int y, int d) : Object(x, y, d, ObjectTypes::Car) {}
+Car::Car(int x, int y, int d) : Object(x, y, d, Objects::Car) {}
 
-Car::Car(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Car) {}
+Car::Car(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, Objects::Car) {}
 
-Truck::Truck(int x, int y, int d) : Object(x, y, d, ObjectTypes::Truck) {}
+Truck::Truck(int x, int y, int d) : Object(x, y, d, Objects::Truck) {}
 
-Truck::Truck(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Truck) {}
+Truck::Truck(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, Objects::Truck) {}
 
-Bird::Bird(int x, int y, int d) : Object(x, y, d, ObjectTypes::Bird) {}
+Bird::Bird(int x, int y, int d) : Object(x, y, d, Objects::Bird) {}
 
-Bird::Bird(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Bird) {}
+Bird::Bird(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, Objects::Bird) {}
 
-Dinosaur::Dinosaur(int x, int y, int d) : Object(x, y, d, ObjectTypes::Dinosaur) {}
+Dinosaur::Dinosaur(int x, int y, int d) : Object(x, y, d, Objects::Dinosaur) {}
 
-Dinosaur::Dinosaur(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Dinosaur) {}
+Dinosaur::Dinosaur(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, Objects::Dinosaur) {}
 
-Obstacle::Obstacle(int x, int y, int d) : Object(x, y, d, ObjectTypes::Obstacle) {}
+Obstacle::Obstacle(int x, int y, int d) : Object(x, y, d, Objects::Obstacle) {}
 
-Obstacle::Obstacle(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Obstacle) {}
+Obstacle::Obstacle(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, Objects::Obstacle) {}
 
 float Object::getX(){
     return this->mX;
@@ -45,7 +45,7 @@ float Object::getY(){
     return this->mY;
 }
 
-ObjectTypes::ID Object::getType() {
+Objects::ID Object::getType() {
     return this->type;
 }
 
@@ -58,7 +58,7 @@ void Object::update(float dt){
 }
 
 void Dinosaur::draw() {
-    Texture2D texture = mTextures->get(Textures::Dinasor);  // get texture
+    Texture2D texture = mTextures->get(Textures::Dinosaur);  // get texture
     if (this->direction == 1) {
         Vector2 pos = { this->mX, this->mY };
         DrawTextureV(texture, pos, WHITE);

@@ -1,5 +1,5 @@
 #include "Program.h"
-#include "States/GameState.h"
+#include "States/GameState.hpp"
 #include "States/PausedState.h"
 #include "PlayerStates/IdleState.h"
 #include "PlayerStates/JumpingState.h"
@@ -20,7 +20,7 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
     mTextures->load(Textures::Car, "../image/vehicle_car.png");
     mTextures->load(Textures::Truck, "../image/vehicle_truck.png");
     mTextures->load(Textures::Bird, "../image/vehicle_bird.png");
-    mTextures->load(Textures::Dinasor, "../image/vehicle_dinosaur.png");
+    mTextures->load(Textures::Dinosaur, "../image/vehicle_dinosaur.png");
 }
 
 Program::~Program() {

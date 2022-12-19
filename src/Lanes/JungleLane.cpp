@@ -1,6 +1,6 @@
 #include "JungleLane.h"
 
-JungleLane::JungleLane(float speed, int direction, ObjectTypes::ID type) {
+JungleLane::JungleLane(float speed, int direction, Objects::ID type) {
     this->speed = speed;
     this->direction = direction;
     this->type = type;

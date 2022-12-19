@@ -2,7 +2,7 @@
 
 #include "../State.h"
 #include "../Player.hpp"
-#include "../Lane.h"
+#include "../Map.hpp"
 
 #include <iostream>
 #include <vector>
@@ -10,7 +10,7 @@
 
 class GameState : public State {
 private:
-    std::deque<Lane::Ptr> map;
+    Map* map;
     Player* player;
     Texture2D* mBackgroundTexture;
 public:
@@ -32,5 +32,5 @@ public:
     //void resumeGame(HANDLE); //Quay lai Thread
     // void updatePosPeople(char); //Thực hiện điều khiển di chuyển của CPEOPLE
     // void updatePos(); //Thực hiện cho CTRUCK & CCAR di chuyển
-    // void registerStates();
+    void registerLanes();
 };

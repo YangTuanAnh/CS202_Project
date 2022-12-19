@@ -22,7 +22,7 @@ protected:
 	// 1: right, -1: left
 	int direction = 1;
 	float velocity;
-	ObjectTypes::ID type;
+	Objects::ID type;
 	TextureHolder *mTextures;
 
 public:
@@ -32,10 +32,10 @@ public:
 	float getY();
 
 	// set up obstacle
-	virtual ObjectTypes::ID getType();
+	virtual Objects::ID getType();
 	int getDirection();
-	Object(float x, float y, int d, ObjectTypes::ID type);
-	Object(float x, float y, int d, float velocity, TextureHolder *mTextures, ObjectTypes::ID type);
+	Object(float x, float y, int d, Objects::ID type);
+	Object(float x, float y, int d, float velocity, TextureHolder *mTextures, Objects::ID type);
 	virtual void update(float dt);
 	virtual void draw() = 0;
 	virtual ~Object();

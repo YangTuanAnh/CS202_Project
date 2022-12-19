@@ -1,6 +1,6 @@
 #include "RoadLane.h"
 
-RoadLane::RoadLane(float speed, int direction, ObjectTypes::ID type) {
+RoadLane::RoadLane(float speed, int direction, Objects::ID type) {
     this->speed = speed;
     this->direction = direction;
     this->type = type;
