@@ -6,8 +6,9 @@
 #include "Object.h"
 
 class Lane {
-private:
+protected:
     std::list<Object::Ptr> objects;
+    int direction = 0;
 public:
     typedef std::unique_ptr<Lane> Ptr;
     Lane();
