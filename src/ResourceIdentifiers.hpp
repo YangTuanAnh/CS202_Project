@@ -44,3 +44,15 @@ namespace Directions {
         // ...
     };
 };
+
+namespace ObjectTypes {
+    enum ID {
+        None,
+        Obstacle,
+        Car,
+        Truck,
+        Bird,
+        Dinosaur,
+        // ...
+    };
+};
