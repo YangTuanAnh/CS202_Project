@@ -9,6 +9,10 @@ float Object::getY(){
     return this->Y;
 }
 
+void Dinausor::update() {
+    this->move();
+}
+
 void Dinausor::draw() {
     Texture2D texture = mTextures->get(Textures::Dinasor);  // get texture
     if (this->direct == 1) {
@@ -26,6 +30,11 @@ void Dinausor::draw() {
         Vector2 pos = { this->X, this->Y };
         DrawTextureV(inverseTexture, pos, WHITE);
     }
+    DrawRectangle(this->X, this->Y, texture.width, texture.height, RED);
+}
+
+void Car::update() {
+    this->move();
 }
 
 Dinausor::~Dinausor(){
@@ -51,12 +60,17 @@ void Car::draw() {
         Vector2 pos = { this->X, this->Y };
         DrawTextureV(inverseTexture, pos, WHITE);
     }
+    DrawRectangle(this->X, this->Y, texture.width, texture.height, RED);
 }
 
 Car::~Car(){
     this->direct = 0;
     this->X = 0;
     this->Y = 0;
+}
+
+void Truck::update() {
+    this->move();
 }
 
 void Truck::draw() {
@@ -76,12 +90,17 @@ void Truck::draw() {
         Vector2 pos = { this->X, this->Y };
         DrawTextureV(inverseTexture, pos, WHITE);
     }
+    DrawRectangle(this->X, this->Y, texture.width, texture.height, RED);
 }
 
 Truck::~Truck(){
     this->direct = 0;
     this->X = 0;
     this->Y = 0;
+}
+
+void Bird::update() {
+    this->move();
 }
 
 void Bird::draw() {
@@ -101,19 +120,23 @@ void Bird::draw() {
         Vector2 pos = { this->X, this->Y };
         DrawTextureV(inverseTexture, pos, WHITE);
     }
+    DrawRectangle(this->X, this->Y, texture.width, texture.height, RED);
 }
 
 Bird::~Bird(){
     this->direct = 0;
     this->X = 0;
     this->Y = 0;
-
 }
 
 Object::~Object(){
     this->direct = 0;
     this->X = 0;
     this->Y = 0;
+}
+
+void Obstacle::update() {
+    this->move();
 }
 
 void Obstacle::draw() {
@@ -132,6 +155,7 @@ void Obstacle::draw() {
         Vector2 pos = { this->X, this->Y };
         DrawTextureV(inverseTexture, pos, WHITE);
     }
+    DrawRectangle(this->X, this->Y, texture.width, texture.height, RED);
 }
 Obstacle::~Obstacle(){
     this->direct = 0;

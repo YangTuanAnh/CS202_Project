@@ -9,7 +9,6 @@
 #include <functional>
 #include <memory>
 #include <iostream>
-const int WIDTH = 1200, HEIGHT = 600;
 
 class Player {
 public:

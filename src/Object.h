@@ -28,6 +28,8 @@ public:
 
     //set up obstacle
     virtual void move();
+	virtual void moveIsometric();
+	virtual void update();
 	virtual int type() { return 0; };
 	int dir() { return this->direct; }
 	Object(float x, float y, int d) { this->X = x; this->Y = y; this->direct = d; };
@@ -39,13 +41,23 @@ public:
 class Car:public Object{
 public:
     void move() {
-		if (this->direct == 1 && this->X >= 1200)
+		if (this->direct == 1 && this->X >= WIDTH)
 			this->X = 0.0f;
 		else if (this->direct == -1 && this->X <= 0)
-			this->X = 1200.0f;
+			this->X = WIDTH;
 		else
 			this->X += this->velocity * (float)this->direct;
 	};
+	void moveIsometric() {
+		// if (this->direct == 1 && this->X >= WIDTH && this->Y >= HEIGHT) {
+		// 	this->X = 
+		// }
+		// else if (this->direct == -1 && this->X <= 0)
+		// 	this->X = WIDTH;
+		// else
+		// 	this->X += this->velocity * (float)this->direct;
+	};
+	void update();
 	Car(int x, int y, int d) : Object(x, y, d) { this->velocity = V_CAR_N; };
 	Car(int x, int y, int d, float velocity, TextureHolder* mTextures) :Object(x, y, d, velocity, mTextures) {};
 	int type() { this->t = 2; return 2; }
@@ -57,13 +69,22 @@ public:
 class Truck:public Object{
 public:
     void move() {
-		if (this->direct == 1 && this->X >= 1200)
+		if (this->direct == 1 && this->X >= WIDTH)
 			this->X = 0.0f;
 		else if (this->direct == -1 && this->X <= 0)
-			this->X = 1200.0f;
+			this->X = WIDTH;
 		else
 			this->X += this->velocity * (float)this->direct;
 	};
+	void moveIsometric() {
+		// if (this->direct == 1 && this->X >= WIDTH)
+		// 	this->X = 0.0f;
+		// else if (this->direct == -1 && this->X <= 0)
+		// 	this->X = WIDTH;
+		// else
+		// 	this->X += this->velocity * (float)this->direct;
+	};
+	void update();
 	Truck(int x, int y, int d) : Object(x, y, d) { this->velocity = V_TRUCK_N; };
 	Truck(int x, int y, int d, float velocity, TextureHolder* mTextures) :Object(x, y, d, velocity, mTextures) {};
 	int type() { this->t = 3; return 3; }
@@ -75,13 +96,22 @@ public:
 class Bird:public Object{
 public:
 	void move() {
-		if (this->direct == 1 && this->X >= 1200)
+		if (this->direct == 1 && this->X >= WIDTH)
 			this->X = 0.0f;
 		else if (this->direct == -1 && this->X <= 0)
-			this->X = 1200.0f;
+			this->X = WIDTH;
 		else
 			this->X += this->velocity * (float)this->direct;
 	};
+	void moveIsometric() {
+		// if (this->direct == 1 && this->X >= WIDTH)
+		// 	this->X = 0.0f;
+		// else if (this->direct == -1 && this->X <= 0)
+		// 	this->X = WIDTH;
+		// else
+		// 	this->X += this->velocity * (float)this->direct;
+	};
+	void update();
 	Bird(int x, int y, int d) : Object(x, y, d) { this->velocity = V_BIRD_N; };
 	Bird(int x, int y, int d, float velocity, TextureHolder* mTextures) :Object(x, y, d, velocity, mTextures) {};
 	int type() { this->t = 4; return 4; }
@@ -93,13 +123,22 @@ public:
 class Dinausor:public Object{
 public:
     void move() {
-		if (this->direct == 1 && this->X >= 1200)
+		if (this->direct == 1 && this->X >= WIDTH)
 			this->X = 0.0f;
 		else if (this->direct == -1 && this->X <= 0)
-			this->X = 1200.0f;
+			this->X = WIDTH;
 		else
 			this->X += this->velocity * (float)this->direct;
 	};
+	void moveIsometric() {
+		// if (this->direct == 1 && this->X >= WIDTH)
+		// 	this->X = 0.0f;
+		// else if (this->direct == -1 && this->X <= 0)
+		// 	this->X = WIDTH;
+		// else
+		// 	this->X += this->velocity * (float)this->direct;
+	};
+	void update();
 	Dinausor(int x, int y, int d) : Object(x, y, d) { this->velocity = V_DINAUSOR_N; };
 	Dinausor(int x, int y, int d, float velocity, TextureHolder* mTextures) :Object(x, y, d, velocity, mTextures) {};
 	int type() { this->t = 5; return 5; }
@@ -110,6 +149,8 @@ public:
 class Obstacle:public Object{
 public:
 	void move() { this->X += 0; this->Y += 0; };
+	void moveIsometric() { this->X += 0; this->Y += 0; };
+	void update();
 	Obstacle(int x, int y, int d) : Object(x, y, d) { this->velocity = V_OBSTACLE; };
 	Obstacle(int x, int y, int d, float velocity, TextureHolder* mTextures) :Object(x, y, d, velocity, mTextures) {};
 	int type() { this->t = 1;return 1; }
