@@ -116,7 +116,7 @@ void Car::draw() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    Vector2 pos = this->convertCar2IsoVector({ this->mX, this->mY });
+    Vector2 pos = this->convertCar2IsoVector({ this->mX, this->mY - 10.0f });
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -141,7 +141,7 @@ void Truck::draw() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    Vector2 pos = this->convertCar2IsoVector({ this->mX, this->mY });
+    Vector2 pos = this->convertCar2IsoVector({ this->mX, this->mY - 20.0f });
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
