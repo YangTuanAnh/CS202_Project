@@ -17,7 +17,7 @@ int main()
     SetTargetFPS(60);
     Program Program;
 
-    Texture2D texture = LoadTexture("../asset/object/vehicle_truck_right.png");
+    Texture2D texture = LoadTexture("../asset/object/vehicle_truck_left.png");
     Texture2D bgTexture = LoadTexture("../asset/object/grass_1.png");
     Texture2D texture2 = LoadTexture("../asset/object/vehicle_car_right.png");
 
