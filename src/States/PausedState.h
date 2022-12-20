@@ -15,5 +15,6 @@ public:
     PausedState(StateStack* stack, Context context);
     void draw();
     bool update(float dt);
+    ~PausedState();
     // virtual bool handleEvent(Event event);
 };

@@ -6,6 +6,7 @@ PausedState::PausedState(StateStack* stack, Context context) : State(stack, cont
     mBackgroundTexture = &context.textures->get(Textures::PausedBackground);
     mOptions.push_back("Resume");
     mOptions.push_back("Return to Main menu");
+    context.music->setPaused(true);
 }
 
 void PausedState::draw() {
@@ -42,4 +43,8 @@ bool PausedState::update(float dt) {
         }
     }
     return updatePrevState;
+}
+
+PausedState::~PausedState() {
+    getContext().music->setPaused(false);
 }

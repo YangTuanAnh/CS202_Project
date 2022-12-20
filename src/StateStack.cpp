@@ -8,6 +8,7 @@
 StateStack::StateStack(State::Context context) : mContext(context) {}
 
 void StateStack::update(float dt) {
+    mContext.music->update();
     for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr) {
         if (!(*itr)->update(dt)) {
             break;

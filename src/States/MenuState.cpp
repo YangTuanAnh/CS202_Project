@@ -4,6 +4,7 @@ MenuState::MenuState(StateStack *stack, Context context) : State(stack, context)
     mOptions.push_back("Load Game");
     mOptions.push_back("Settings");
     mOptions.push_back("Exit");
+    context.music->play(Audio::MenuTheme);
 }
 
 void MenuState::draw() {
@@ -26,6 +27,10 @@ bool MenuState::update(float dt) {
     if (IsMouseButtonDown(0)) {
         if (CheckCollisionPointRec(GetMousePosition(), recMenu[Play])) {
             requestStackPush(States::Game);
+            return updatePrevState;
+        }
+        if (CheckCollisionPointRec(GetMousePosition(), recMenu[Settings])) {
+            requestStackPush(States::Settings);
             return updatePrevState;
         }
         if (CheckCollisionPointRec(GetMousePosition(), recMenu[Exit])) {

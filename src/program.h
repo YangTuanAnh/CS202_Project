@@ -12,6 +12,7 @@ private:
     StateStack mStateStack;
     TextureHolder *mTextures;
     Player *mPlayer;
+    MusicPlayer *mMusic;
 public:
     Program();
     ~Program();
