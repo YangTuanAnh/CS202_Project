@@ -2,6 +2,7 @@
 #include "States/GameState.h"
 #include <raylib.h>
 #include <raygui.h>
+#define RAYGUI_IMPLEMENTATION
 #include "StateStack.hpp"
 
 //const int WIDTH = 1200, HEIGHT = 600;

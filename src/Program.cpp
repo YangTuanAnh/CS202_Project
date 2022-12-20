@@ -1,4 +1,5 @@
 #include "Program.h"
+#include "States/MenuState.h"
 #include "States/GameState.h"
 #include "States/PausedState.h"
 #include "PlayerStates/IdleState.h"
@@ -9,7 +10,7 @@
 
 Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(), mPlayer = new Player())) {
     registerStates();
-    mStateStack.pushState(States::Game);
+    mStateStack.pushState(States::Menu);
 
     // Load textures
     mTextures->load(Textures::GameBackground, "../asset/img/CrossyRoadBg.png", WIDTH, HEIGHT);
@@ -26,7 +27,8 @@ Program::~Program() {
 
 void Program::run() {
     const char msg1[50] = "Game Over!";
-    Font font1 = LoadFont("resources/custom_mecha.png");
+    //Font font1 = LoadFont("resources/custom_mecha.png");
+    Font font1 = GetFontDefault();
     Vector2 fontPosition1 = { WIDTH/2.0f - MeasureTextEx(font1, msg1, (float)font1.baseSize, -3).x/2,
                               HEIGHT/2.0f - font1.baseSize/2.0f - 80.0f };
     Vector2 pos = {this->mPlayer->getX(),this->mPlayer->getY()};
@@ -42,6 +44,7 @@ void Program::run() {
 }
 
 void Program::registerStates() {
+    mStateStack.registerState<MenuState>(States::Menu);
     mStateStack.registerState<GameState>(States::Game);
     mStateStack.registerState<PausedState>(States::Pause);
     mPlayer->registerState<IdleState>(PlayerStates::Idle);
