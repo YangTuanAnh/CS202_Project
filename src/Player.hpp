@@ -10,6 +10,8 @@
 #include <memory>
 #include <iostream>
 
+// const int WIDTH = 1200, HEIGHT = 580;
+
 class Player {
 public:
     float mX, mY;

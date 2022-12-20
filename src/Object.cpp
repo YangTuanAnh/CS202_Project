@@ -1,22 +1,86 @@
 #include "Object.h"
 #include "Player.hpp"
-#include "program.h"
+
+Object::Object(float x, float y, int d, ObjectTypes::ID type) {
+    this->mX = x;
+    this->mY = y;
+	this->direction = d;
+    this->type = type;
+}
+
+Object::Object(float x, float y, int d, float velocity, TextureHolder *mTextures, ObjectTypes::ID type) {
+	this->mX = x;
+	this->mY = y;
+	this->direction = d;
+	this->velocity = velocity;
+	this->mTextures = mTextures;
+    this->type = type;
+}
+
+Vector2 Object::convertCar2IsoVector(Vector2 Cartesian) {
+    Vector2 isometricVector;
+    isometricVector.x = Cartesian.x - Cartesian.y + WIDTH/2;
+    // if (Cartesian.x > 0)
+    //     Cartesian.y += Cartesian.x/2;
+    // else if (Cartesian.x == 0)
+    //     Cartesian.y /= 2;
+    isometricVector.y = (Cartesian.x + Cartesian.y)/2;
+    return isometricVector;
+}
+
+Car::Car(int x, int y, int d) : Object(x, y, d, ObjectTypes::Car) {
+    this->velocity = V_CAR_N;
+}
+
+Car::Car(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Car) {}
+
+Truck::Truck(int x, int y, int d) : Object(x, y, d, ObjectTypes::Truck) {
+    this->velocity = V_TRUCK_N;
+}
+
+Truck::Truck(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Truck) {}
+
+Bird::Bird(int x, int y, int d) : Object(x, y, d, ObjectTypes::Bird) {
+    this->velocity = V_BIRD_N;
+}
+
+Bird::Bird(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Bird) {}
+
+Dinosaur::Dinosaur(int x, int y, int d) : Object(x, y, d, ObjectTypes::Dinosaur) {
+    this->velocity = V_DINOSAUR_N;
+}
+
+Dinosaur::Dinosaur(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Dinosaur) {}
+
+Obstacle::Obstacle(int x, int y, int d) : Object(x, y, d, ObjectTypes::Obstacle) {
+    this->velocity = V_OBSTACLE;
+}
+
+Obstacle::Obstacle(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Obstacle) {}
 
 float Object::getX(){
-    return this->X;
+    return this->mX;
 }
 float Object::getY(){
-    return this->Y;
+    return this->mY;
 }
 
-void Dinausor::update() {
-    this->move();
+ObjectTypes::ID Object::getType() {
+    return this->type;
 }
 
-void Dinausor::draw() {
-    Texture2D texture = mTextures->get(Textures::Dinasor);  // get texture
-    if (this->direct == 1) {
-        Vector2 pos = { this->X, this->Y };
+int Object::getDirection() { 
+    return this->direction;
+}
+
+void Object::update(float dt){
+    this->mX += this->velocity * dt * this->direction;
+}
+
+void Dinosaur::draw() {
+    Texture2D texture = mTextures->get(Textures::Dinosaur);  // get texture
+    if (this->direction == 1) {
+        Vector2 pos = { this->mX, this->mY };
         DrawTextureV(texture, pos, WHITE);
     }
     else {  // flip texture to the suitable direction
@@ -27,26 +91,22 @@ void Dinausor::draw() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
 
-        Vector2 pos = { this->X, this->Y };
+        Vector2 pos = { this->mX, this->mY };
         DrawTextureV(inverseTexture, pos, WHITE);
     }
-    DrawRectangle(this->X, this->Y, texture.width, texture.height, RED);
+    DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 
-void Car::update() {
-    this->move();
-}
-
-Dinausor::~Dinausor(){
-    this->direct = 0;
-    this->X = 0;
-    this->Y = 0;
+Dinosaur::~Dinosaur(){
+    this->direction = 0;
+    this->mX = 0;
+    this->mY = 0;
 }
 
 void Car::draw() {
     Texture2D texture = mTextures->get(Textures::Car);  // get texture
-    if (this->direct == 1) {
-        Vector2 pos = { this->X, this->Y };
+    if (this->direction == 1) {
+        Vector2 pos = { this->mX, this->mY };
         DrawTextureV(texture, pos, WHITE);
     }
     else {  // flip texture to the suitable direction
@@ -57,26 +117,22 @@ void Car::draw() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
 
-        Vector2 pos = { this->X, this->Y };
+        Vector2 pos = { this->mX, this->mY };
         DrawTextureV(inverseTexture, pos, WHITE);
     }
-    DrawRectangle(this->X, this->Y, texture.width, texture.height, RED);
+    DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 
 Car::~Car(){
-    this->direct = 0;
-    this->X = 0;
-    this->Y = 0;
-}
-
-void Truck::update() {
-    this->move();
+    this->direction = 0;
+    this->mX = 0;
+    this->mY = 0;
 }
 
 void Truck::draw() {
     Texture2D texture = mTextures->get(Textures::Truck);  // get texture
-    if (this->direct == 1) {
-        Vector2 pos = { this->X, this->Y };
+    if (this->direction == 1) {
+        Vector2 pos = { this->mX, this->mY };
         DrawTextureV(texture, pos, WHITE);
     }
     else {  // flip texture to the suitable direction
@@ -87,26 +143,22 @@ void Truck::draw() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
 
-        Vector2 pos = { this->X, this->Y };
+        Vector2 pos = { this->mX, this->mY };
         DrawTextureV(inverseTexture, pos, WHITE);
     }
-    DrawRectangle(this->X, this->Y, texture.width, texture.height, RED);
+    DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 
 Truck::~Truck(){
-    this->direct = 0;
-    this->X = 0;
-    this->Y = 0;
-}
-
-void Bird::update() {
-    this->move();
+    this->direction = 0;
+    this->mX = 0;
+    this->mY = 0;
 }
 
 void Bird::draw() {
     Texture2D texture = mTextures->get(Textures::Bird);  // get texture
-    if (this->direct == 1) {
-        Vector2 pos = { this->X, this->Y };
+    if (this->direction == 1) {
+        Vector2 pos = { this->mX, this->mY };
         DrawTextureV(texture, pos, WHITE);
     }
     else {  // flip texture to the suitable direction
@@ -117,32 +169,28 @@ void Bird::draw() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
 
-        Vector2 pos = { this->X, this->Y };
+        Vector2 pos = { this->mX, this->mY };
         DrawTextureV(inverseTexture, pos, WHITE);
     }
-    DrawRectangle(this->X, this->Y, texture.width, texture.height, RED);
+    DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 
 Bird::~Bird(){
-    this->direct = 0;
-    this->X = 0;
-    this->Y = 0;
-}
+    this->direction = 0;
+    this->mX = 0;
+    this->mY = 0;
 
+}
 Object::~Object(){
-    this->direct = 0;
-    this->X = 0;
-    this->Y = 0;
-}
-
-void Obstacle::update() {
-    this->move();
+    this->direction = 0;
+    this->mX = 0;
+    this->mY = 0;
 }
 
 void Obstacle::draw() {
     Texture2D texture = mTextures->get(Textures::Obstacle);  // get texture
-    if (this->direct == 1) {
-        Vector2 pos = { this->X, this->Y };
+    if (this->direction == 1) {
+        Vector2 pos = { this->mX, this->mY };
         DrawTextureV(texture, pos, WHITE);
     }
     else {  // flip texture to the suitable direction
@@ -152,13 +200,14 @@ void Obstacle::draw() {
         // Color* pixels = LoadImageColors(inverseDirect);
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
-        Vector2 pos = { this->X, this->Y };
+        Vector2 pos = { this->mX, this->mY };
         DrawTextureV(inverseTexture, pos, WHITE);
     }
-    DrawRectangle(this->X, this->Y, texture.width, texture.height, RED);
+    DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
+
 Obstacle::~Obstacle(){
-    this->direct = 0;
-    this->X = 0;
-    this->Y = 0;
+    this->direction = 0;
+    this->mX = 0;
+    this->mY = 0;
 }

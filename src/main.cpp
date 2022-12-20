@@ -1,5 +1,4 @@
 #include "program.h"
-#include "Object.h"
 
 Vector2 convertCar2IsoVector(Vector2 Cartesian) {
     Vector2 isometricVector;
@@ -18,9 +17,9 @@ int main()
     SetTargetFPS(60);
     Program Program;
 
-    Texture2D texture = LoadTexture("../asset/object/animal_dinosaur.png");
+    Texture2D texture = LoadTexture("../asset/object/vehicle_car_left.png");
     Texture2D bgTexture = LoadTexture("../asset/img/CrossyRoadBg.png");
-    Texture2D texture2 = LoadTexture("../asset/object/animal_bird.png");
+    Texture2D texture2 = LoadTexture("../asset/object/vehicle_car_right.png");
 
     // Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
     // ImageFlipHorizontal(&inverseDirect);

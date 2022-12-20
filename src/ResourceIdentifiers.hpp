@@ -23,7 +23,7 @@ namespace Textures {
         Car,
         Truck,
         Bird,
-        Dinasor,
+        Dinosaur,
         Obstacle,
         // ...
     };
@@ -46,11 +46,28 @@ namespace Directions {
         Right,
         Up,
         Down,
+        // ...
+    };
+};
+
+namespace ObjectTypes {
+    enum ID {
+        None,
+        Obstacle,
         Car,
         Truck,
         Bird,
-        Dinasor,
-        Obstacle,
+        Dinosaur,
+        // ...
+    };
+};
+
+namespace LaneTypes {
+    enum ID {
+        None,
+        RoadLane,
+        JungleLane,
+        PlainLane,
         // ...
     };
 };

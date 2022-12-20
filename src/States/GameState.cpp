@@ -1,6 +1,7 @@
 #include "GameState.h"
 #include "../PlayerStates/IdleState.h"
 #include "../PlayerStates/JumpingState.h"
+#include "../Object.h"
 
 #include <iostream>
 
@@ -48,121 +49,114 @@ bool GameState::update(float dt) {
 
 void GameState::startGame() // setting a 30x30 map
 {
-    // set position of player
-    player->mX = rand() % 30;
-    player->mY = 0;
-    // set obstacle
-    for (int j = 0; j < 30; j++) {
-        int s = rand() % 5;
-        int pos = rand() % 30;
-        if (s == 2) {
-            map.push_back(new Car(j, pos, rand() % 2));
-            continue;
-        }
-        if (s == 3) {
-            map.push_back(new Truck(j, pos, rand() % 2));
-            continue;
-        }
-        if (s == 4) {
-            map.push_back(new Bird(j, pos, rand() % 2));
-            continue;
-        }
-        if (s == 5) {
-            map.push_back(new Dinausor(j, pos, rand() % 2));
-            continue;
-        }
-        else {
-            map.push_back(new Obstacle(j, pos, rand() % 2));
-        }
-    }
-    draw();
-    int tmp = player->getPoint();
-    while (!player->isDead()) {
-        player->movement();
-        if (player->getPoint() > tmp) {
-            this->random();
-            tmp = player->getPoint();
-        }
-    }
+    // // set position of player
+    // player->mX = rand() % 30;
+    // player->mY = 0;
+    // // set obstacle
+    // for (int j = 0; j < 30; j++) {
+    //     int s = rand() % 5;
+    //     int pos = rand() % 30;
+    //     if (s == 2) {
+    //         map.push_back(Object::Ptr(new Car(j, pos, rand() % 2)));
+    //         continue;
+    //     }
+    //     if (s == 3) {
+    //         map.push_back(new Truck(j, pos, rand() % 2));
+    //         continue;
+    //     }
+    //     if (s == 4) {
+    //         map.push_back(new Bird(j, pos, rand() % 2));
+    //         continue;
+    //     }
+    //     if (s == 5) {
+    //         map.push_back(new Dinosaur(j, pos, rand() % 2));
+    //         continue;
+    //     }
+    //     else {
+    //         map.push_back(new Obstacle(j, pos, rand() % 2));
+    //     }
+    // }
+    // int tmp = player->getPoint();
+    // while (!player->isDead()) {
+    //     player->movement();
+    //     if (player->getPoint() > tmp) {
+    //         this->random();
+    //         tmp = player->getPoint();
+    //     }
+    // }
 }
 
 void GameState::random() {
-    int s = rand() % 4;
-    int pos = rand() % 30;
-    map.erase(map.begin());
-    if (s == 2) {
-        map.push_back(new Car(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
-        return;
-    }
-    if (s == 3) {
-        map.push_back(new Truck(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
-        return;
-    }
-    if (s == 4) {
-        map.push_back(new Bird(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
-        return;
-    }
-    if (s == 5) {
-        map.push_back(new Dinausor(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
-        return;
-    }
-    else {
-        map.push_back(new Obstacle(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
-        return;
-    }
+    // int s = rand() % 4;
+    // int pos = rand() % 30;
+    // map.erase(map.begin());
+    // if (s == 2) {
+    //     map.push_back(new Car(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
+    //     return;
+    // }
+    // if (s == 3) {
+    //     map.push_back(new Truck(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
+    //     return;
+    // }
+    // if (s == 4) {
+    //     map.push_back(new Bird(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
+    //     return;
+    // }
+    // if (s == 5) {
+    //     map.push_back(new Dinosaur(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
+    //     return;
+    // }
+    // else {
+    //     map.push_back(new Obstacle(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
+    //     return;
+    // }
 }
 
 void GameState::resetGame() {
     startGame();
 }
 
-void GameState::updatePos() {
-    for (int i = 0; i < map.size(); i++) {
-        map[i]->move();
-    }
-}
-
 void GameState::saveGame(ostream fout) {
-    for (int i = 0; i < map.size(); i++) {
-        fout << map[i]->type() << '\n';
-        fout << map[i]->getX() << '\n';
-        fout << map[i]->getY() << '\n';
-        fout << map[i]->getDirect() << '\n';
-    }
+    // for (int i = 0; i < map.size(); i++) {
+    //     fout << map[i]->getType() << '\n';
+    //     fout << map[i]->getX() << '\n';
+    //     fout << map[i]->getY() << '\n';
+    //     fout << map[i]->getDirection() << '\n';
+    // }
 
-    fout << player->getX() << '\n';
-    fout << player->getY() << '\n';
-    fout << player->getPoint() << '\n';
+    // fout << player->getX() << '\n';
+    // fout << player->getY() << '\n';
+    // fout << player->getPoint() << '\n';
 }
 
 void GameState::loadGame(istream fin) {
-    int a;
-    int x, y, dir, point;
-    while (!fin.eof()) {
-        fin >> a;
-        switch (a) {
-        case 2:
-            fin >> x >> y >> dir;
-            map.push_back(new Car(x, y, dir));
-            break;
-        case 3:
-            fin >> x >> y >> dir;
-            map.push_back(new Truck(x, y, dir));
-            break;
-        case 4:
-            fin >> x >> y >> dir;
-            map.push_back(new Bird(x, y, dir));
-            break;
-        case 5:
-            fin >> x >> y >> dir;
-            map.push_back(new Dinausor(x, y, dir));
-            break;
-        case 1:
-            fin >> x >> y >> dir;
-            map.push_back(new Obstacle(x, y, dir));
-            break;
-        }
-    }
-    fin >> x >> y >> point;
-    Player A(x, y, point);
+    // int a;
+    // int x, y, dir, point;
+    // while (!fin.eof()) {
+    //     fin >> a;
+    //     switch (a) {
+    //     case 2:
+    //         fin >> x >> y >> dir;
+    //         map.push_back(new Car(x, y, dir));
+    //         break;
+    //     case 3:
+    //         fin >> x >> y >> dir;
+    //         map.push_back(new Truck(x, y, dir));
+    //         break;
+    //     case 4:
+    //         fin >> x >> y >> dir;
+    //         map.push_back(new Bird(x, y, dir));
+    //         break;
+    //     case 5:
+    //         fin >> x >> y >> dir;
+    //         map.push_back(new Dinosaur(x, y, dir));
+    //         break;
+    //     case 1:
+    //         fin >> x >> y >> dir;
+    //         map.push_back(new Obstacle(x, y, dir));
+    //         break;
+    //     }
+    // }
+    // fin >> x >> y >> point;
+    // Player A(x, y, point);
 }

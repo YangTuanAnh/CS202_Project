@@ -8,8 +8,8 @@
 
 Player::Player() {
     std::cerr << "Player constructor" << std::endl;
-    this->mX = 0.0f;
-    this->mY = 0.0f;
+    this->mX = 600.0f;
+    this->mY = 520.0f;
     this->point = 0;
 }
 
@@ -78,6 +78,7 @@ void Player::draw() {
         default:
             break;
         }
+        DrawRectangleLines(position.x,position.y+20.0f,40.0f,40.0f,RED);
         
         // DrawRectangle(this->mX,this->mY,PLAYER_BASE_SIZE,PLAYER_BASE_SIZE,RED);
     }
@@ -117,7 +118,7 @@ bool Player::collision(Object *ob) {
     float X = ob->getX();
     float Y = ob->getY();
 
-    if (this->mX == X && this->mY == Y && this->mX == (ob->type() % 2 + 1)) {
+    if (this->mX == X && this->mY == Y && this->mX == (ob->getType() % 2 + 1)) {
         return true;
     }
     return false;
