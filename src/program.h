@@ -1,11 +1,10 @@
 #pragma once
-#include "States/GameState.h"
+#include "States/GameState.hpp"
 #include <raylib.h>
 #include <raygui.h>
 #define RAYGUI_IMPLEMENTATION
 #include "StateStack.hpp"
 
-//const int WIDTH = 1200, HEIGHT = 600;
 class Program
 {
 private:

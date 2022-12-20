@@ -20,6 +20,11 @@ namespace Textures {
         GameBackground,
         PausedBackground,
         Player,
+        Car,
+        Truck,
+        Bird,
+        Dinosaur,
+        Obstacle,
         // ...
     };
 };
@@ -41,6 +46,28 @@ namespace Directions {
         Right,
         Up,
         Down,
+        // ...
+    };
+};
+
+namespace Objects {
+    enum ID {
+        None,
+        Obstacle,
+        Car,
+        Truck,
+        Bird,
+        Dinosaur,
+        // ...
+    };
+};
+
+namespace Lanes {
+    enum ID {
+        None,
+        Road,
+        Jungle,
+        Plain,
         // ...
     };
 };
