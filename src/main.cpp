@@ -25,12 +25,12 @@ int main()
     // ImageFlipHorizontal(&inverseDirect);
     // Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
     // Vector2 pos = { 40.0f, 40.0f };
-    Vector2 posBg = { -10.0f, 0.0f };
+    Vector2 posBg = { 0.0f, 0.0f };
     Vector2 posBg_cont = { 200.0f, 0.0f };
-    Vector2 posBg2 = { -10.0f, 40.0f };
+    Vector2 posBg2 = { 0.0f, 40.0f };
     Vector2 posBg2_cont = { 200.0f, 40.0f };
     Vector2 pos = { 0.0f, -20.0f };
-    Vector2 pos2 = { -100.0f, 30.0f };
+    Vector2 pos2 = { 0.0f, 30.0f };
     Vector2 isometricPos;
 
     while (!WindowShouldClose()) {
@@ -42,10 +42,13 @@ int main()
 
         ClearBackground(RAYWHITE);
         isometricPos = convertCar2IsoVector(posBg);
+        isometricPos.x -= bgTexture.width/2;
         DrawTextureV(bgTexture, isometricPos, WHITE);
         isometricPos = convertCar2IsoVector(posBg_cont);
+        isometricPos.x -= bgTexture.width/2;
         DrawTextureV(bgTexture, isometricPos, WHITE);
         isometricPos = convertCar2IsoVector(posBg2);
+        isometricPos.x -= bgTexture.width/2;
         DrawTextureV(bgTexture, isometricPos, WHITE);
         isometricPos = convertCar2IsoVector(posBg2_cont);
         for (float y = posBg2.y; y < HEIGHT; y += 40.0f) {
