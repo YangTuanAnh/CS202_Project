@@ -31,6 +31,11 @@ public:
 	virtual void moveIsometric();
 	virtual void update();
 	virtual int type() { return 0; };
+	Vector2 convertCar2IsoVector(Vector2 Cartesian) {
+		Cartesian.x = HEIGHT/2 - Cartesian.y/2;
+		Cartesian.y /= 2;
+		return Cartesian;
+	};
 	int dir() { return this->direct; }
 	Object(float x, float y, int d) { this->X = x; this->Y = y; this->direct = d; };
 	Object(float x, float y, int d, float velocity, TextureHolder* mTextures) { this->X = x; this->Y = y; this->direct = d; this->velocity = velocity; this->t = 0; this->mTextures = mTextures; }
