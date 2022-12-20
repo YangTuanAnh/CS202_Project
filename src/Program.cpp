@@ -2,6 +2,7 @@
 #include "States/MenuState.h"
 #include "States/GameState.hpp"
 #include "States/PausedState.h"
+#include "States/SettingsState.h"
 #include "PlayerStates/IdleState.h"
 #include "PlayerStates/JumpingState.h"
 #include "Player.hpp"
@@ -48,6 +49,7 @@ void Program::run() {
 }
 
 void Program::registerStates() {
+    mStateStack.registerState<SettingsState>(States::Settings);
     mStateStack.registerState<MenuState>(States::Menu);
     mStateStack.registerState<GameState>(States::Game);
     mStateStack.registerState<PausedState>(States::Pause);

@@ -28,6 +28,10 @@ bool MenuState::update(float dt) {
             requestStackPush(States::Game);
             return updatePrevState;
         }
+        if (CheckCollisionPointRec(GetMousePosition(), recMenu[Settings])) {
+            requestStackPush(States::Settings);
+            return updatePrevState;
+        }
         if (CheckCollisionPointRec(GetMousePosition(), recMenu[Exit])) {
             requestStackPop();
             CloseWindow();
