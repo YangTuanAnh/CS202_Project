@@ -19,7 +19,7 @@ int main()
 
     Texture2D texture = LoadTexture("../asset/object/vehicle_truck_left.png");
     Texture2D bgTexture = LoadTexture("../asset/object/grass_1.png");
-    Texture2D texture2 = LoadTexture("../asset/object/vehicle_car_right.png");
+    Texture2D texture2 = LoadTexture("../asset/object/animal_dinosaur_right.png");
 
     // Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
     // ImageFlipHorizontal(&inverseDirect);
@@ -58,6 +58,14 @@ int main()
         DrawTextureV(texture, isometricPos, WHITE);
         isometricPos = convertCar2IsoVector(pos2);
         DrawTextureV(texture2, isometricPos, WHITE);
+        Vector2 pos_dinosaur = pos2;
+        unsigned char x = 255;
+        for (int i{ 0 }; i < 28; ++i) {
+            pos_dinosaur.x -= 20.0f;
+            isometricPos = convertCar2IsoVector(pos_dinosaur);
+            DrawTextureV(texture2, isometricPos, { 255, 255, 255, x});
+            x -= 255 / 28;
+        }
         // DrawRectangleLines(pos.x, pos.y, texture.width, texture.height, RED);
         if (pos.x >= WIDTH || pos.y >= HEIGHT) {
             pos = { 0.0f, -20.0f };
@@ -68,7 +76,7 @@ int main()
         if (pos2.x >= WIDTH || pos2.y >= HEIGHT) {
             pos2 = { 0.0f, 30.0f };
         } else {
-            pos2.x += 1.0f;
+            pos2.x += 10.0f;
             // pos.y += 0.5f;
         }
 
