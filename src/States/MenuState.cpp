@@ -4,6 +4,7 @@ MenuState::MenuState(StateStack *stack, Context context) : State(stack, context)
     mOptions.push_back("Load Game");
     mOptions.push_back("Settings");
     mOptions.push_back("Exit");
+    context.music->play(Audio::MenuTheme);
 }
 
 void MenuState::draw() {

@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(), mPlayer = new Player())) {
+Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(), mPlayer = new Player(), mMusic = new MusicPlayer())) {
     registerStates();
     mStateStack.pushState(States::Menu);
 
@@ -21,14 +21,15 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
 
     mPlayer->init(&mTextures->get(Textures::Player));
     mTextures->load(Textures::Car, "../image/vehicle_car.png");
-    mTextures->load(Textures::Truck, "../image/vehicle_truck.png");
-    mTextures->load(Textures::Bird, "../image/vehicle_bird.png");
-    mTextures->load(Textures::Dinosaur, "../image/vehicle_dinosaur.png");
+    mTextures->load(Textures::Truck, "../image/vehicle_truck.jpg");
+    mTextures->load(Textures::Bird, "../image/animal_bird.png");
+    mTextures->load(Textures::Dinosaur, "../image/animal_dinosaur.jpg");
 }
 
 Program::~Program() {
     delete mPlayer;
     delete mTextures;
+    delete mMusic;
 }
 
 void Program::run() {

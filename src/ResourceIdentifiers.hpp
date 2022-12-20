@@ -29,6 +29,13 @@ namespace Textures {
     };
 };
 
+namespace Audio {
+    enum ID {
+        MenuTheme,
+        GameTheme,
+    };
+};
+
 // List of player states
 namespace PlayerStates {
     enum ID {

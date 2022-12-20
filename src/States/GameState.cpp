@@ -14,6 +14,7 @@ GameState::GameState(StateStack *stack, Context context) : State(stack, context)
     map = new Map();
     registerLanes();
     map->init();
+    context.music->play(Audio::GameTheme);
 }
 
 void GameState::registerLanes() {
