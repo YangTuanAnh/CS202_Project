@@ -18,15 +18,19 @@ int main()
     Program Program;
 
     Texture2D texture = LoadTexture("../asset/object/vehicle_car_left.png");
-    Texture2D bgTexture = LoadTexture("../asset/img/CrossyRoadBg.png");
+    Texture2D bgTexture = LoadTexture("../asset/object/grass_1.png");
     Texture2D texture2 = LoadTexture("../asset/object/vehicle_car_right.png");
 
     // Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
     // ImageFlipHorizontal(&inverseDirect);
     // Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
     // Vector2 pos = { 40.0f, 40.0f };
+    Vector2 posBg = { 0.0f, 10.0f };
+    Vector2 posBg_cont = { 200.0f, 10.0f };
+    Vector2 posBg2 = { 0.0f, 50.0f };
+    Vector2 posBg2_cont = { 200.0f, 50.0f };
     Vector2 pos = { 0.0f, 0.0f };
-    Vector2 pos2 = { 40.0f, 40.0f };
+    Vector2 pos2 = { 0.0f, 40.0f };
     Vector2 isometricPos;
 
     while (!WindowShouldClose()) {
@@ -37,8 +41,15 @@ int main()
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
+        isometricPos = convertCar2IsoVector(posBg);
+        DrawTextureV(bgTexture, isometricPos, WHITE);
+        isometricPos = convertCar2IsoVector(posBg_cont);
+        DrawTextureV(bgTexture, isometricPos, WHITE);
+        isometricPos = convertCar2IsoVector(posBg2);
+        DrawTextureV(bgTexture, isometricPos, WHITE);
+        isometricPos = convertCar2IsoVector(posBg2_cont);
+        DrawTextureV(bgTexture, isometricPos, WHITE);
         isometricPos = convertCar2IsoVector(pos);
-        DrawTexture(bgTexture, 0.0f, 0.0f, WHITE);
         // DrawTexture(inverseTexture, WIDTH/2 - texture.width/2, HEIGHT/2 - texture.height/2, WHITE);
         DrawTextureV(texture, isometricPos, WHITE);
         isometricPos = convertCar2IsoVector(pos2);
@@ -51,7 +62,7 @@ int main()
             // pos.y += 0.5f;
         }
         if (pos2.x >= WIDTH || pos2.y >= HEIGHT) {
-            pos2 = { 40.0f, 40.0f };
+            pos2 = { 0.0f, 40.0f };
         } else {
             pos2.x += 1.0f;
             // pos.y += 0.5f;

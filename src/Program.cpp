@@ -17,10 +17,14 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
     mTextures->load(Textures::PausedBackground, "../asset/img/PausedScreen.png", WIDTH, HEIGHT);
 
     mPlayer->init(&mTextures->get(Textures::Player));
-    mTextures->load(Textures::Car, "../asset/object/vehicle_car.png");
-    mTextures->load(Textures::Truck, "../asset/object/vehicle_truck.png");
-    mTextures->load(Textures::Bird, "../asset/object/vehicle_bird.png");
-    mTextures->load(Textures::Dinosaur, "../asset/object/vehicle_dinosaur.png");
+    mTextures->load(Textures::Car_left, "../asset/object/vehicle_car_left.png");
+    mTextures->load(Textures::Car_right, "../asset/object/vehicle_car_right.png");
+    mTextures->load(Textures::Truck_left, "../asset/object/vehicle_truck_left.png");
+    mTextures->load(Textures::Truck_right, "../asset/object/vehicle_truck_right.png");
+    mTextures->load(Textures::Bird_left, "../asset/object/vehicle_bird_left.png");
+    mTextures->load(Textures::Bird_right, "../asset/object/vehicle_bird_right.png");
+    mTextures->load(Textures::Dinosaur_left, "../asset/object/vehicle_dinosaur_left.png");
+    mTextures->load(Textures::Dinosaur_right, "../asset/object/vehicle_dinosaur_right.png");
 }
 
 Program::~Program() {
