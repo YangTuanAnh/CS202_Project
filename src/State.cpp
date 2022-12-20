@@ -13,10 +13,12 @@ State::Context State::getContext() const {
 
 void State::requestStackPush(States::ID stateID) {
     mStack->pushState(stateID);
+    WaitTime(50);
 }
 
 void State::requestStackPop() {
     mStack->popState();
+    WaitTime(50);
 }
 
 void State::requestStackClear() {

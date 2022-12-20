@@ -13,12 +13,17 @@ class MenuState : public State
 private:
     enum OptionNames {
         Play,
+        Load,
+        Settings,
         Exit,
     };
     std::vector<std::string> mOptions;
     std::size_t mOptionIndex;
     Texture2D *mBackgroundTexture;
-    Rectangle recMenu[2] = {{300, 300, 600, 50}, {300, 370, 600, 50}};
+    Rectangle recMenu[4] = {{300, 200, 600, 50}, 
+                            {300, 270, 600, 50},
+                            {300, 340, 600, 50},
+                            {300, 410, 600, 50}};
 
 public:
     MenuState(StateStack *stack, Context context);
