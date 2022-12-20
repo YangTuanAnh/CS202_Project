@@ -26,7 +26,9 @@ int main()
     // Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
     // Vector2 pos = { 40.0f, 40.0f };
     Vector2 posBg = { 0.0f, 10.0f };
+    Vector2 posBg_cont = { 200.0f, 10.0f };
     Vector2 posBg2 = { 0.0f, 50.0f };
+    Vector2 posBg2_cont = { 200.0f, 50.0f };
     Vector2 pos = { 0.0f, 0.0f };
     Vector2 pos2 = { 0.0f, 40.0f };
     Vector2 isometricPos;
@@ -41,7 +43,11 @@ int main()
         ClearBackground(RAYWHITE);
         isometricPos = convertCar2IsoVector(posBg);
         DrawTextureV(bgTexture, isometricPos, WHITE);
+        isometricPos = convertCar2IsoVector(posBg_cont);
+        DrawTextureV(bgTexture, isometricPos, WHITE);
         isometricPos = convertCar2IsoVector(posBg2);
+        DrawTextureV(bgTexture, isometricPos, WHITE);
+        isometricPos = convertCar2IsoVector(posBg2_cont);
         DrawTextureV(bgTexture, isometricPos, WHITE);
         isometricPos = convertCar2IsoVector(pos);
         // DrawTexture(inverseTexture, WIDTH/2 - texture.width/2, HEIGHT/2 - texture.height/2, WHITE);

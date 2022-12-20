@@ -20,10 +20,14 @@ namespace Textures {
         GameBackground,
         PausedBackground,
         Player,
-        Car,
-        Truck,
-        Bird,
-        Dinosaur,
+        Car_left,
+        Car_right,
+        Truck_left,
+        Truck_right,
+        Bird_left,
+        Bird_right,
+        Dinosaur_left,
+        Dinosaur_right,
         Obstacle,
         // ...
     };

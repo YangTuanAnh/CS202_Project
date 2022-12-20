@@ -78,23 +78,22 @@ void Object::update(float dt){
 }
 
 void Dinosaur::draw() {
-    Texture2D texture = mTextures->get(Textures::Dinosaur);  // get texture
+    Texture2D texture;
     if (this->direction == 1) {
-        Vector2 pos = { this->mX, this->mY };
-        DrawTextureV(texture, pos, WHITE);
+        texture = mTextures->get(Textures::Dinosaur_right);  // get texture
     }
     else {  // flip texture to the suitable direction
-        Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
-        ImageFlipHorizontal(&inverseDirect);
-        Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
+        texture = mTextures->get(Textures::Dinosaur_left);  // get texture
+        // Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
+        // ImageFlipHorizontal(&inverseDirect);
+        // Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
         // Color* pixels = LoadImageColors(inverseDirect);
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
-
-        Vector2 pos = { this->mX, this->mY };
-        DrawTextureV(inverseTexture, pos, WHITE);
     }
-    DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
+    Vector2 pos = this->convertCar2IsoVector({ this->mX, this->mY });
+    DrawTextureV(texture, pos, WHITE);
+    // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 
 Dinosaur::~Dinosaur(){
@@ -104,23 +103,22 @@ Dinosaur::~Dinosaur(){
 }
 
 void Car::draw() {
-    Texture2D texture = mTextures->get(Textures::Car);  // get texture
+    Texture2D texture;
     if (this->direction == 1) {
-        Vector2 pos = { this->mX, this->mY };
-        DrawTextureV(texture, pos, WHITE);
+        texture = mTextures->get(Textures::Car_right);  // get texture
     }
     else {  // flip texture to the suitable direction
-        Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
-        ImageFlipHorizontal(&inverseDirect);
-        Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
+        texture = mTextures->get(Textures::Car_left);  // get texture
+        // Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
+        // ImageFlipHorizontal(&inverseDirect);
+        // Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
         // Color* pixels = LoadImageColors(inverseDirect);
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
-
-        Vector2 pos = { this->mX, this->mY };
-        DrawTextureV(inverseTexture, pos, WHITE);
     }
-    DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
+    Vector2 pos = this->convertCar2IsoVector({ this->mX, this->mY });
+    DrawTextureV(texture, pos, WHITE);
+    // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 
 Car::~Car(){
@@ -130,23 +128,22 @@ Car::~Car(){
 }
 
 void Truck::draw() {
-    Texture2D texture = mTextures->get(Textures::Truck);  // get texture
+    Texture2D texture;
     if (this->direction == 1) {
-        Vector2 pos = { this->mX, this->mY };
-        DrawTextureV(texture, pos, WHITE);
+        texture = mTextures->get(Textures::Truck_right);  // get texture
     }
     else {  // flip texture to the suitable direction
-        Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
-        ImageFlipHorizontal(&inverseDirect);
-        Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
+        texture = mTextures->get(Textures::Truck_left);  // get texture
+        // Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
+        // ImageFlipHorizontal(&inverseDirect);
+        // Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
         // Color* pixels = LoadImageColors(inverseDirect);
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
-
-        Vector2 pos = { this->mX, this->mY };
-        DrawTextureV(inverseTexture, pos, WHITE);
     }
-    DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
+    Vector2 pos = this->convertCar2IsoVector({ this->mX, this->mY });
+    DrawTextureV(texture, pos, WHITE);
+    // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 
 Truck::~Truck(){
@@ -156,23 +153,22 @@ Truck::~Truck(){
 }
 
 void Bird::draw() {
-    Texture2D texture = mTextures->get(Textures::Bird);  // get texture
+    Texture2D texture;
     if (this->direction == 1) {
-        Vector2 pos = { this->mX, this->mY };
-        DrawTextureV(texture, pos, WHITE);
+        texture = mTextures->get(Textures::Bird_right);  // get texture
     }
     else {  // flip texture to the suitable direction
-        Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
-        ImageFlipHorizontal(&inverseDirect);
-        Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
+        texture = mTextures->get(Textures::Bird_left);  // get texture
+        // Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
+        // ImageFlipHorizontal(&inverseDirect);
+        // Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
         // Color* pixels = LoadImageColors(inverseDirect);
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
-
-        Vector2 pos = { this->mX, this->mY };
-        DrawTextureV(inverseTexture, pos, WHITE);
     }
-    DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
+    Vector2 pos = this->convertCar2IsoVector({ this->mX, this->mY });
+    DrawTextureV(texture, pos, WHITE);
+    // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 
 Bird::~Bird(){
@@ -189,21 +185,16 @@ Object::~Object(){
 
 void Obstacle::draw() {
     Texture2D texture = mTextures->get(Textures::Obstacle);  // get texture
-    if (this->direction == 1) {
-        Vector2 pos = { this->mX, this->mY };
-        DrawTextureV(texture, pos, WHITE);
-    }
-    else {  // flip texture to the suitable direction
-        Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
-        ImageFlipHorizontal(&inverseDirect);
-        Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
-        // Color* pixels = LoadImageColors(inverseDirect);
-        // UpdateTexture(inverseTexture, pixels);
-        // UnloadImageColors(pixels);
-        Vector2 pos = { this->mX, this->mY };
-        DrawTextureV(inverseTexture, pos, WHITE);
-    }
-    DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
+    // if (this->direction == 1) {
+    // }
+    // else {  // flip texture to the suitable direction
+    //     // Color* pixels = LoadImageColors(inverseDirect);
+    //     // UpdateTexture(inverseTexture, pixels);
+    //     // UnloadImageColors(pixels);
+    // }
+    Vector2 pos = this->convertCar2IsoVector({ this->mX, this->mY });
+    DrawTextureV(texture, pos, WHITE);
+    // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 
 Obstacle::~Obstacle(){
