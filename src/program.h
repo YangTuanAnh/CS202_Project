@@ -2,6 +2,7 @@
 #include "States/GameState.hpp"
 #include <raylib.h>
 #include <raygui.h>
+#define RAYGUI_IMPLEMENTATION
 #include "StateStack.hpp"
 
 class Program

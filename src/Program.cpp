@@ -1,4 +1,5 @@
 #include "Program.h"
+#include "States/MenuState.h"
 #include "States/GameState.hpp"
 #include "States/PausedState.h"
 #include "PlayerStates/IdleState.h"
@@ -10,7 +11,7 @@
 
 Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(), mPlayer = new Player())) {
     registerStates();
-    mStateStack.pushState(States::Game);
+    mStateStack.pushState(States::Menu);
 
     // Load textures
     mTextures->load(Textures::GameBackground, "../asset/img/CrossyRoadBg.png", SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -47,6 +48,7 @@ void Program::run() {
 }
 
 void Program::registerStates() {
+    mStateStack.registerState<MenuState>(States::Menu);
     mStateStack.registerState<GameState>(States::Game);
     mStateStack.registerState<PausedState>(States::Pause);
     mPlayer->registerState<IdleState>(PlayerStates::Idle);
