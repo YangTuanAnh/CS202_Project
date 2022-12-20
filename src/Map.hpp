@@ -15,15 +15,12 @@ public:
     ~Map();
     template <typename T>
     void registerLane(Lanes::ID laneID) {
-        mFactories[laneID] = [this] () {
-            return Lane::Ptr(new T(this));
+        mFactories[laneID] = [] () {
+            return Lane::Ptr(new T());
         };
     }
     Lane::Ptr createLane(Lanes::ID laneID);
     void update(float dt);
     void draw();
-    void pushBack(Lane::Ptr lane);
-    void pushFront(Lane::Ptr lane);
-    void popBack();
-    void popFront();
+    void init();
 };

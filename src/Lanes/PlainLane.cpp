@@ -1,6 +1,8 @@
 #include "PlainLane.h"
 
-PlainLane::PlainLane(Objects::ID type) {
+PlainLane::PlainLane() {}
+
+PlainLane::PlainLane(Objects::ID type, int direction) {
     this->type = type;
 }
 

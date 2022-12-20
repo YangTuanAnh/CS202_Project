@@ -9,34 +9,34 @@ Object::Object(float x, float y, int d, Objects::ID type) {
     this->type = type;
 }
 
-Object::Object(float x, float y, int d, float velocity, TextureHolder *mTextures, Objects::ID type) {
+Object::Object(float x, float y, int d, float speed, TextureHolder *mTextures, Objects::ID type) {
 	this->mX = x;
 	this->mY = y;
 	this->direction = d;
-	this->velocity = velocity;
+	this->speed = speed;
 	this->mTextures = mTextures;
     this->type = type;
 }
 
 Car::Car(int x, int y, int d) : Object(x, y, d, Objects::Car) {}
 
-Car::Car(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, Objects::Car) {}
+Car::Car(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::Car) {}
 
 Truck::Truck(int x, int y, int d) : Object(x, y, d, Objects::Truck) {}
 
-Truck::Truck(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, Objects::Truck) {}
+Truck::Truck(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::Truck) {}
 
 Bird::Bird(int x, int y, int d) : Object(x, y, d, Objects::Bird) {}
 
-Bird::Bird(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, Objects::Bird) {}
+Bird::Bird(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::Bird) {}
 
 Dinosaur::Dinosaur(int x, int y, int d) : Object(x, y, d, Objects::Dinosaur) {}
 
-Dinosaur::Dinosaur(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, Objects::Dinosaur) {}
+Dinosaur::Dinosaur(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::Dinosaur) {}
 
 Obstacle::Obstacle(int x, int y, int d) : Object(x, y, d, Objects::Obstacle) {}
 
-Obstacle::Obstacle(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, Objects::Obstacle) {}
+Obstacle::Obstacle(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::Obstacle) {}
 
 float Object::getX(){
     return this->mX;
@@ -54,7 +54,7 @@ int Object::getDirection() {
 }
 
 void Object::update(float dt){
-        this->mX += this->velocity * dt * this->direction;
+        this->mX += this->speed * dt * this->direction;
 }
 
 void Dinosaur::draw() {

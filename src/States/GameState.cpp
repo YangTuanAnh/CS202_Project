@@ -12,6 +12,8 @@ GameState::GameState(StateStack *stack, Context context) : State(stack, context)
     mBackgroundTexture = &context.textures->get(Textures::GameBackground);
     player = context.player;
     map = new Map();
+    registerLanes();
+    map->init();
 }
 
 void GameState::registerLanes() {
@@ -26,6 +28,7 @@ GameState::~GameState() {
 
 void GameState::draw() {
     DrawTexture(*mBackgroundTexture, 0, 0, WHITE);
+    map->draw();
     player->draw();
 }
 
@@ -35,6 +38,7 @@ bool GameState::update(float dt) {
         requestStackPush(States::Pause);
         return updatePrevState;
     }
+    map->update(dt);
     player->update(dt);
     return updatePrevState;
 }
