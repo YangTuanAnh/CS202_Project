@@ -17,7 +17,7 @@ int main()
     SetTargetFPS(60);
     Program Program;
 
-    Texture2D texture = LoadTexture("../asset/object/vehicle_truck_left.png");
+    Texture2D texture = LoadTexture("../asset/object/animal_bird_right.png");
     Texture2D bgTexture = LoadTexture("../asset/object/grass_1.png");
     Texture2D texture2 = LoadTexture("../asset/object/animal_dinosaur_right.png");
 
@@ -25,12 +25,12 @@ int main()
     // ImageFlipHorizontal(&inverseDirect);
     // Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
     // Vector2 pos = { 40.0f, 40.0f };
-    Vector2 posBg = { 0.0f, 0.0f };
+    Vector2 posBg = { -10.0f, 0.0f };
     Vector2 posBg_cont = { 200.0f, 0.0f };
     Vector2 posBg2 = { -10.0f, 40.0f };
     Vector2 posBg2_cont = { 200.0f, 40.0f };
     Vector2 pos = { 0.0f, -20.0f };
-    Vector2 pos2 = { 0.0f, 30.0f };
+    Vector2 pos2 = { -100.0f, 30.0f };
     Vector2 isometricPos;
 
     while (!WindowShouldClose()) {
@@ -74,9 +74,9 @@ int main()
             // pos.y += 0.5f;
         }
         if (pos2.x >= WIDTH || pos2.y >= HEIGHT) {
-            pos2 = { 0.0f, 30.0f };
+            pos2 = { -100.0f, 30.0f };
         } else {
-            pos2.x += 10.0f;
+            pos2.x += 1.0f;
             // pos.y += 0.5f;
         }
 
