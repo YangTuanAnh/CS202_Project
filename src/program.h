@@ -4,7 +4,6 @@
 #include <raygui.h>
 #include "StateStack.hpp"
 
-//const int WIDTH = 1200, HEIGHT = 600;
 class Program
 {
 private:

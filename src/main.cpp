@@ -2,7 +2,7 @@
 
 int main()
 {
-    InitWindow(WIDTH, HEIGHT, "Crash Course");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Crash Course");
     SetTargetFPS(60);
     Program Program;
     while (!WindowShouldClose())

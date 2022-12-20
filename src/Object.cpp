@@ -75,14 +75,10 @@ void Dinosaur::draw() {
     }
 }
 
-Dinosaur::~Dinosaur(){
+Dinosaur::~Dinosaur() {
     this->direction = 0;
     this->mX = 0;
     this->mY = 0;
-Dinausor::~Dinausor(){
-    this->direct = 0;
-    this->X = 0;
-    this->Y = 0;
 }
 
 void Car::draw() {
