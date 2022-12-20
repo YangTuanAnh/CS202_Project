@@ -1,6 +1,5 @@
 #include "Object.h"
 #include "Player.hpp"
-#include "program.h"
 
 Object::Object(float x, float y, int d, Objects::ID type) {
     this->mX = x;
@@ -80,6 +79,10 @@ Dinosaur::~Dinosaur(){
     this->direction = 0;
     this->mX = 0;
     this->mY = 0;
+Dinausor::~Dinausor(){
+    this->direct = 0;
+    this->X = 0;
+    this->Y = 0;
 }
 
 void Car::draw() {
@@ -157,7 +160,6 @@ Bird::~Bird(){
     this->mY = 0;
 
 }
-
 Object::~Object(){
     this->direction = 0;
     this->mX = 0;

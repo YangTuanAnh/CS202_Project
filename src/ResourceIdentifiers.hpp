@@ -46,11 +46,6 @@ namespace Directions {
         Right,
         Up,
         Down,
-        Car,
-        Truck,
-        Bird,
-        Dinasor,
-        Obstacle,
         // ...
     };
 };
