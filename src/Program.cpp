@@ -21,10 +21,14 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
     mTextures->load(Textures::PausedBackground, "../asset/img/PausedScreen.png", SCREEN_WIDTH, SCREEN_HEIGHT);
 
     mPlayer->init(&mTextures->get(Textures::Player));
-    mTextures->load(Textures::Car, "../image/vehicle_car.png");
-    mTextures->load(Textures::Truck, "../image/vehicle_truck.jpg");
-    mTextures->load(Textures::Bird, "../image/animal_bird.png");
-    mTextures->load(Textures::Dinosaur, "../image/animal_dinosaur.jpg");
+    mTextures->load(Textures::Car_left, "../asset/object/vehicle_car_left.png");
+    mTextures->load(Textures::Car_right, "../asset/object/vehicle_car_right.png");
+    mTextures->load(Textures::Truck_left, "../asset/object/vehicle_truck_left.png");
+    mTextures->load(Textures::Truck_right, "../asset/object/vehicle_truck_right.png");
+    mTextures->load(Textures::Bird_left, "../asset/object/vehicle_bird_left.png");
+    mTextures->load(Textures::Bird_right, "../asset/object/vehicle_bird_right.png");
+    mTextures->load(Textures::Dinosaur_left, "../asset/object/vehicle_dinosaur_left.png");
+    mTextures->load(Textures::Dinosaur_right, "../asset/object/vehicle_dinosaur_right.png");
 }
 
 Program::~Program() {
@@ -39,7 +43,7 @@ void Program::run() {
     // Vector2 fontPosition1 = { SCREEN_WIDTH/2.0f - MeasureTextEx(font1, msg1, (float)font1.baseSize, -3).x/2,
     //                           SCREEN_HEIGHT/2.0f - font1.baseSize/2.0f - 80.0f };
     Vector2 pos = {this->mPlayer->getX(),this->mPlayer->getY()};
-    Rectangle rec = {0.0f,0.0f,39.0f,39.0f};//base on object size
+    Rectangle rec = {400.0f,400.0f,39.0f,39.0f};//base on object size
     BeginDrawing();
     mStateStack.update(GetFrameTime());
     mStateStack.draw();

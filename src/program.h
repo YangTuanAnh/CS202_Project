@@ -4,6 +4,7 @@
 #include <raygui.h>
 #define RAYGUI_IMPLEMENTATION
 #include "StateStack.hpp"
+#include "Global.h"
 
 class Program
 {

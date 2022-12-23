@@ -17,6 +17,7 @@ protected:
 	TextureHolder *mTextures;
 
 public:
+    //set up obstacle
 	typedef std::unique_ptr<Object> Ptr;
 	// get info
 	float getX();
@@ -25,6 +26,7 @@ public:
 	// set up obstacle
 	virtual Objects::ID getType();
 	int getDirection();
+	Vector2 convertCar2IsoVector(Vector2);
 	Object(float x, float y, int d, Objects::ID type);
 	Object(float x, float y, int d, float speed, TextureHolder *mTextures, Objects::ID type);
 	virtual void update(float dt);
@@ -67,6 +69,7 @@ public:
 	void draw();
 	~Dinosaur();
 };
+
 class Obstacle : public Object {
 public:
 	Obstacle(int x, int y, int d);
