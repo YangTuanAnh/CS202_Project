@@ -2,6 +2,7 @@
 #include "ResourceIdentifiers.hpp"
 #include <raylib.h>
 #include <map>
+#include <string>
 
 class MusicPlayer {
 public:
