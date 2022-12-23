@@ -1,21 +1,24 @@
 #include "PlainLane.h"
 
-PlainLane::PlainLane() {}
-
-PlainLane::PlainLane(Objects::ID type, int direction) {
-    this->type = type;
-}
+PlainLane::PlainLane(TextureHolder *textures) : Lane(textures) {}
 
 PlainLane::~PlainLane() {}
 
-void PlainLane::update(float dt) {
-    for (auto &object : objects) {
-        object->update(dt);
-    }
-}
+// void PlainLane::update(float dt) {
+//     std::cerr << "Update lane" << std::endl;
+//     int i = 0;
+//     for (auto &object : objects) {
+//         std::cerr << ++i << std::endl;
+//         object->update(dt);
+//     }
+// }
 
-void PlainLane::draw() {
-    for (auto &object : objects) {
-        object->draw();
-    }
-}
+// void PlainLane::draw() {
+//     std::cerr << "Draw lane" << std::endl;
+//     DrawRectangle(0, SCREEN_HEIGHT - mY, GetScreenWidth(), 100, GREEN);
+//     int i = 0;
+//     for (auto &object : objects) {
+//         std::cerr << ++i << std::endl;
+//         object->draw();
+//     }
+// }

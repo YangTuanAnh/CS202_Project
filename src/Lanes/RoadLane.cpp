@@ -1,23 +1,7 @@
 #include "RoadLane.h"
 #include "../Global.h"
 
-RoadLane::RoadLane() {}
-
-RoadLane::RoadLane(Objects::ID type, int direction) {
-    this->direction = direction;
-    this->type = type;
-    switch (type) {
-        case Objects::Car:
-            this->speed = CAR_SPEED;
-            break;
-        case Objects::Truck:
-            this->speed = TRUCK_SPEED;
-            break;
-        default:
-            this->speed = CAR_SPEED;
-            break;
-    }
-}
+RoadLane::RoadLane(TextureHolder *textures) : Lane(textures) {}
 
 RoadLane::~RoadLane() {}
 
@@ -28,6 +12,7 @@ void RoadLane::update(float dt) {
 }
 
 void RoadLane::draw() {
+    DrawRectangle(0, SCREEN_HEIGHT - mY, GetScreenWidth(), 100, GREEN);
     for (auto &object : objects) {
         object->draw();
     }

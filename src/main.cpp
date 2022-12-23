@@ -1,4 +1,5 @@
 #include "program.h"
+#include "Object.h"
 
 int main()
 {

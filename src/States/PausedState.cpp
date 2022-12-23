@@ -17,10 +17,7 @@ void PausedState::draw() {
     for (int i = 0; i < mOptions.size(); i++)
     {
         if (CheckCollisionPointRec(GetMousePosition(), recButton[i]))
-        {
             DrawRectangleRec(recButton[i], {0, 0, 0, 255/4});
-            cerr << mOptions[i] << '\n';
-        }
     }
 }
 
@@ -31,15 +28,12 @@ bool PausedState::update(float dt) {
         return updatePrevState;
     }
 
-    if (IsMouseButtonDown(0)) {
+    if (IsMouseButtonPressed(0)) {
         if (CheckCollisionPointRec(GetMousePosition(), recButton[Resume])) {
             requestStackPop();
-            return updatePrevState;
         }
         if (CheckCollisionPointRec(GetMousePosition(), recButton[Return])) {
-            requestStackPop();
-            requestStackPop();
-            return updatePrevState;
+            requestStackPop(), requestStackPop();
         }
     }
     return updatePrevState;
