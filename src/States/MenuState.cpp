@@ -24,7 +24,7 @@ bool MenuState::update(float dt) {
         return updatePrevState;
     }
 
-    if (IsMouseButtonDown(0)) {
+    if (IsMouseButtonPressed(0)) {
         if (CheckCollisionPointRec(GetMousePosition(), recMenu[Play])) {
             requestStackPush(States::Game);
             return updatePrevState;

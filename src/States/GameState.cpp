@@ -39,6 +39,10 @@ bool GameState::update(float dt) {
         requestStackPush(States::Pause);
         return updatePrevState;
     }
+    if (IsKeyPressed(KEY_N)) {
+        requestStackPush(States::GameOver);
+        return updatePrevState;
+    }
     map->update(dt);
     player->update(dt);
     return updatePrevState;

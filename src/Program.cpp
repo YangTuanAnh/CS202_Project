@@ -3,6 +3,7 @@
 #include "States/GameState.hpp"
 #include "States/PausedState.h"
 #include "States/SettingsState.h"
+#include "States/GameOverState.h"
 #include "PlayerStates/IdleState.h"
 #include "PlayerStates/JumpingState.h"
 #include "Player.hpp"
@@ -50,6 +51,7 @@ void Program::run() {
 }
 
 void Program::registerStates() {
+    mStateStack.registerState<GameOverState>(States::GameOver);
     mStateStack.registerState<SettingsState>(States::Settings);
     mStateStack.registerState<MenuState>(States::Menu);
     mStateStack.registerState<GameState>(States::Game);
