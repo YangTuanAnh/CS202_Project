@@ -1,9 +1,22 @@
 #include "RoadLane.h"
+#include "../Global.h"
 
-RoadLane::RoadLane(float speed, int direction, ObjectTypes::ID type) {
-    this->speed = speed;
+RoadLane::RoadLane() {}
+
+RoadLane::RoadLane(Objects::ID type, int direction) {
     this->direction = direction;
     this->type = type;
+    switch (type) {
+        case Objects::Car:
+            this->speed = CAR_SPEED;
+            break;
+        case Objects::Truck:
+            this->speed = TRUCK_SPEED;
+            break;
+        default:
+            this->speed = CAR_SPEED;
+            break;
+    }
 }
 
 RoadLane::~RoadLane() {}

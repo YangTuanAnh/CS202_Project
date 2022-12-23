@@ -1,15 +1,14 @@
 #include "Lane.h"
+#include "Global.h"
+
+#include <iostream>
 
 Lane::Lane() {}
 
 Lane::~Lane() {}
 
-void Lane::addObject(Object::Ptr object) {
-    // objects.push_back(object);
-}
-
-void Lane::removeObject(Object::Ptr object) {
-    // objects.remove(object);
+void Lane::init(float y) {
+    this->mY = y;
 }
 
 void Lane::update(float dt) {
@@ -19,6 +18,7 @@ void Lane::update(float dt) {
 }
 
 void Lane::draw() {
+    DrawRectangle(0, SCREEN_HEIGHT - mY, GetScreenWidth(), 100, BLACK);
     for (auto &object : objects) {
         object->draw();
     }

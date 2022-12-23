@@ -6,6 +6,7 @@
 #include "ResourceIdentifiers.hpp"
 #include "TextureHolder.h"
 #include "Player.hpp"
+#include "MusicPlayer.h"
 
 class StateStack;
 
@@ -13,11 +14,12 @@ class State {
 public:
     typedef std::unique_ptr<State> Ptr;
     struct Context {
-        Context(TextureHolder* textures, Player* player);
+        Context(TextureHolder* textures, Player* player, MusicPlayer* music);
 
         TextureHolder* textures;
         // FontHolder* fonts;
         Player* player;
+        MusicPlayer* music;
     };
 
 private:

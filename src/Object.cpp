@@ -1,25 +1,26 @@
 #include "Object.h"
 #include "Player.hpp"
+#include "program.h"
 
-Object::Object(float x, float y, int d, ObjectTypes::ID type) {
+Object::Object(float x, float y, int d, Objects::ID type) {
     this->mX = x;
     this->mY = y;
 	this->direction = d;
     this->type = type;
 }
 
-Object::Object(float x, float y, int d, float velocity, TextureHolder *mTextures, ObjectTypes::ID type) {
+Object::Object(float x, float y, int d, float speed, TextureHolder *mTextures, Objects::ID type) {
 	this->mX = x;
 	this->mY = y;
 	this->direction = d;
-	this->velocity = velocity;
+	this->speed = speed;
 	this->mTextures = mTextures;
     this->type = type;
 }
 
 Vector2 Object::convertCar2IsoVector(Vector2 Cartesian) {
     Vector2 isometricVector;
-    isometricVector.x = Cartesian.x - Cartesian.y + WIDTH/2;
+    isometricVector.x = Cartesian.x - Cartesian.y + SCREEN_WIDTH/2;
     // if (Cartesian.x > 0)
     //     Cartesian.y += Cartesian.x/2;
     // else if (Cartesian.x == 0)
@@ -28,35 +29,30 @@ Vector2 Object::convertCar2IsoVector(Vector2 Cartesian) {
     return isometricVector;
 }
 
-Car::Car(int x, int y, int d) : Object(x, y, d, ObjectTypes::Car) {
-    this->velocity = V_CAR_N;
+Car::Car(int x, int y, int d) : Object(x, y, d, Objects::Car) {
 }
 
-Car::Car(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Car) {}
+Car::Car(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::Car) {}
 
-Truck::Truck(int x, int y, int d) : Object(x, y, d, ObjectTypes::Truck) {
-    this->velocity = V_TRUCK_N;
+Truck::Truck(int x, int y, int d) : Object(x, y, d, Objects::Truck) {
 }
 
-Truck::Truck(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Truck) {}
+Truck::Truck(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::Truck) {}
 
-Bird::Bird(int x, int y, int d) : Object(x, y, d, ObjectTypes::Bird) {
-    this->velocity = V_BIRD_N;
+Bird::Bird(int x, int y, int d) : Object(x, y, d, Objects::Bird) {
 }
 
-Bird::Bird(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Bird) {}
+Bird::Bird(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::Bird) {}
 
-Dinosaur::Dinosaur(int x, int y, int d) : Object(x, y, d, ObjectTypes::Dinosaur) {
-    this->velocity = V_DINOSAUR_N;
+Dinosaur::Dinosaur(int x, int y, int d) : Object(x, y, d, Objects::Dinosaur) {
 }
 
-Dinosaur::Dinosaur(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Dinosaur) {}
+Dinosaur::Dinosaur(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::Dinosaur) {}
 
-Obstacle::Obstacle(int x, int y, int d) : Object(x, y, d, ObjectTypes::Obstacle) {
-    this->velocity = V_OBSTACLE;
+Obstacle::Obstacle(int x, int y, int d) : Object(x, y, d, Objects::Obstacle) {
 }
 
-Obstacle::Obstacle(int x, int y, int d, float velocity, TextureHolder *mTextures) : Object(x, y, d, velocity, mTextures, ObjectTypes::Obstacle) {}
+Obstacle::Obstacle(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::Obstacle) {}
 
 float Object::getX(){
     return this->mX;
@@ -65,7 +61,7 @@ float Object::getY(){
     return this->mY;
 }
 
-ObjectTypes::ID Object::getType() {
+Objects::ID Object::getType() {
     return this->type;
 }
 
@@ -74,7 +70,7 @@ int Object::getDirection() {
 }
 
 void Object::update(float dt){
-    this->mX += this->velocity * dt * this->direction;
+        this->mX += this->speed * dt * this->direction;
 }
 
 void Dinosaur::draw() {
@@ -96,7 +92,7 @@ void Dinosaur::draw() {
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 
-Dinosaur::~Dinosaur(){
+Dinosaur::~Dinosaur() {
     this->direction = 0;
     this->mX = 0;
     this->mY = 0;
@@ -177,6 +173,7 @@ Bird::~Bird(){
     this->mY = 0;
 
 }
+
 Object::~Object(){
     this->direction = 0;
     this->mX = 0;

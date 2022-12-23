@@ -1,21 +1,35 @@
-#include "GameState.h"
+#include "GameState.hpp"
 #include "../PlayerStates/IdleState.h"
 #include "../PlayerStates/JumpingState.h"
 #include "../Object.h"
+#include "../Lanes/RoadLane.h"
+#include "../Lanes/JungleLane.h"
+#include "../Lanes/PlainLane.h"
 
 #include <iostream>
 
 GameState::GameState(StateStack *stack, Context context) : State(stack, context) {
     mBackgroundTexture = &context.textures->get(Textures::GameBackground);
     player = context.player;
+    map = new Map();
+    registerLanes();
+    map->init();
+    context.music->play(Audio::GameTheme);
+}
+
+void GameState::registerLanes() {
+    map->registerLane<RoadLane>(Lanes::Road);
+    map->registerLane<JungleLane>(Lanes::Jungle);
+    map->registerLane<PlainLane>(Lanes::Plain);
 }
 
 GameState::~GameState() {
-    map.clear();
+    delete map;
 }
 
 void GameState::draw() {
     DrawTexture(*mBackgroundTexture, 0, 0, WHITE);
+    map->draw();
     player->draw();
 }
 
@@ -25,6 +39,11 @@ bool GameState::update(float dt) {
         requestStackPush(States::Pause);
         return updatePrevState;
     }
+    if (IsKeyPressed(KEY_N)) {
+        requestStackPush(States::GameOver);
+        return updatePrevState;
+    }
+    map->update(dt);
     player->update(dt);
     return updatePrevState;
 }

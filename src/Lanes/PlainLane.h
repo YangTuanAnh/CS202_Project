@@ -1,10 +1,13 @@
+#pragma once
+
 #include "../Lane.h"
 
 class PlainLane : public Lane {
 private:
-    ObjectTypes::ID type;
+    Objects::ID type;
 public:
-    PlainLane(ObjectTypes::ID type);
+    PlainLane();
+    PlainLane(Objects::ID type, int direction);
     ~PlainLane();
     void update(float dt);
     void draw();

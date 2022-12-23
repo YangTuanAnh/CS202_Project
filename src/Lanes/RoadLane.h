@@ -5,9 +5,10 @@
 class RoadLane : public Lane {
 private:
     float speed;
-    ObjectTypes::ID type;
+    Objects::ID type;
 public:
-    RoadLane(float speed, int direction, ObjectTypes::ID type);
+    RoadLane();
+    RoadLane(Objects::ID type, int direction);
     ~RoadLane();
     void update(float dt);
     void draw();

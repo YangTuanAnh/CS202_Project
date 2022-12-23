@@ -1,5 +1,4 @@
-#ifndef GLOBAL_H
-#define GLOBAL_H
+#pragma once
 
 #include <iostream>
 #include <conio.h>
@@ -8,6 +7,9 @@
 #include <fstream>
 using namespace std;
 
-const int WIDTH = 1200, HEIGHT = 600;
-
-#endif
+// Global variables
+const int SCREEN_WIDTH = 1200;
+const int SCREEN_HEIGHT = 580;
+const float CAR_SPEED = 200.0f;
+const float TRUCK_SPEED = 150.0f;
+const float BLOCK_SIZE = 40.0f;

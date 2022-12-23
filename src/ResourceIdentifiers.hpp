@@ -33,6 +33,13 @@ namespace Textures {
     };
 };
 
+namespace Audio {
+    enum ID {
+        MenuTheme,
+        GameTheme,
+    };
+};
+
 // List of player states
 namespace PlayerStates {
     enum ID {
@@ -50,11 +57,16 @@ namespace Directions {
         Right,
         Up,
         Down,
+        Car,
+        Truck,
+        Bird,
+        Dinosaur,
+        Obstacle,
         // ...
     };
 };
 
-namespace ObjectTypes {
+namespace Objects {
     enum ID {
         None,
         Obstacle,
@@ -66,12 +78,12 @@ namespace ObjectTypes {
     };
 };
 
-namespace LaneTypes {
+namespace Lanes {
     enum ID {
         None,
-        RoadLane,
-        JungleLane,
-        PlainLane,
+        Road,
+        Jungle,
+        Plain,
         // ...
     };
 };
