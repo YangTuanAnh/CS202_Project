@@ -2,7 +2,9 @@
 #include "States/GameState.hpp"
 #include <raylib.h>
 #include <raygui.h>
+#define RAYGUI_IMPLEMENTATION
 #include "StateStack.hpp"
+#include "Global.h"
 
 class Program
 {
@@ -11,6 +13,7 @@ private:
     StateStack mStateStack;
     TextureHolder *mTextures;
     Player *mPlayer;
+    MusicPlayer *mMusic;
 public:
     Program();
     ~Program();

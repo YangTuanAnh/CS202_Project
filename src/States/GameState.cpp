@@ -14,6 +14,7 @@ GameState::GameState(StateStack *stack, Context context) : State(stack, context)
     map = new Map(context.textures);
     registerLanes();
     map->init();
+    context.music->play(Audio::GameTheme);
 }
 
 void GameState::registerLanes() {
@@ -36,6 +37,10 @@ bool GameState::update(float dt) {
     bool updatePrevState = false;
     if (IsKeyPressed(KEY_TAB)) {
         requestStackPush(States::Pause);
+        return updatePrevState;
+    }
+    if (IsKeyPressed(KEY_N)) {
+        requestStackPush(States::GameOver);
         return updatePrevState;
     }
     map->update(dt);
