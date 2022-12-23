@@ -11,7 +11,7 @@
 GameState::GameState(StateStack *stack, Context context) : State(stack, context) {
     mBackgroundTexture = &context.textures->get(Textures::GameBackground);
     player = context.player;
-    map = new Map();
+    map = new Map(context.textures);
     registerLanes();
     map->init();
     context.music->play(Audio::GameTheme);

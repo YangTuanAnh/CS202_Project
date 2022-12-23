@@ -44,12 +44,16 @@ void TextureHolder::loadFromImage(Textures::ID id, Image& image, int width, int 
 
 Texture2D& TextureHolder::get(Textures::ID id) {
     auto found = mTextureMap.find(id);
-    assert(found != mTextureMap.end());
-    return found->second;
+    if (found != mTextureMap.end()) {
+       return found->second;
+    }
+    return mTextureMap[Textures::ID::None];
 }
 
 const Texture2D& TextureHolder::get(Textures::ID id) const {
     auto found = mTextureMap.find(id);
-    assert(found != mTextureMap.end());
-    return found->second;
+    if (found != mTextureMap.end()) {
+       return found->second;
+    }
+    return mTextureMap.at(Textures::ID::None);
 }

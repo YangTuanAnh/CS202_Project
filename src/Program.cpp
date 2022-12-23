@@ -13,14 +13,15 @@
 
 Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(), mPlayer = new Player(), mMusic = new MusicPlayer())) {
     registerStates();
-    mStateStack.pushState(States::Menu);
 
     // Load textures
+    mTextures->load(Textures::None, "../image/none.png");
     mTextures->load(Textures::GameBackground, "../asset/img/CrossyRoadBg.png", SCREEN_WIDTH, SCREEN_HEIGHT);
     mTextures->load(Textures::Player, "../asset/img/3.png");
     mTextures->load(Textures::PausedBackground, "../asset/img/PausedScreen.png", SCREEN_WIDTH, SCREEN_HEIGHT);
 
     mPlayer->init(&mTextures->get(Textures::Player));
+    mStateStack.pushState(States::Game);
     mTextures->load(Textures::Car_left, "../asset/object/vehicle_car_left.png");
     mTextures->load(Textures::Car_right, "../asset/object/vehicle_car_right.png");
     mTextures->load(Textures::Truck_left, "../asset/object/vehicle_truck_left.png");
@@ -29,6 +30,8 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
     mTextures->load(Textures::Bird_right, "../asset/object/vehicle_bird_right.png");
     mTextures->load(Textures::Dinosaur_left, "../asset/object/vehicle_dinosaur_left.png");
     mTextures->load(Textures::Dinosaur_right, "../asset/object/vehicle_dinosaur_right.png");
+
+    mStateStack.pushState(States::Menu);
 }
 
 Program::~Program() {
@@ -38,6 +41,7 @@ Program::~Program() {
 }
 
 void Program::run() {
+    // std::cerr << "Program run" << std::endl;
     const char msg1[50] = "Game Over!";
     // Font font1 = LoadFont("resources/custom_mecha.png");
     // Vector2 fontPosition1 = { SCREEN_WIDTH/2.0f - MeasureTextEx(font1, msg1, (float)font1.baseSize, -3).x/2,
