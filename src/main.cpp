@@ -18,9 +18,15 @@ int main()
     Program Program;
 
     Texture2D texture = LoadTexture("../asset/object/animal_bird_right.png");
-    Texture2D bgTexture = LoadTexture("../asset/object/grass_1.png");
-    Texture2D gridTexture = LoadTexture("../asset/Grid.png");
     Texture2D texture2 = LoadTexture("../asset/object/animal_dinosaur_right.png");
+
+    Texture2D bgTexture = LoadTexture("../asset/object/grass_1.png");
+
+    Texture2D gridTexture = LoadTexture("../asset/Grid.png");
+    Texture2D gridBGTexture = LoadTexture("../asset/object/Grass_600x300_1.png");
+    Texture2D gridBGTexture2 = LoadTexture("../asset/object/Grass_600x300_2.png");
+    Texture2D gridBGTexture3 = LoadTexture("../asset/object/Road_600x300_1.png");
+    Texture2D gridBGTexture4 = LoadTexture("../asset/object/Road_600x300_2.png");
 
     // Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
     // ImageFlipHorizontal(&inverseDirect);
@@ -28,8 +34,8 @@ int main()
     // Vector2 pos = { 40.0f, 40.0f };
     Vector2 posBg = { 0.0f, 0.0f };
     // Vector2 posBg_cont = { 80.0f, 0.0f };
-    Vector2 pos = { 0.0f, -20.0f };
-    Vector2 pos2 = { 0.0f, 30.0f };
+    Vector2 pos = { 0.0f - texture.width, 0.0f };
+    Vector2 pos2 = { 0.0f - texture2.width, 40.0f };
     Vector2 isometricPos;
 
     while (!WindowShouldClose()) {
@@ -54,14 +60,36 @@ int main()
         // }
 
         //Draw grid
-        for (float x{ 0.0f }; x < 600.0f; x += 40.0f) {
-            for (float y{ 0.0f }; y < HEIGHT; y += 40.0f) {
-                isometricPos = convertCar2IsoVector({ posBg.x + x, posBg.y + y});
-                isometricPos.x -= gridTexture.width/2;
-                DrawTextureV(gridTexture, isometricPos, WHITE);
-            }
-        }
+        // for (float x{ 0.0f }; x < 600.0f; x += 40.0f) {
+        //     for (float y{ 0.0f }; y < HEIGHT; y += 40.0f) {
+        //         isometricPos = convertCar2IsoVector({ posBg.x + x, posBg.y + y});
+        //         isometricPos.x -= gridTexture.width/2;
+        //         DrawTextureV(gridTexture, isometricPos, WHITE);
+        //     }
+        // }
         
+        //Draw grass
+        for (float y{ 0.0f }; y < 600.0f; y += 160.0f) {
+            isometricPos = convertCar2IsoVector({ 0.0f, 0.0f + y });
+            isometricPos.x -= 40.0f;
+            DrawTextureV(gridBGTexture, isometricPos, WHITE);
+        }
+        for (float y{ 40.0f }; y < 600.0f; y += 160.0f) {
+            isometricPos = convertCar2IsoVector({ 0.0f, 0.0f + y });
+            isometricPos.x -= 40.0f;
+            DrawTextureV(gridBGTexture2, isometricPos, WHITE);
+        }
+        for (float y{ 80.0f }; y < 600.0f; y += 160.0f) {
+            isometricPos = convertCar2IsoVector({ 0.0f, 0.0f + y });
+            isometricPos.x -= 40.0f;
+            DrawTextureV(gridBGTexture3, isometricPos, WHITE);
+        }
+        for (float y{ 120.0f }; y < 600.0f; y += 160.0f) {
+            isometricPos = convertCar2IsoVector({ 0.0f, 0.0f + y });
+            isometricPos.x -= 40.0f;
+            DrawTextureV(gridBGTexture4, isometricPos, WHITE);
+        }
+
         // Draw object bird and dinosaur
         isometricPos = convertCar2IsoVector(pos);
         // DrawTexture(inverseTexture, WIDTH/2 - texture.width/2, HEIGHT/2 - texture.height/2, WHITE);
@@ -79,15 +107,15 @@ int main()
         }
         // DrawRectangleLines(pos.x, pos.y, texture.width, texture.height, RED);
         if (pos.x >= WIDTH || pos.y >= HEIGHT) {
-            pos = { -20.0f, -20.0f };
+            pos = { 0.0f - texture.width, 0.0f };
         } else {
-            pos.x += 1.0f;
+            pos.x += 3.0f;
             // pos.y += 0.5f;
         }
         if (pos2.x >= WIDTH || pos2.y >= HEIGHT) {
-            pos2 = { -100.0f, 30.0f };
+            pos2 = { 0.0f - texture2.width, 40.0f };
         } else {
-            pos2.x += 1.0f;
+            pos2.x += 5.0f;
             // pos.y += 0.5f;
         }
 
