@@ -1,76 +1,77 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#include <memory>
+
 #include "Global.h"
 #include "TextureHolder.h"
+#include "ResourceIdentifiers.hpp"
 
-class Object{
+class Object {
 protected:
-    float X, Y;
-    int direct;
-	float velocity;
-	int t;
-	TextureHolder* mTextures;
-public:
-    //get info
-    float getX();
-    float getY();
-    virtual int getDirect(){return -1;};
+	float mX, mY;
+	// 1: right, -1: left
+	int direction = 1;
+	float speed;
+	Objects::ID type;
+	TextureHolder *mTextures;
 
-    //set up obstacle
-    virtual void move();
-	virtual int type() { return 0; };
-	int dir() { return this->direct; }
-	Object(float x, float y, int d, float velocity, TextureHolder* mTextures) { this->X = x; this->Y = y; this->direct = d; this->velocity = velocity; this->t = 0; this->mTextures = mTextures; }
-	virtual void draw();
+public:
+	typedef std::unique_ptr<Object> Ptr;
+	// get info
+	float getX();
+	float getY();
+
+	// set up obstacle
+	virtual Objects::ID getType();
+	int getDirection();
+	Object(float x, float y, int d, Objects::ID type);
+	Object(float x, float y, int d, float speed, TextureHolder *mTextures, Objects::ID type);
+	virtual void update(float dt);
+	virtual void draw() = 0;
 	virtual ~Object();
 };
 
-class Car:public Object{
+class Car : public Object {
 public:
-    void move() { this->X += this->velocity * (float)this->direct; };
-	Car(int x, int y, int d, float velocity, TextureHolder* mTextures) :Object(x, y, d, velocity, mTextures) {};
-	int type() { this->t = 2; return 2; }
-	int getDirect() { return this->direct; }
+	Car(int x, int y, int d);
+	Car(int x, int y, int d, float speed, TextureHolder *mTextures);
+	// void update(float dt);
 	void draw();
 	~Car();
 };
 
-class Truck:public Object{
+class Truck : public Object {
 public:
-    void move(){ this->X += this->velocity * (float)this->direct; };
-	Truck(int x, int y, int d, float velocity, TextureHolder* mTextures) :Object(x, y, d, velocity, mTextures) {};
-	int type() { this->t = 3; return 3; }
-	int getDirect() { return this->direct; }
+	Truck(int x, int y, int d);
+	Truck(int x, int y, int d, float speed, TextureHolder *mTextures);
+	// void update(float dt);
 	void draw();
 	~Truck();
 };
 
-class Bird:public Object{
+class Bird : public Object {
 public:
-   	void move(){ this->X += this->velocity * (float)this->direct; };
-	Bird(int x, int y, int d, float velocity, TextureHolder* mTextures) :Object(x, y, d, velocity, mTextures) {};
-	int type() { this->t = 4; return 4; }
-	int getDirect() { return this->direct; }
+	Bird(int x, int y, int d);
+	Bird(int x, int y, int d, float speed, TextureHolder *mTextures);
+	// void update(float dt);
 	void draw();
 	~Bird();
 };
 
-class Dinausor:public Object{
+class Dinosaur : public Object {
 public:
-    void move(){ this->X += this->velocity * (float)this->direct; };
-	Dinausor(int x, int y, int d, float velocity, TextureHolder* mTextures) :Object(x, y, d, velocity, mTextures) {};
-	int type() { this->t = 5; return 5; }
-	int getDirect() { return this->direct; }
+	Dinosaur(int x, int y, int d);
+	Dinosaur(int x, int y, int d, float speed, TextureHolder *mTextures);
+	// void update(float dt);
 	void draw();
-	~Dinausor();
+	~Dinosaur();
 };
-class Obstacle:public Object{
+class Obstacle : public Object {
 public:
-	void move() { this->X += 0; this->Y += 0; };
-	Obstacle(int x, int y, int d, float velocity, TextureHolder* mTextures) :Object(x, y, d, velocity, mTextures) {};
-	int type() { this->t = 1;return 1; }
-	int getDirect() { return this->direct; }
+	Obstacle(int x, int y, int d);
+	Obstacle(int x, int y, int d, float speed, TextureHolder *mTextures);
+	// void update(float dt);
 	void draw();
 	~Obstacle();
 };

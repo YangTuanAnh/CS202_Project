@@ -3,9 +3,10 @@
 
 State::State(StateStack* stack, Context context) : mStack(stack), mContext(context) {}
 
-State::Context::Context(TextureHolder* textures, Player* player) : textures(textures), player(player) {}
+State::Context::Context(TextureHolder* textures, Player* player, MusicPlayer* music) : textures(textures), player(player), music(music) {}
 
-State::~State() {}
+State::~State() {
+}
 
 State::Context State::getContext() const {
     return mContext;

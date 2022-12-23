@@ -23,9 +23,16 @@ namespace Textures {
         Car,
         Truck,
         Bird,
-        Dinasor,
+        Dinosaur,
         Obstacle,
         // ...
+    };
+};
+
+namespace Audio {
+    enum ID {
+        MenuTheme,
+        GameTheme,
     };
 };
 
@@ -51,6 +58,28 @@ namespace Directions {
         Bird,
         Dinasor,
         Obstacle,
+        // ...
+    };
+};
+
+namespace Objects {
+    enum ID {
+        None,
+        Obstacle,
+        Car,
+        Truck,
+        Bird,
+        Dinosaur,
+        // ...
+    };
+};
+
+namespace Lanes {
+    enum ID {
+        None,
+        Road,
+        Jungle,
+        Plain,
         // ...
     };
 };
