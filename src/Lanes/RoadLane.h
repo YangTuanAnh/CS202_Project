@@ -1,14 +1,13 @@
 #pragma once
 
-#include "../Lane.h"
+#include "../Lane.hpp"
 
 class RoadLane : public Lane {
 private:
     float speed;
     Objects::ID type;
 public:
-    RoadLane();
-    RoadLane(Objects::ID type, int direction);
+    RoadLane(TextureHolder *textures);
     ~RoadLane();
     void update(float dt);
     void draw();

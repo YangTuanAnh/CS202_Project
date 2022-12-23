@@ -83,8 +83,8 @@ Dinosaur::~Dinosaur() {
 
 void Car::draw() {
     Texture2D texture = mTextures->get(Textures::Car);  // get texture
+    Vector2 pos = { this->mX, SCREEN_HEIGHT - this->mY - BLOCK_SIZE};
     if (this->direction == 1) {
-        Vector2 pos = { this->mX, this->mY };
         DrawTextureV(texture, pos, WHITE);
     }
     else {  // flip texture to the suitable direction
@@ -95,7 +95,6 @@ void Car::draw() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
 
-        Vector2 pos = { this->mX, this->mY };
         DrawTextureV(inverseTexture, pos, WHITE);
     }
 }

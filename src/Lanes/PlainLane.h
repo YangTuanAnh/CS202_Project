@@ -1,14 +1,13 @@
 #pragma once
 
-#include "../Lane.h"
+#include "../Lane.hpp"
 
 class PlainLane : public Lane {
 private:
     Objects::ID type;
 public:
-    PlainLane();
-    PlainLane(Objects::ID type, int direction);
+    PlainLane(TextureHolder *textures);
     ~PlainLane();
-    void update(float dt);
-    void draw();
+    // void update(float dt);
+    // void draw();
 };

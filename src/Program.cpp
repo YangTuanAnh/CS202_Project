@@ -10,18 +10,20 @@
 
 Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(), mPlayer = new Player())) {
     registerStates();
-    mStateStack.pushState(States::Game);
 
     // Load textures
+    mTextures->load(Textures::None, "../image/none.png");
     mTextures->load(Textures::GameBackground, "../asset/img/CrossyRoadBg.png", SCREEN_WIDTH, SCREEN_HEIGHT);
     mTextures->load(Textures::Player, "../asset/img/3.png");
     mTextures->load(Textures::PausedBackground, "../asset/img/PausedScreen.png", SCREEN_WIDTH, SCREEN_HEIGHT);
 
     mPlayer->init(&mTextures->get(Textures::Player));
-    mTextures->load(Textures::Car, "../image/vehicle_car.png");
+    mTextures->load(Textures::Car, "../image/vehicle_car.png", 50, 50);
     mTextures->load(Textures::Truck, "../image/vehicle_truck.png");
-    mTextures->load(Textures::Bird, "../image/vehicle_bird.png");
-    mTextures->load(Textures::Dinosaur, "../image/vehicle_dinosaur.png");
+    mTextures->load(Textures::Bird, "../image/animal_bird.png");
+    mTextures->load(Textures::Dinosaur, "../image/animal_dinosaur_2.png");
+
+    mStateStack.pushState(States::Game);
 }
 
 Program::~Program() {
@@ -30,6 +32,7 @@ Program::~Program() {
 }
 
 void Program::run() {
+    // std::cerr << "Program run" << std::endl;
     const char msg1[50] = "Game Over!";
     // Font font1 = LoadFont("resources/custom_mecha.png");
     // Vector2 fontPosition1 = { SCREEN_WIDTH/2.0f - MeasureTextEx(font1, msg1, (float)font1.baseSize, -3).x/2,
