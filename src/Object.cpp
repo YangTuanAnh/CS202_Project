@@ -69,11 +69,11 @@ int Object::getDirection() {
     return this->direction;
 }
 
-void Object::update(float dt){
+void Object::updateThis(float dt){
         this->mX += this->speed * dt * this->direction;
 }
 
-void Dinosaur::draw() {
+void Dinosaur::drawThis() {
     Texture2D texture;
     if (this->direction == 1) {
         texture = mTextures->get(Textures::Dinosaur_right);  // get texture
@@ -98,7 +98,7 @@ Dinosaur::~Dinosaur() {
     this->mY = 0;
 }
 
-void Car::draw() {
+void Car::drawThis() {
     Texture2D texture;
     if (this->direction == 1) {
         texture = mTextures->get(Textures::Car_right);  // get texture
@@ -123,7 +123,7 @@ Car::~Car(){
     this->mY = 0;
 }
 
-void Truck::draw() {
+void Truck::drawThis() {
     Texture2D texture;
     if (this->direction == 1) {
         texture = mTextures->get(Textures::Truck_right);  // get texture
@@ -148,7 +148,7 @@ Truck::~Truck(){
     this->mY = 0;
 }
 
-void Bird::draw() {
+void Bird::drawThis() {
     Texture2D texture;
     if (this->direction == 1) {
         texture = mTextures->get(Textures::Bird_right);  // get texture
@@ -180,7 +180,7 @@ Object::~Object(){
     this->mY = 0;
 }
 
-void Obstacle::draw() {
+void Obstacle::drawThis() {
     Texture2D texture = mTextures->get(Textures::Obstacle);  // get texture
     // if (this->direction == 1) {
     // }

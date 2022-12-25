@@ -16,23 +16,17 @@ Lane::Ptr Map::createLane(Lanes::ID laneID) {
 }
 
 void Map::init() {
-    std::cerr << "Map init" << std::endl;
     for (int i = 0; i < 3; i++) {
-        map.push_back(createLane(Lanes::Road));
-        auto lane = map.rbegin();
-        lane->get()->init(BLOCK_SIZE * i);
-        lane->get()->addObject(Objects::Car, 0);
+        addLane(Lanes::Road);
     }
 }
 
-void Map::update(float dt) {
-    for (auto &lane : map) {
-        lane->update(dt);
-    }
+void Map::addLane(Lanes::ID laneID) {
+    auto newLane = createLane(laneID);
+    newLane->init(BLOCK_SIZE * size++);
+    attachChild(std::move(newLane));
 }
 
-void Map::draw() {
-    for (auto &lane : map) {
-        lane->draw();
-    }
+void Map::drawThis() {
+    // DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLUE);
 }

@@ -12,20 +12,11 @@ Lane::~Lane() {}
 
 void Lane::init(float y) {
     this->mY = y;
+    addObject(Objects::Car, 0);
 }
 
-void Lane::update(float dt) {
-    std::cerr << "Update lane" << std::endl;
-    for (auto &object : objects) {
-        object->update(dt);
-    }
-}
-
-void Lane::draw() {
+void Lane::drawThis() {
     DrawRectangle(0, SCREEN_HEIGHT - mY, GetScreenWidth(), 100, BLACK);
-    for (auto &object : objects) {
-        object->draw();
-    }
 }
 
 void Lane::addObject(Objects::ID type, float x) {
@@ -40,5 +31,6 @@ void Lane::addObject(Objects::ID type, float x) {
     default:
         break;
     }
-    objects.push_back(mFactories.create(type, x, mY, direction, speed, mTextures));
+    auto newObject = mFactories.create(type, x, mY, direction, speed, mTextures);
+    attachChild(std::move(newObject));
 }
