@@ -9,6 +9,5 @@ private:
 public:
     JungleLane(TextureHolder *textures);
     ~JungleLane();
-    void update(float dt);
-    void draw();
+    void drawThis();
 };

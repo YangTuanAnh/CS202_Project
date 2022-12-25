@@ -8,6 +8,5 @@ private:
 public:
     PlainLane(TextureHolder *textures);
     ~PlainLane();
-    // void update(float dt);
-    // void draw();
+    void drawThis();
 };

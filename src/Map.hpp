@@ -6,15 +6,16 @@
 #include "Lane.hpp"
 #include "ResourceIdentifiers.hpp"
 #include "TextureHolder.h"
+#include "SceneNode.h"
 
-class Map {
+class Map : public SceneNode {
 private:
-    std::deque<Lane::Ptr> map;
+    int size = 0;
     std::map<Lanes::ID, std::function<Lane::Ptr()>> mFactories;
     TextureHolder *mTextures;
 public:
     Map(TextureHolder *textures);
-    ~Map();
+    virtual ~Map();
     template <typename T>
     void registerLane(Lanes::ID laneID) {
         mFactories[laneID] = [this] () {
@@ -22,7 +23,7 @@ public:
         };
     }
     Lane::Ptr createLane(Lanes::ID laneID);
-    void update(float dt);
-    void draw();
+    void addLane(Lanes::ID laneID);
+    void drawThis();
     void init();
 };

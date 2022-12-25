@@ -4,8 +4,9 @@
 #include "Global.h"
 #include "TextureHolder.h"
 #include "ResourceIdentifiers.hpp"
+#include "SceneNode.h"
 
-class Object {
+class Object : public SceneNode {
 protected:
 	float mX, mY;
 	// 1: right, -1: left
@@ -27,8 +28,8 @@ public:
 	Vector2 convertCar2IsoVector(Vector2);
 	Object(float x, float y, int d, Objects::ID type);
 	Object(float x, float y, int d, float speed, TextureHolder *mTextures, Objects::ID type);
-	virtual void update(float dt);
-	virtual void draw() = 0;
+	virtual void updateThis(float dt);
+	virtual void drawThis() = 0;
 	virtual ~Object();
 };
 
@@ -37,7 +38,7 @@ public:
 	Car(int x, int y, int d);
 	Car(int x, int y, int d, float speed, TextureHolder *mTextures);
 	// void update(float dt);
-	void draw();
+	void drawThis();
 	~Car();
 };
 
@@ -46,7 +47,7 @@ public:
 	Truck(int x, int y, int d);
 	Truck(int x, int y, int d, float speed, TextureHolder *mTextures);
 	// void update(float dt);
-	void draw();
+	void drawThis();
 	~Truck();
 };
 
@@ -55,7 +56,7 @@ public:
 	Bird(int x, int y, int d);
 	Bird(int x, int y, int d, float speed, TextureHolder *mTextures);
 	// void update(float dt);
-	void draw();
+	void drawThis();
 	~Bird();
 };
 
@@ -64,7 +65,7 @@ public:
 	Dinosaur(int x, int y, int d);
 	Dinosaur(int x, int y, int d, float speed, TextureHolder *mTextures);
 	// void update(float dt);
-	void draw();
+	void drawThis();
 	~Dinosaur();
 };
 
@@ -73,6 +74,6 @@ public:
 	Obstacle(int x, int y, int d);
 	Obstacle(int x, int y, int d, float speed, TextureHolder *mTextures);
 	// void update(float dt);
-	void draw();
+	void drawThis();
 	~Obstacle();
 };

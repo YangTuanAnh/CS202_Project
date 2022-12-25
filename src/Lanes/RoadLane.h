@@ -9,6 +9,5 @@ private:
 public:
     RoadLane(TextureHolder *textures);
     ~RoadLane();
-    void update(float dt);
-    void draw();
+    void drawThis();
 };
