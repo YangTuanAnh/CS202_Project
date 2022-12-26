@@ -31,3 +31,6 @@ void Map::drawThis() {
     // DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLUE);
 }
 
+Lanes::ID Map::getRandomLane() {
+    return Lanes::ID(GetRandomValue(1, LANE_COUNT));
+}
