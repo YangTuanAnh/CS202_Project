@@ -1,5 +1,6 @@
 #include "program.h"
 #include "Object.h"
+#include "Global.h"
 
 int main()
 {
@@ -7,7 +8,7 @@ int main()
     InitAudioDevice();
     // Music music = LoadMusicStream("../asset/sfx/MenuTheme.mp3");
     // PlayMusicStream(music);
-    SetTargetFPS(60);
+    SetTargetFPS(FPS);
     Program Program;
     while (!WindowShouldClose())
         Program.run();
