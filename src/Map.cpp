@@ -17,8 +17,11 @@ Lane::Ptr Map::createLane(Lanes::ID laneID) {
 
 void Map::init() {
     for (int i = 0; i < 3; i++) {
-        addLane(Lanes::Road);
+        addLane(Lanes::Plain);
     }
+
+    for (int i=0; i<40; i++)
+        addLane(getRandomLane());
 }
 
 void Map::addLane(Lanes::ID laneID) {
@@ -31,3 +34,6 @@ void Map::drawThis() {
     // DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLUE);
 }
 
+Lanes::ID Map::getRandomLane() {
+    return Lanes::ID(GetRandomValue(1, LANE_COUNT));
+}

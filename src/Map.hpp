@@ -25,5 +25,6 @@ public:
     Lane::Ptr createLane(Lanes::ID laneID);
     void addLane(Lanes::ID laneID);
     void drawThis();
+    Lanes::ID getRandomLane();
     void init();
 };

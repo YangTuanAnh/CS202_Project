@@ -26,10 +26,10 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
     mTextures->load(Textures::Car_right, "../asset/object/vehicle_car_right.png");
     mTextures->load(Textures::Truck_left, "../asset/object/vehicle_truck_left.png");
     mTextures->load(Textures::Truck_right, "../asset/object/vehicle_truck_right.png");
-    mTextures->load(Textures::Bird_left, "../asset/object/vehicle_bird_left.png");
-    mTextures->load(Textures::Bird_right, "../asset/object/vehicle_bird_right.png");
-    mTextures->load(Textures::Dinosaur_left, "../asset/object/vehicle_dinosaur_left.png");
-    mTextures->load(Textures::Dinosaur_right, "../asset/object/vehicle_dinosaur_right.png");
+    mTextures->load(Textures::Bird_left, "../asset/object/animal_bird_left.png");
+    mTextures->load(Textures::Bird_right, "../asset/object/animal_bird_right.png");
+    mTextures->load(Textures::Dinosaur_left, "../asset/object/animal_dinosaur_left.png");
+    mTextures->load(Textures::Dinosaur_right, "../asset/object/animal_dinosaur_right.png");
 
     mStateStack.pushState(States::Menu);
 }
