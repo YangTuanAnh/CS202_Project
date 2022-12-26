@@ -28,9 +28,23 @@ void Lane::addObject(Objects::ID type, float x) {
     case Objects::Truck:
         speed = TRUCK_SPEED;
         break;
+    case Objects::Bird:
+        speed = BIRD_SPEED;
+        break;
+    case Objects::Dinosaur:
+        speed = DINOSAUR_SPEED;
+        break;
     default:
         break;
     }
     auto newObject = mFactories.create(type, x, mY, direction, speed, mTextures);
     attachChild(std::move(newObject));
+}
+
+void Lane::addRandomObject(float mY) {
+    if (nextSpawnTime--) return;
+    nextSpawnTime = GetRandomValue(1, MAX_SPAWN_TIME) * 1000 * FPS;
+    int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE -1;
+    auto randObj = Objects::ID(GetRandomValue(2, 5));
+    addObject(randObj, randX);
 }

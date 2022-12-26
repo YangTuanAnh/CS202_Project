@@ -14,6 +14,7 @@ class Lane : public SceneNode {
 protected:
     float mY;
     int direction = 1;
+    int nextSpawnTime = 0;
     TextureHolder *mTextures;
     ObjectFactory<Object, float, float, int, float, TextureHolder*> mFactories;
 public:
@@ -23,4 +24,5 @@ public:
     void init(float y);
     void drawThis();
     void addObject(Objects::ID type, float x);
+    void addRandomObject(float mY);
 };
