@@ -23,6 +23,7 @@ public:
     ~Lane();
     void init(float y);
     void drawThis();
+    void updateThis(float dt);
     void addObject(Objects::ID type, float x);
-    void addRandomObject(float mY);
+    void addRandomObject();
 };

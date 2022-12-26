@@ -6,17 +6,20 @@
 Lane::Lane(TextureHolder *textures) : mTextures(textures) {
     mFactories.registerType<Car>(Objects::Car);
     mFactories.registerType<Truck>(Objects::Truck);
+    mFactories.registerType<Bird>(Objects::Bird);
+    mFactories.registerType<Dinosaur>(Objects::Dinosaur);
 }
 
 Lane::~Lane() {}
 
 void Lane::init(float y) {
     this->mY = y;
-    addObject(Objects::Car, 0);
+    //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
+    //addRandomObject();
 }
 
 void Lane::drawThis() {
-    DrawRectangle(0, SCREEN_HEIGHT - mY, GetScreenWidth(), 100, BLACK);
+    //DrawRectangle(0, SCREEN_HEIGHT - mY, GetScreenWidth(), 100, BLACK);
 }
 
 void Lane::addObject(Objects::ID type, float x) {
@@ -41,10 +44,17 @@ void Lane::addObject(Objects::ID type, float x) {
     attachChild(std::move(newObject));
 }
 
-void Lane::addRandomObject(float mY) {
+void Lane::addRandomObject() {
+    std::cerr << nextSpawnTime << std::endl;
     if (nextSpawnTime--) return;
-    nextSpawnTime = GetRandomValue(1, MAX_SPAWN_TIME) * 1000 * FPS;
+    nextSpawnTime = GetRandomValue(1, MAX_SPAWN_TIME) * FPS;
     int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE -1;
-    auto randObj = Objects::ID(GetRandomValue(2, 5));
+    auto randObj = Objects::ID(GetRandomValue(2, OBJECT_COUNT));
     addObject(randObj, randX);
+}
+
+void Lane::updateThis(float dt) {
+    addRandomObject();
+    //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
+    std::cerr << "Updating\n";
 }
