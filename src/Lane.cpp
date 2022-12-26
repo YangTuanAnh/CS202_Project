@@ -28,6 +28,12 @@ void Lane::addObject(Objects::ID type, float x) {
     case Objects::Truck:
         speed = TRUCK_SPEED;
         break;
+    case Objects::Bird:
+        speed = BIRD_SPEED;
+        break;
+    case Objects::Dinosaur:
+        speed = DINOSAUR_SPEED;
+        break;
     default:
         break;
     }
