@@ -5,6 +5,7 @@
 #include <random>
 #include <vector>
 #include <fstream>
+#include <raygui.h>
 using namespace std;
 
 // Global variables
@@ -21,3 +22,26 @@ const int MAX_SPAWN_TIME = 5;
 const float BLOCK_SIZE = 40.0f;
 const int MAP_WIDTH = 30;
 const int LANE_COUNT = 3;
+
+// Global functions
+Vector2 convertCar2IsoVector(Vector2 Cartesian) {
+    Vector2 isometricVector;
+    isometricVector.x = Cartesian.x - Cartesian.y + SCREEN_WIDTH/2;
+    // if (Cartesian.x > 0)
+    //     Cartesian.y += Cartesian.x/2;
+    // else if (Cartesian.x == 0)
+    //     Cartesian.y /= 2;
+    isometricVector.y = (Cartesian.x + Cartesian.y)/2;
+    return isometricVector;
+}
+
+// Vector2 convertCar2IsoVector(float mX, float mY) {
+//     Vector2 isometricVector;
+//     isometricVector.x = mX - mY + SCREEN_WIDTH/2;
+//     // if (Cartesian.x > 0)
+//     //     Cartesian.y += Cartesian.x/2;
+//     // else if (Cartesian.x == 0)
+//     //     Cartesian.y /= 2;
+//     isometricVector.y = (mX + mY)/2;
+//     return isometricVector;
+// }

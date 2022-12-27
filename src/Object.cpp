@@ -18,17 +18,6 @@ Object::Object(float x, float y, int d, float speed, TextureHolder *mTextures, O
     this->type = type;
 }
 
-Vector2 Object::convertCar2IsoVector(Vector2 Cartesian) {
-    Vector2 isometricVector;
-    isometricVector.x = Cartesian.x - Cartesian.y + SCREEN_WIDTH/2;
-    // if (Cartesian.x > 0)
-    //     Cartesian.y += Cartesian.x/2;
-    // else if (Cartesian.x == 0)
-    //     Cartesian.y /= 2;
-    isometricVector.y = (Cartesian.x + Cartesian.y)/2;
-    return isometricVector;
-}
-
 Car::Car(int x, int y, int d) : Object(x, y, d, Objects::Car) {
 }
 
@@ -87,7 +76,7 @@ void Dinosaur::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    Vector2 pos = this->convertCar2IsoVector({ this->mX, this->mY });
+    Vector2 pos = convertCar2IsoVector({ this->mX, this->mY });
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -112,7 +101,7 @@ void Car::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    Vector2 pos = this->convertCar2IsoVector({ this->mX, this->mY - 10.0f });
+    Vector2 pos = convertCar2IsoVector({ this->mX, this->mY - 10.0f });
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -137,7 +126,7 @@ void Truck::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    Vector2 pos = this->convertCar2IsoVector({ this->mX, this->mY - 20.0f });
+    Vector2 pos = convertCar2IsoVector({ this->mX, this->mY - 20.0f });
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -162,7 +151,7 @@ void Bird::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    Vector2 pos = this->convertCar2IsoVector({ this->mX, this->mY });
+    Vector2 pos = convertCar2IsoVector({ this->mX, this->mY });
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -189,7 +178,7 @@ void Obstacle::drawThis() {
     //     // UpdateTexture(inverseTexture, pixels);
     //     // UnloadImageColors(pixels);
     // }
-    Vector2 pos = this->convertCar2IsoVector({ this->mX, this->mY });
+    Vector2 pos = convertCar2IsoVector({ this->mX, this->mY });
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }

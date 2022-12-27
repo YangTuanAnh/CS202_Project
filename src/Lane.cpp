@@ -1,5 +1,4 @@
 #include "Lane.hpp"
-#include "Global.h"
 
 #include <iostream>
 

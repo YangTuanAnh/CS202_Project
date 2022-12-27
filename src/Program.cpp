@@ -22,6 +22,10 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
 
     mPlayer->init(&mTextures->get(Textures::Player));
     mStateStack.pushState(States::Game);
+    mTextures->load(Textures::Plain, "../asset/object/road_600x300_1");
+    mTextures->load(Textures::Road, "../asset/object/road_600x300_2");
+    mTextures->load(Textures::Jungle, "../asset/object/grass_600x300_1");
+
     mTextures->load(Textures::Car_left, "../asset/object/vehicle_car_left.png");
     mTextures->load(Textures::Car_right, "../asset/object/vehicle_car_right.png");
     mTextures->load(Textures::Truck_left, "../asset/object/vehicle_truck_left.png");

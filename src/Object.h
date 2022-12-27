@@ -25,7 +25,6 @@ public:
 	// set up obstacle
 	virtual Objects::ID getType();
 	int getDirection();
-	Vector2 convertCar2IsoVector(Vector2);
 	Object(float x, float y, int d, Objects::ID type);
 	Object(float x, float y, int d, float speed, TextureHolder *mTextures, Objects::ID type);
 	virtual void updateThis(float dt);
