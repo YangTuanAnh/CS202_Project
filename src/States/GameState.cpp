@@ -15,6 +15,7 @@ GameState::GameState(StateStack *stack, Context context) : State(stack, context)
     registerLanes();
     map->init();
     context.music->play(Audio::GameTheme);
+    camera = new CustomCamera(player);
 }
 
 void GameState::registerLanes() {
@@ -25,12 +26,15 @@ void GameState::registerLanes() {
 
 GameState::~GameState() {
     delete map;
+    delete camera;
 }
 
 void GameState::draw() {
     DrawTexture(*mBackgroundTexture, 0, 0, WHITE);
+    BeginMode2D(*camera);
     map->draw();
     player->draw();
+    EndMode2D();
 }
 
 bool GameState::update(float dt) {
@@ -43,6 +47,7 @@ bool GameState::update(float dt) {
         requestStackPush(States::GameOver);
         return updatePrevState;
     }
+    camera->update(dt);
     map->update(dt);
     player->update(dt);
     return updatePrevState;
