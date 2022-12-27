@@ -57,6 +57,10 @@ float Player::getY() {
     return this->mY;
 }
 
+Vector2 Player::getPos() {
+    return Vector2{this->mX, this->mY};
+}
+
 void Player::setState(PlayerStates::ID id) {
     mState = createState(id);
 }

@@ -3,6 +3,7 @@
 #include "../State.h"
 #include "../Player.hpp"
 #include "../Map.hpp"
+#include "../Camera.h"
 
 #include <iostream>
 #include <vector>
@@ -13,6 +14,7 @@ private:
     Map* map;
     Player* player;
     Texture2D* mBackgroundTexture;
+    CustomCamera* camera;
 public:
     GameState(StateStack* stack, Context context);
     ~GameState();

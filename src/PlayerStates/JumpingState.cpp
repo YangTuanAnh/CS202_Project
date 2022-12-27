@@ -19,19 +19,19 @@ void JumpingState::setTarget(Vector2 curPos, Directions::ID direction) {
     switch (direction) {
     case Directions::Up:
         curPos.y -= blockSize;
-        if(curPos.y<0.0f) curPos.y = 0.0f;
+        // if(curPos.y<0.0f) curPos.y = 0.0f;
         break;
     case Directions::Down:
         curPos.y += blockSize;
-        if(curPos.y > SCREEN_HEIGHT-60.0f) curPos.y = SCREEN_HEIGHT-60.0f;
+        // if(curPos.y > SCREEN_HEIGHT-60.0f) curPos.y = SCREEN_HEIGHT-60.0f;
         break;
     case Directions::Left:
         curPos.x -= blockSize;
-        if(curPos.x <0.0f)curPos.x = 0.0f;
+        // if(curPos.x <0.0f)curPos.x = 0.0f;
         break;
     case Directions::Right:
         curPos.x += blockSize;
-        if(curPos.x > SCREEN_WIDTH-40.0f)curPos.x = SCREEN_WIDTH-40.0f;
+        // if(curPos.x > SCREEN_WIDTH-40.0f)curPos.x = SCREEN_WIDTH-40.0f;
         break;
     default:
         break;

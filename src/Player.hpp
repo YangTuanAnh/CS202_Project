@@ -31,6 +31,7 @@ public:
     PlayerState::Ptr createState(PlayerStates::ID stateID);
     float getX();
     float getY();
+    Vector2 getPos();
     int getPoint();
     void setX(float);
     void setY(float);

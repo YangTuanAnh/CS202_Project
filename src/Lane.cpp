@@ -45,7 +45,6 @@ void Lane::addObject(Objects::ID type, float x) {
 }
 
 void Lane::addRandomObject() {
-    std::cerr << nextSpawnTime << std::endl;
     if (nextSpawnTime--) return;
     nextSpawnTime = GetRandomValue(1, MAX_SPAWN_TIME) * FPS;
     int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE -1;
@@ -56,5 +55,4 @@ void Lane::addRandomObject() {
 void Lane::updateThis(float dt) {
     addRandomObject();
     //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
-    std::cerr << "Updating\n";
 }
