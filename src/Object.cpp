@@ -77,6 +77,8 @@ void Dinosaur::drawThis() {
         // UnloadImageColors(pixels);
     }
     Vector2 pos = convertCar2IsoVector({ this->mX, this->mY });
+    pos.x -= 50.0f;
+    pos.y -= 30.0f;
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -101,7 +103,9 @@ void Car::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    Vector2 pos = convertCar2IsoVector({ this->mX, this->mY - 10.0f });
+    Vector2 pos = convertCar2IsoVector({ this->mX, this->mY });
+    pos.x -= 28.0f;
+    pos.y -= 5.0f;
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -126,7 +130,9 @@ void Truck::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    Vector2 pos = convertCar2IsoVector({ this->mX, this->mY - 20.0f });
+    Vector2 pos = convertCar2IsoVector({ this->mX, this->mY });
+    pos.x -= 46.0f;
+    pos.y -= 25.0f;
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -152,6 +158,8 @@ void Bird::drawThis() {
         // UnloadImageColors(pixels);
     }
     Vector2 pos = convertCar2IsoVector({ this->mX, this->mY });
+    pos.x -= 20.0f;
+    pos.y -= 10.0f;
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -179,6 +187,7 @@ void Obstacle::drawThis() {
     //     // UnloadImageColors(pixels);
     // }
     Vector2 pos = convertCar2IsoVector({ this->mX, this->mY });
+    // pos.y -= texture.height*0.25;
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }

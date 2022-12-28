@@ -19,18 +19,22 @@ void JumpingState::setTarget(Vector2 curPos, Directions::ID direction) {
     switch (direction) {
     case Directions::Up:
         curPos.y -= blockSize;
+        this->player.chicken = &(this->player.mTextures->get(Textures::Player_up));
         // if(curPos.y<0.0f) curPos.y = 0.0f;
         break;
     case Directions::Down:
         curPos.y += blockSize;
+        this->player.chicken = &(this->player.mTextures->get(Textures::Player_down));
         // if(curPos.y > SCREEN_HEIGHT-60.0f) curPos.y = SCREEN_HEIGHT-60.0f;
         break;
     case Directions::Left:
         curPos.x -= blockSize;
+        this->player.chicken = &(this->player.mTextures->get(Textures::Player_left));
         // if(curPos.x <0.0f)curPos.x = 0.0f;
         break;
     case Directions::Right:
         curPos.x += blockSize;
+        this->player.chicken = &(this->player.mTextures->get(Textures::Player_right));
         // if(curPos.x > SCREEN_WIDTH-40.0f)curPos.x = SCREEN_WIDTH-40.0f;
         break;
     default:

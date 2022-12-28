@@ -13,9 +13,9 @@ const int SCREEN_WIDTH = 1200;
 const int SCREEN_HEIGHT = 580;
 const int FPS = 60;
 const float CAR_SPEED = 200.0f;
-const float TRUCK_SPEED = 150.0f;
-const float DINOSAUR_SPEED = 150.0f;
-const float BIRD_SPEED = 100.0f;
+const float TRUCK_SPEED = 120.0f;
+const float DINOSAUR_SPEED = 110.0f;
+const float BIRD_SPEED = 250.0f;
 const int OBJECT_COUNT = 5;
 const int MAX_SPAWN_TIME = 5;
 

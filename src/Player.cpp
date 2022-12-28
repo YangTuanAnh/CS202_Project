@@ -9,7 +9,7 @@
 Player::Player() {
     std::cerr << "Player constructor" << std::endl;
     this->mX = 600.0f;
-    this->mY = 520.0f;
+    this->mY = 560.0f;
     this->point = 0;
 }
 
@@ -20,8 +20,9 @@ Player::Player(float mX, float mY, int Point) {
     this->point = Point;
 }
 
-void Player::init(Texture2D *texture) {
-    chicken = texture;
+void Player::init(TextureHolder *mTextures) {
+    this->mTextures = mTextures;
+    chicken = &(this->mTextures->get(Textures::Player_down));
     mState = createState(PlayerStates::Idle);
 }
 
@@ -71,7 +72,9 @@ void Player::draw() {
         int frameWidth = chicken->width;
         int frameHeight = chicken->height;
         Rectangle source = {0.0f, 0.0f, (float)frameWidth, (float)frameHeight};
-        Vector2 position{this->mX, this->mY};
+        Vector2 position = convertCar2IsoVector({ this->mX, this->mY });
+        position.x -= 15.0f;
+        position.y -= 10.0f;
         switch (this->mState->stateID) {
         case PlayerStates::Idle:
             DrawTextureRec(*chicken, source, position, RED);

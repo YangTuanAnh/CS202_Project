@@ -16,11 +16,12 @@ public:
     PlayerState::Ptr mState;
     int point;
     Texture2D *chicken;
+    TextureHolder *mTextures;
     std::map<PlayerStates::ID, std::function<PlayerState::Ptr()>> mFactories;
 public:
     Player();
     Player(float, float, int);
-    void init(Texture2D*);
+    void init(TextureHolder*);
     template <typename T>
     void registerState(PlayerStates::ID stateID) {
         std::cerr << "Registering state " << stateID << std::endl;

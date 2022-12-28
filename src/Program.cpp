@@ -17,14 +17,19 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
     // Load textures
     mTextures->load(Textures::None, "../image/none.png");
     mTextures->load(Textures::GameBackground, "../asset/img/CrossyRoadBg.png", SCREEN_WIDTH, SCREEN_HEIGHT);
-    mTextures->load(Textures::Player, "../asset/img/3.png");
+    // mTextures->load(Textures::Player_down, "../asset/img/3.png");
     mTextures->load(Textures::PausedBackground, "../asset/img/PausedScreen.png", SCREEN_WIDTH, SCREEN_HEIGHT);
 
-    mPlayer->init(&mTextures->get(Textures::Player));
     mStateStack.pushState(States::Game);
-    mTextures->load(Textures::Plain, "../asset/object/road_600x300_1");
-    mTextures->load(Textures::Road, "../asset/object/road_600x300_2");
-    mTextures->load(Textures::Jungle, "../asset/object/grass_600x300_1");
+    mTextures->load(Textures::Player_right, "../asset/player/chicken_right.png");
+    mTextures->load(Textures::Player_left, "../asset/player/chicken_left.png");
+    mTextures->load(Textures::Player_up, "../asset/player/chicken_up.png");
+    mTextures->load(Textures::Player_down, "../asset/player/chicken_down.png");
+    mPlayer->init(this->mTextures);
+
+    mTextures->load(Textures::Plain, "../asset/object/road_600x300_1.png");
+    mTextures->load(Textures::Road, "../asset/object/road_600x300_2.png");
+    mTextures->load(Textures::Jungle, "../asset/object/grass_600x300_1.png");
 
     mTextures->load(Textures::Car_left, "../asset/object/vehicle_car_left.png");
     mTextures->load(Textures::Car_right, "../asset/object/vehicle_car_right.png");

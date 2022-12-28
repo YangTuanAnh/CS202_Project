@@ -22,7 +22,7 @@ public:
     Lane(TextureHolder* mTextures);
     ~Lane();
     void init(float y);
-    void drawThis();
+    virtual void drawThis();
     void updateThis(float dt);
     void addObject(Objects::ID type, float x);
     void addRandomObject();
