@@ -12,6 +12,7 @@
 
 class Lane : public SceneNode {
 protected:
+    Objects::ID type = Objects::ID::Car;
     float mY;
     int direction = 1;
     int nextSpawnTime = 0;
@@ -23,7 +24,7 @@ public:
     ~Lane();
     void init(float y);
     virtual void drawThis();
-    void updateThis(float dt);
+    virtual void updateThis(float dt);
     void addObject(Objects::ID type, float x);
-    void addRandomObject();
+    virtual void addRandomObject(Objects::ID);
 };

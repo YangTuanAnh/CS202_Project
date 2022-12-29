@@ -5,9 +5,11 @@
 
 class PlainLane : public Lane {
 private:
-    Objects::ID type;
+    float speed;
+    Objects::ID type = Objects::ID::Truck;
 public:
     PlainLane(TextureHolder *textures);
     ~PlainLane();
     void drawThis();
+    void updateThis(float dt);
 };

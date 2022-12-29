@@ -15,3 +15,7 @@ void PlainLane::drawThis() {
     pos.x -= 40.0f;
     DrawTextureV(texture, pos, WHITE);
 }
+
+void PlainLane::updateThis(float dt) {
+    addRandomObject(this->type);
+}
