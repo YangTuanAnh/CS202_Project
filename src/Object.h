@@ -10,6 +10,7 @@ class Object : public SceneNode {
 protected:
 	float mX, mY;
 	// 1: right, -1: left
+	Vector2 pos;
 	int direction = 1;
 	float speed;
 	Objects::ID type;
@@ -36,7 +37,7 @@ class Car : public Object {
 public:
 	Car(int x, int y, int d);
 	Car(int x, int y, int d, float speed, TextureHolder *mTextures);
-	// void update(float dt);
+	void updateThis(float dt);
 	void drawThis();
 	~Car();
 };
@@ -45,7 +46,7 @@ class Truck : public Object {
 public:
 	Truck(int x, int y, int d);
 	Truck(int x, int y, int d, float speed, TextureHolder *mTextures);
-	// void update(float dt);
+	void updateThis(float dt);
 	void drawThis();
 	~Truck();
 };
@@ -54,7 +55,7 @@ class Bird : public Object {
 public:
 	Bird(int x, int y, int d);
 	Bird(int x, int y, int d, float speed, TextureHolder *mTextures);
-	// void update(float dt);
+	void updateThis(float dt);
 	void drawThis();
 	~Bird();
 };
@@ -63,7 +64,7 @@ class Dinosaur : public Object {
 public:
 	Dinosaur(int x, int y, int d);
 	Dinosaur(int x, int y, int d, float speed, TextureHolder *mTextures);
-	// void update(float dt);
+	void updateThis(float dt);
 	void drawThis();
 	~Dinosaur();
 };
@@ -72,7 +73,7 @@ class Obstacle : public Object {
 public:
 	Obstacle(int x, int y, int d);
 	Obstacle(int x, int y, int d, float speed, TextureHolder *mTextures);
-	// void update(float dt);
+	// void updateThis(float dt);
 	void drawThis();
 	~Obstacle();
 };
