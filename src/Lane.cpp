@@ -43,15 +43,15 @@ void Lane::addObject(Objects::ID type, float x) {
     attachChild(std::move(newObject));
 }
 
-void Lane::addRandomObject() {
+void Lane::addRandomObject(Objects::ID type) {
+    int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE -1;
     if (nextSpawnTime--) return;
     nextSpawnTime = GetRandomValue(1, MAX_SPAWN_TIME) * FPS;
-    int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE -1;
-    auto randObj = Objects::ID(GetRandomValue(2, OBJECT_COUNT));
-    addObject(randObj, randX);
+    //auto randObj = Objects::ID(GetRandomValue(2, OBJECT_COUNT));
+    addObject(type, randX);
 }
 
 void Lane::updateThis(float dt) {
-    addRandomObject();
+    addRandomObject(this->type);
     //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
 }

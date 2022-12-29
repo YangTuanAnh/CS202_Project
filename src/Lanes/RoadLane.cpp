@@ -15,3 +15,7 @@ void RoadLane::drawThis() {
     pos.x -= 40.0f;
     DrawTextureV(texture, pos, WHITE);
 }
+
+void RoadLane::updateThis(float dt) {
+    addRandomObject(this->type);
+}

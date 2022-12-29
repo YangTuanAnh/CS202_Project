@@ -6,9 +6,10 @@
 class RoadLane : public Lane {
 private:
     float speed;
-    Objects::ID type;
+    Objects::ID type = Objects::ID::Car;
 public:
     RoadLane(TextureHolder *textures);
     ~RoadLane();
     void drawThis();
+    void updateThis(float dt);
 };
