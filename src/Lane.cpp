@@ -10,7 +10,9 @@ Lane::Lane(TextureHolder *textures) : mTextures(textures) {
     mFactories.registerType<Dinosaur>(Objects::Dinosaur);
 }
 
-Lane::~Lane() {}
+Lane::~Lane() {
+    detachAllChildren();
+}
 
 void Lane::init(float y) {
     this->mY = y;

@@ -39,7 +39,6 @@ public:
     void setPoint(int);
     void setState(PlayerStates::ID);
     bool isDead();
-    void movement();
     void draw();
     void update(float);
     bool collision(Object *);

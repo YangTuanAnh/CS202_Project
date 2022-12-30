@@ -59,15 +59,11 @@ namespace PlayerStates {
 
 namespace Directions {
     enum ID {
+        None,
         Left,
         Right,
         Up,
-        Down,
-        Car,
-        Truck,
-        Bird,
-        Dinosaur,
-        Obstacle,
+        Down
         // ...
     };
 };

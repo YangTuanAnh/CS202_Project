@@ -8,7 +8,7 @@ SettingsState::SettingsState(StateStack* stack, Context context) : State(stack, 
 
 void SettingsState::draw() {
     ClearBackground(RAYWHITE);
-    int len = mOptions.size();
+    // int len = mOptions.size();
 
     DrawText(mOptions[0].c_str(), 600-MeasureText(mOptions[0].c_str(), 20)/2, recButton[0].y+15-50, 20, BLACK);
     DrawText(mOptions[1].c_str(), 600-MeasureText(mOptions[1].c_str(), 20)/2, recButton[1].y+15, 20, BLACK);

@@ -7,8 +7,11 @@ class SceneNode {
 public:
     typedef std::unique_ptr<SceneNode> Ptr;
     SceneNode();
+    virtual ~SceneNode() {};
     void attachChild(Ptr child);
     Ptr detachChild(const SceneNode &node);
+    void detachFirstChild();
+    void detachAllChildren();
     virtual void drawThis() = 0;
     virtual void draw();
     virtual void updateThis(float dt);

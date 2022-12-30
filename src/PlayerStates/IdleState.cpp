@@ -8,7 +8,7 @@ IdleState::IdleState(Player& player) : PlayerState(player, PlayerStates::Idle) {
 void IdleState::update(float dt) {
     int keyPressed = GetKeyPressed();
     if (keyPressed == KEY_W || keyPressed == KEY_A || keyPressed == KEY_S || keyPressed == KEY_D) {
-        Directions::ID direction;
+        Directions::ID direction = Directions::None;
         player.setState(PlayerStates::Jumping);
         switch (keyPressed) {
         case KEY_W:

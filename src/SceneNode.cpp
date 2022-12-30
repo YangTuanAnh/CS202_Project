@@ -25,6 +25,14 @@ SceneNode::Ptr SceneNode::detachChild(const SceneNode &node) {
     return result;
 }
 
+void SceneNode::detachFirstChild() {
+    mChildren.erase(mChildren.begin());
+}
+
+void SceneNode::detachAllChildren() {
+    mChildren.clear();
+}
+
 void SceneNode::draw() {
     std::queue<SceneNode*> nodes;
     nodes.push(this);

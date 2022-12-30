@@ -5,9 +5,11 @@
 
 #include "Global.h"
 
-Map::Map(TextureHolder *textures) : mTextures(textures) {}
+Map::Map(TextureHolder *textures, Player *player) : mTextures(textures), player(player) {}
 
-Map::~Map() {}
+Map::~Map() {
+    detachAllChildren();
+}
 
 Lane::Ptr Map::createLane(Lanes::ID laneID) {
     auto found = mFactories.find(laneID);
@@ -16,18 +18,30 @@ Lane::Ptr Map::createLane(Lanes::ID laneID) {
 }
 
 void Map::init() {
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 10; i++) {
         addLane(Lanes::Plain);
     }
 
-    for (int i=0; i<40; i++)
+    for (int i = 0; i < 20; i++)
         addLane(getRandomLane());
 }
 
 void Map::addLane(Lanes::ID laneID) {
     auto newLane = createLane(laneID);
-    newLane->init(BLOCK_SIZE * size++);
+    newLane->init(BLOCK_SIZE * size--);
     attachChild(std::move(newLane));
+}
+
+void Map::removeFirstLane() {
+    detachFirstChild();
+}
+
+void Map::updateThis(float dt) {
+    // std::cerr << player->getY() << " " << mY << std::endl;
+    if (player->getY() < BLOCK_SIZE * (size + 20)) {
+        addLane(getRandomLane());
+        removeFirstLane();
+    }
 }
 
 void Map::drawThis() {
