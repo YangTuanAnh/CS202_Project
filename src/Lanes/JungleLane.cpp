@@ -22,7 +22,7 @@ void JungleLane::updateThis(float dt) {
 }
 
 void JungleLane::addObstacles() {
-    mTextures->load(Textures::Obstacle, "../asset/tree2.png");
+    //mTextures->load(Textures::Obstacle, "../asset/tree2.png");
     int randCnt = GetRandomValue(5, 10);
     for (int i=0; i<randCnt; i++) {
         int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE -1;
