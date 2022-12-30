@@ -11,7 +11,7 @@
 GameState::GameState(StateStack *stack, Context context) : State(stack, context) {
     mBackgroundTexture = &context.textures->get(Textures::GameBackground);
     player = context.player;
-    map = new Map(context.textures);
+    map = new Map(context.textures, player);
     registerLanes();
     map->init();
     context.music->play(Audio::GameTheme);
@@ -51,93 +51,6 @@ bool GameState::update(float dt) {
     map->update(dt);
     player->update(dt);
     return updatePrevState;
-}
-
-// Object* GameState::getAnimal(){
-//     for(int i=0; i < obstacle.size();i++){
-//         if(obstacle[i]->type() == 2||obstacle[i]->type()==3){
-//             animal.push_back(*obstacle[i]);
-//         }
-//     }
-// }
-// Object* GameState::getVehicle(){
-//     for(int i=0; i < obstacle.size();i++){
-//         if(obstacle[i]->type() == 1||obstacle[i]->type() == 0){
-//             animal.push_back(*obstacle[i]);
-//         }
-//     }
-// }
-// Player GameState::getPeople() {
-//     return *player;
-// }
-
-void GameState::startGame() // setting a 30x30 map
-{
-    // // set position of player
-    // player->mX = rand() % 30;
-    // player->mY = 0;
-    // // set obstacle
-    // for (int j = 0; j < 30; j++) {
-    //     int s = rand() % 5;
-    //     int pos = rand() % 30;
-    //     if (s == 2) {
-    //         map.push_back(Object::Ptr(new Car(j, pos, rand() % 2)));
-    //         continue;
-    //     }
-    //     if (s == 3) {
-    //         map.push_back(new Truck(j, pos, rand() % 2));
-    //         continue;
-    //     }
-    //     if (s == 4) {
-    //         map.push_back(new Bird(j, pos, rand() % 2));
-    //         continue;
-    //     }
-    //     if (s == 5) {
-    //         map.push_back(new Dinosaur(j, pos, rand() % 2));
-    //         continue;
-    //     }
-    //     else {
-    //         map.push_back(new Obstacle(j, pos, rand() % 2));
-    //     }
-    // }
-    // int tmp = player->getPoint();
-    // while (!player->isDead()) {
-    //     player->movement();
-    //     if (player->getPoint() > tmp) {
-    //         this->random();
-    //         tmp = player->getPoint();
-    //     }
-    // }
-}
-
-void GameState::random() {
-    // int s = rand() % 4;
-    // int pos = rand() % 30;
-    // map.erase(map.begin());
-    // if (s == 2) {
-    //     map.push_back(new Car(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
-    //     return;
-    // }
-    // if (s == 3) {
-    //     map.push_back(new Truck(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
-    //     return;
-    // }
-    // if (s == 4) {
-    //     map.push_back(new Bird(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
-    //     return;
-    // }
-    // if (s == 5) {
-    //     map.push_back(new Dinosaur(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
-    //     return;
-    // }
-    // else {
-    //     map.push_back(new Obstacle(map[map.size() - 1]->getX() + 1, pos, rand() % 2));
-    //     return;
-    // }
-}
-
-void GameState::resetGame() {
-    startGame();
 }
 
 void GameState::saveGame(ostream fout) {

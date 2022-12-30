@@ -8,8 +8,8 @@
 
 Player::Player() {
     std::cerr << "Player constructor" << std::endl;
-    this->mX = 600.0f;
-    this->mY = 560.0f;
+    this->mX = 18 * BLOCK_SIZE;
+    this->mY = -10 * BLOCK_SIZE;
     this->point = 0;
 }
 
@@ -30,24 +30,6 @@ PlayerState::Ptr Player::createState(PlayerStates::ID stateID) {
     auto found = mFactories.find(stateID);
     assert(found != mFactories.end());
     return found->second();
-}
-
-void Player::movement() {
-    string in;
-    in = _getch();
-    if (in == "w") {
-        this->mY++;
-        this->point++;
-    }
-    if (in == "s") {
-        this->mY--;
-    }
-    if (in == "a") {
-        this->mX--;
-    }
-    if (in == "d") {
-        this->mX++;
-    }
 }
 
 float Player::getX() {
@@ -77,8 +59,6 @@ void Player::draw() {
         position.y -= 10.0f;
         switch (this->mState->stateID) {
         case PlayerStates::Idle:
-            DrawTextureRec(*chicken, source, position, RED);
-            break;
         case PlayerStates::Jumping:
             DrawTextureRec(*chicken, source, position, WHITE);
             break;
@@ -92,32 +72,6 @@ void Player::draw() {
 }
 
 void Player::update(float dt) {
-    // if (!this->isDead()) {
-    //     if (IsKeyPressed('S'))
-    //     {
-    //         this->mY += PLAYER_SPEED;
-    //     }
-    //     if (IsKeyPressed('W'))
-    //     {
-    //         this->mY -= PLAYER_SPEED;
-    //     }
-    //     if (IsKeyPressed('D'))
-    //     {
-    //         this->mX += PLAYER_SPEED;
-    //     }
-    //     if (IsKeyPressed('A'))
-    //     {
-    //         this->mX -= PLAYER_SPEED;
-    //     }
-    //     if (this->mX < 0)
-    //         this->mX = 0;
-    //     else if ((this->mX + PLAYER_BASE_SIZE) > WIDTH)
-    //         this->mX = WIDTH - PLAYER_BASE_SIZE;
-    //     if (this->mY < 0)
-    //         this->mY = 0;
-    //     else if ((this->mY + PLAYER_BASE_SIZE + 30) > HEIGHT)
-    //         this->mY = HEIGHT - PLAYER_BASE_SIZE - 30;
-    // }
     mState->update(dt);
 }
 
