@@ -19,3 +19,12 @@ void PlainLane::drawThis() {
 void PlainLane::updateThis(float dt) {
     addRandomObject(this->type);
 }
+
+void PlainLane::addObstacles() {
+    // mTextures->load(Textures::Obstacle, "../asset/object/vehicle_truck_left.png");
+    // int randCnt = GetRandomValue(5, 10);
+    // for (int i=0; i<randCnt; i++) {
+    //     int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE -1;
+    //     addObject(Objects::ID::Obstacle, randX);
+    // }
+}

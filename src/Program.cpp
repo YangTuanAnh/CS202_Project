@@ -37,6 +37,7 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
     mTextures->load(Textures::Bird_right, "../asset/object/animal_bird_right.png");
     mTextures->load(Textures::Dinosaur_left, "../asset/object/animal_dinosaur_left.png");
     mTextures->load(Textures::Dinosaur_right, "../asset/object/animal_dinosaur_right.png");
+    mTextures->load(Textures::Obstacle, "../asset/tree2.png");
 
     mStateStack.pushState(States::Menu);
 }

@@ -12,4 +12,5 @@ public:
     ~JungleLane();
     void drawThis();
     void updateThis(float dt);
+    void addObstacles();
 };

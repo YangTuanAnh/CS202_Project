@@ -79,8 +79,7 @@ namespace Objects {
         Car,
         Truck,
         Bird,
-        Dinosaur,
-        Tree,
+        Dinosaur
         // ...
     };
 };

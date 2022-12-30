@@ -206,6 +206,8 @@ void Obstacle::drawThis() {
     // }
     Vector2 pos = convertCar2IsoVector({ this->mX, this->mY });
     // pos.y -= texture.height*0.25;
+    pos.x+=52.f;
+    pos.y-=32.f;
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }

@@ -19,3 +19,5 @@ void RoadLane::drawThis() {
 void RoadLane::updateThis(float dt) {
     addRandomObject(this->type);
 }
+
+void RoadLane::addObstacles() {}

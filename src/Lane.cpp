@@ -3,6 +3,7 @@
 #include <iostream>
 
 Lane::Lane(TextureHolder *textures) : mTextures(textures) {
+    mFactories.registerType<Obstacle>(Objects::Obstacle);
     mFactories.registerType<Car>(Objects::Car);
     mFactories.registerType<Truck>(Objects::Truck);
     mFactories.registerType<Bird>(Objects::Bird);
@@ -13,6 +14,7 @@ Lane::~Lane() {}
 
 void Lane::init(float y) {
     this->mY = y;
+    addObstacles();
     //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
     //addRandomObject();
 }
@@ -39,9 +41,6 @@ void Lane::addObject(Objects::ID type, float x) {
     default:
         break;
     }
-<<<<<<< Updated upstream
-    objects.push_back(mFactories.create(type, x, mY, direction, speed, mTextures));
-=======
     auto newObject = mFactories.create(type, x, mY, direction, speed, mTextures);
     attachChild(std::move(newObject));
 }
@@ -54,16 +53,10 @@ void Lane::addRandomObject(Objects::ID type) {
     addObject(type, randX);
 }
 
-void Lane::addObstacles(Objects::ID type) {
-    int randGap = GetRandomValue(5, 8);
-    int randX = GetRandomValue(0, randGap-1) * BLOCK_SIZE;
-    for (int X = randX; X + randGap * BLOCK_SIZE <= MAP_WIDTH; X += randGap * BLOCK_SIZE)
-        addObject(type, X);
+void Lane::addObstacles() {
 }
 
 void Lane::updateThis(float dt) {
     addRandomObject(this->type);
-    addObstacles(this->obstacle);
     //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
->>>>>>> Stashed changes
 }
