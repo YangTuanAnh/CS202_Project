@@ -1,4 +1,5 @@
 #include "JungleLane.h"
+#include <queue>
 
 JungleLane::JungleLane(TextureHolder *textures) : Lane(textures) {
 }
@@ -24,8 +25,13 @@ void JungleLane::updateThis(float dt) {
 void JungleLane::addObstacles() {
     //mTextures->load(Textures::Obstacle, "../asset/tree2.png");
     int randCnt = GetRandomValue(5, 10);
+    std::priority_queue<int, vector<int>, greater<int>> pq;
     for (int i=0; i<randCnt; i++) {
         int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE -1;
-        addObject(Objects::ID::Obstacle, randX);
+        pq.push(randX);
+    }
+    while (!pq.empty()) {
+        addObject(Objects::ID::Obstacle, pq.top());
+        pq.pop();
     }
 }
