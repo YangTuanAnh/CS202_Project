@@ -12,7 +12,11 @@
 
 class Lane : public SceneNode {
 protected:
-    Objects::ID type = Objects::ID::Car;
+<<<<<<< Updated upstream
+=======
+    Objects::ID type;
+    Objects::ID obstacle;
+>>>>>>> Stashed changes
     float mY;
     int direction = 1;
     int nextSpawnTime = 0;
@@ -26,5 +30,9 @@ public:
     virtual void drawThis();
     virtual void updateThis(float dt);
     void addObject(Objects::ID type, float x);
+<<<<<<< Updated upstream
+=======
     virtual void addRandomObject(Objects::ID);
+    virtual void addObstacles(Objects::ID);
+>>>>>>> Stashed changes
 };

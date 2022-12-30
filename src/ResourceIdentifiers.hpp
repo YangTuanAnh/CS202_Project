@@ -80,6 +80,7 @@ namespace Objects {
         Truck,
         Bird,
         Dinosaur,
+        Tree,
         // ...
     };
 };
