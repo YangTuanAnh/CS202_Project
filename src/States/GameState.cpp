@@ -2,8 +2,10 @@
 #include "../PlayerStates/IdleState.h"
 #include "../PlayerStates/JumpingState.h"
 #include "../Object.h"
-#include "../Lanes/RoadLane.h"
+#include "../Lanes/CarLane.h"
+#include "../Lanes/TruckLane.h"
 #include "../Lanes/JungleLane.h"
+#include "../Lanes/ForestLane.h"
 #include "../Lanes/PlainLane.h"
 
 #include <iostream>
@@ -19,7 +21,9 @@ GameState::GameState(StateStack *stack, Context context) : State(stack, context)
 }
 
 void GameState::registerLanes() {
-    map->registerLane<RoadLane>(Lanes::Road);
+    map->registerLane<CarLane>(Lanes::Car);
+    map->registerLane<TruckLane>(Lanes::Truck);
+    map->registerLane<ForestLane>(Lanes::Forest);
     map->registerLane<JungleLane>(Lanes::Jungle);
     map->registerLane<PlainLane>(Lanes::Plain);
 }
@@ -47,9 +51,9 @@ bool GameState::update(float dt) {
         requestStackPush(States::GameOver);
         return updatePrevState;
     }
-    camera->update(dt);
-    map->update(dt);
     player->update(dt);
+    map->update(dt);
+    camera->update(dt);
     return updatePrevState;
 }
 

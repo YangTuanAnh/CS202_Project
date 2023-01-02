@@ -48,7 +48,7 @@ void Player::setState(PlayerStates::ID id) {
     mState = createState(id);
 }
 
-void Player::draw() {
+void Player::drawThis() {
     // ClearBackground(RAYWHITE);
     if (!this->isDead()) {
         int frameWidth = chicken->width;
@@ -71,7 +71,7 @@ void Player::draw() {
     }
 }
 
-void Player::update(float dt) {
+void Player::updateThis(float dt) {
     mState->update(dt);
 }
 

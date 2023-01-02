@@ -3,6 +3,7 @@
 #include "Global.h"
 #include "Object.h"
 #include "PlayerState.h"
+#include "SceneNode.h"
 #include <raylib.h>
 #include <raygui.h>
 #include <map>
@@ -10,7 +11,7 @@
 #include <memory>
 #include <iostream>
 
-class Player {
+class Player : public SceneNode {
 public:
     float mX, mY;
     PlayerState::Ptr mState;
@@ -39,8 +40,8 @@ public:
     void setPoint(int);
     void setState(PlayerStates::ID);
     bool isDead();
-    void draw();
-    void update(float);
+    void drawThis();
+    void updateThis(float);
     bool collision(Object *);
     ~Player();
 };

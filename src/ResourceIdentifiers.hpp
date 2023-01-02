@@ -83,8 +83,10 @@ namespace Objects {
 namespace Lanes {
     enum ID {
         None,
-        Road,
+        Car,
+        Truck,
         Jungle,
+        Forest,
         Plain,
         // ...
     };

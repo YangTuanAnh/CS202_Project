@@ -11,6 +11,7 @@ public:
     void attachChild(Ptr child);
     Ptr detachChild(const SceneNode &node);
     void detachFirstChild();
+    void detachLastChild();
     void detachAllChildren();
     virtual void drawThis() = 0;
     virtual void draw();

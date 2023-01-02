@@ -16,6 +16,11 @@ Lane::~Lane() {
 
 void Lane::init(float y) {
     this->mY = y;
+    pos1 = convertCar2IsoVector({ 0.0f, this->mY });
+    pos2 = convertCar2IsoVector({ 600.0f, this->mY});
+    pos1.x -= 40.0f;
+    pos2.x -= 40.0f;
+    std::cerr << "pos1: " << pos1.x << ", " << pos1.y << std::endl;
     addObstacles();
     //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
     //addRandomObject();
