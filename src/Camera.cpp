@@ -6,7 +6,7 @@ CustomCamera::CustomCamera(Player *player) {
     this->player = player;
     this->pos = player->getPos();
     this->target = convertCar2IsoVector(this->pos);
-    this->offset = {SCREEN_WIDTH / 2, SCREEN_HEIGHT * 3/4};
+    this->offset = {SCREEN_WIDTH / 2, SCREEN_HEIGHT * 3/5};
     this->rotation = 0.0f;
     this->zoom = 1.0f;
     std::cerr << "Camera target position: "<< this->target.x << ", " << this->target.y << std::endl;

@@ -25,17 +25,17 @@ void JumpingState::setTarget(Vector2 curPos, Directions::ID direction) {
     case Directions::Down:
         curPos.y += blockSize;
         this->player.chicken = &(this->player.mTextures->get(Textures::Player_down));
-        // if(curPos.y > SCREEN_HEIGHT-60.0f) curPos.y = SCREEN_HEIGHT-60.0f;
+        if (curPos.y > 0.0f) curPos.y = 0.0f;
         break;
     case Directions::Left:
         curPos.x -= blockSize;
         this->player.chicken = &(this->player.mTextures->get(Textures::Player_left));
-        // if(curPos.x <0.0f)curPos.x = 0.0f;
+        if (curPos.x < 0.0f) curPos.x = 0.0f;
         break;
     case Directions::Right:
         curPos.x += blockSize;
         this->player.chicken = &(this->player.mTextures->get(Textures::Player_right));
-        // if(curPos.x > SCREEN_WIDTH-40.0f)curPos.x = SCREEN_WIDTH-40.0f;
+        if (curPos.x > 560.0f) curPos.x = 560.0f;
         break;
     default:
         break;
@@ -56,13 +56,16 @@ void JumpingState::update(float dt) {
         player.setY((target.y + blockSize) - ease());
         break;
     case Directions::Down:
-        player.setY((target.y - blockSize) + ease());
+        if (player.getY() != 0.0f)
+            player.setY((target.y - blockSize) + ease());
         break;
     case Directions::Left:
-        player.setX((target.x + blockSize) - ease());
+        if (player.getX() != 0.0f)
+            player.setX((target.x + blockSize) - ease());
         break;
     case Directions::Right:
-        player.setX((target.x - blockSize) + ease());
+        if (player.getX() != 560.0f)
+            player.setX((target.x - blockSize) + ease());
         break;
     default:
         break;

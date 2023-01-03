@@ -38,7 +38,7 @@ void Map::removeFirstLane() {
 
 void Map::updateThis(float dt) {
     // std::cerr << player->getY() << " " << mY << std::endl;
-    if (player->getY() < BLOCK_SIZE * (size + 30)) {
+    if (player->getY() < BLOCK_SIZE * (size + 16)) {
         addLane(getRandomLane());
         removeFirstLane();
     }

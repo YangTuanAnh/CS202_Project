@@ -8,8 +8,8 @@
 
 Player::Player() {
     std::cerr << "Player constructor" << std::endl;
-    this->mX = 18 * BLOCK_SIZE;
-    this->mY = -10 * BLOCK_SIZE;
+    this->mX = 7 * BLOCK_SIZE;
+    this->mY = -7 * BLOCK_SIZE;
     this->point = 0;
 }
 

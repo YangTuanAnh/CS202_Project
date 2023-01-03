@@ -18,8 +18,10 @@ void Lane::init(float y) {
     this->mY = y;
     pos1 = convertCar2IsoVector({ 0.0f, this->mY });
     pos2 = convertCar2IsoVector({ 600.0f, this->mY});
+    pos3 = convertCar2IsoVector({ -600.0f, this->mY});
     pos1.x -= 40.0f;
     pos2.x -= 40.0f;
+    pos3.x -= 40.0f;
     std::cerr << "pos1: " << pos1.x << ", " << pos1.y << std::endl;
     addObstacles();
     //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
@@ -53,11 +55,12 @@ void Lane::addObject(Objects::ID type, float x) {
 }
 
 void Lane::addRandomObject(Objects::ID type) {
-    int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE -1;
+    // int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE -1;
     if (nextSpawnTime--) return;
     nextSpawnTime = GetRandomValue(1, MAX_SPAWN_TIME) * FPS;
     //auto randObj = Objects::ID(GetRandomValue(2, OBJECT_COUNT));
-    addObject(type, randX);
+    // addObject(type, randX);
+    addObject(type, -40.0f);
 }
 
 void Lane::addObstacles() {
