@@ -21,7 +21,7 @@ const int MAX_SPAWN_TIME = 5;
 
 const float BLOCK_SIZE = 40.0f;
 const int MAP_WIDTH = 30;
-const int LANE_COUNT = 3;
+const int LANE_COUNT = 5;
 
 // Global functions
 Vector2 convertCar2IsoVector(Vector2 Cartesian);

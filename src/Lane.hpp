@@ -14,6 +14,8 @@ class Lane : public SceneNode {
 protected:
     Objects::ID type;
     float mY;
+    // Isometric position
+    Vector2 pos1, pos2;
     int direction = 1;
     int nextSpawnTime = 0;
     TextureHolder *mTextures;

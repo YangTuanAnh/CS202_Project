@@ -29,6 +29,10 @@ void SceneNode::detachFirstChild() {
     mChildren.erase(mChildren.begin());
 }
 
+void SceneNode::detachLastChild() {
+    mChildren.pop_back();
+}
+
 void SceneNode::detachAllChildren() {
     mChildren.clear();
 }
@@ -40,8 +44,8 @@ void SceneNode::draw() {
         SceneNode *node = nodes.front();
         nodes.pop();
         node->drawThis();
-        for (auto &child : node->mChildren) {
-            nodes.push(child.get());
+        for (auto it = node->mChildren.rbegin(); it != node->mChildren.rend(); ++it) {
+            nodes.push(it->get());
         }
     }
 }

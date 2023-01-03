@@ -39,9 +39,16 @@ Dinosaur::Dinosaur(int x, int y, int d) : Object(x, y, d, Objects::Dinosaur) {
 Dinosaur::Dinosaur(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::Dinosaur) {}
 
 Obstacle::Obstacle(int x, int y, int d) : Object(x, y, d, Objects::Obstacle) {
+    this->pos = convertCar2IsoVector({ this->mX, this->mY });
+    this->pos.x+=52.f;
+    this->pos.y-=32.f;
 }
 
-Obstacle::Obstacle(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::Obstacle) {}
+Obstacle::Obstacle(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::Obstacle) {
+    this->pos = convertCar2IsoVector({ this->mX, this->mY });
+    this->pos.x+=52.f;
+    this->pos.y-=32.f;
+}
 
 float Object::getX(){
     return this->mX;
@@ -204,11 +211,8 @@ void Obstacle::drawThis() {
     //     // UpdateTexture(inverseTexture, pixels);
     //     // UnloadImageColors(pixels);
     // }
-    Vector2 pos = convertCar2IsoVector({ this->mX, this->mY });
     // pos.y -= texture.height*0.25;
-    pos.x+=52.f;
-    pos.y-=32.f;
-    DrawTextureV(texture, pos, WHITE);
+    DrawTexture(texture, (int)pos.x, (int)pos.y, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 

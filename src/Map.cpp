@@ -22,7 +22,7 @@ void Map::init() {
         addLane(Lanes::Plain);
     }
 
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 30; i++)
         addLane(getRandomLane());
 }
 
@@ -38,7 +38,7 @@ void Map::removeFirstLane() {
 
 void Map::updateThis(float dt) {
     // std::cerr << player->getY() << " " << mY << std::endl;
-    if (player->getY() < BLOCK_SIZE * (size + 20)) {
+    if (player->getY() < BLOCK_SIZE * (size + 30)) {
         addLane(getRandomLane());
         removeFirstLane();
     }
