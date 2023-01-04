@@ -78,9 +78,45 @@ void Player::updateThis(float dt) {
 bool Player::collision(Object *ob) {
     float X = ob->getX();
     float Y = ob->getY();
-
-    if (this->mX == X && this->mY == Y && this->mX == (ob->getType() % 2 + 1)) {
-        return true;
+    if (ob->getType()==Objects::Dinosaur){
+        if(this->mY == Y && ((this->mX > ob->getX()&&this->mX <ob->getX()+60.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+60.0f)))//size is 60x40
+            return true;
+        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX > ob->getX()&&this->mX <ob->getX()+60.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+60.0f)))//size is 60x40
+            return true;
+        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX > ob->getX()&&this->mX <ob->getX()+60.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+60.0f)))//size is 60x40
+            return true;
+    }
+    if (ob->getType()==Objects::Bird){
+        if(this->mY == Y && ((this->mX > ob->getX()&&this->mX <ob->getX()+40.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+40.0f)))//size is 40x40
+            return true;
+        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX > ob->getX()&&this->mX <ob->getX()+40.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+40.0f)))//size is 40x40
+            return true;
+        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX > ob->getX()&&this->mX <ob->getX()+40.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+40.0f)))//size is 40x40
+            return true;
+    }
+    if (ob->getType()==Objects::Car){
+        if(this->mY == Y && ((this->mX > ob->getX()&&this->mX <ob->getX()+40.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+40.0f)))//size is 40x40
+            return true;
+        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX > ob->getX()&&this->mX <ob->getX()+40.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+40.0f)))//size is 40x40
+            return true;
+        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX > ob->getX()&&this->mX <ob->getX()+40.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+40.0f)))//size is 40x40
+            return true;
+    }
+    if (ob->getType()==Objects::Truck){
+        if(this->mY == Y && ((this->mX > ob->getX()&&this->mX <ob->getX()+60.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+60.0f)))//size is 60x40
+            return true;
+        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX > ob->getX()&&this->mX <ob->getX()+60.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+60.0f)))//size is 60x40
+            return true;
+        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX > ob->getX()&&this->mX <ob->getX()+60.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+60.0f)))//size is 60x40
+            return true;
+    }
+    if (ob->getType()==Objects::Obstacle){
+        if(this->mY == Y && ((this->mX > ob->getX()&&this->mX <ob->getX()+40.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+40.0f)))//size is 40x40
+            return true;
+        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX > ob->getX()&&this->mX <ob->getX()+40.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+40.0f)))//size is 40x40
+            return true;
+        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX > ob->getX()&&this->mX <ob->getX()+40.0f)||(this->mX+40.0f > ob->getX()&&this->mX+40.0f <ob->getX()+40.0f)))//size is 40x40
+            return true;
     }
     return false;
 }

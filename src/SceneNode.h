@@ -17,7 +17,7 @@ public:
     virtual void draw();
     virtual void updateThis(float dt);
     virtual void update(float dt);
-private:
+public:
     std::vector<Ptr> mChildren;
     SceneNode *mParent;
 };
