@@ -34,6 +34,7 @@ public:
     float getX();
     float getY();
     Vector2 getPos();
+    void reset();
     int getPoint();
     void setX(float);
     void setY(float);

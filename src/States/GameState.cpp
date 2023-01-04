@@ -13,6 +13,7 @@
 GameState::GameState(StateStack *stack, Context context) : State(stack, context) {
     mBackgroundTexture = &context.textures->get(Textures::GameBackground);
     player = context.player;
+    player->reset();
     map = new Map(context.textures, player);
     registerLanes();
     map->init();

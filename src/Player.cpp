@@ -26,6 +26,13 @@ void Player::init(TextureHolder *mTextures) {
     mState = createState(PlayerStates::Idle);
 }
 
+void Player::reset() {
+    this->mX = 7 * BLOCK_SIZE;
+    this->mY = -7 * BLOCK_SIZE;
+    this->point = 0;
+    this->mState = createState(PlayerStates::Idle);
+}
+
 PlayerState::Ptr Player::createState(PlayerStates::ID stateID) {
     auto found = mFactories.find(stateID);
     assert(found != mFactories.end());
