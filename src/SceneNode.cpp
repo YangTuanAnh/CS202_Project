@@ -37,6 +37,10 @@ void SceneNode::detachAllChildren() {
     mChildren.clear();
 }
 
+std::vector<SceneNode::Ptr> &SceneNode::getChildren() {
+    return mChildren;
+}
+
 void SceneNode::draw() {
     std::queue<SceneNode*> nodes;
     nodes.push(this);

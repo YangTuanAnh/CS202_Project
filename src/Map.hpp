@@ -29,7 +29,7 @@ public:
     void removeFirstLane();
     void updateThis(float dt);
     void drawThis();
-    bool isover();
+    bool isOver();
     Lanes::ID getRandomLane();
     void init();
 };

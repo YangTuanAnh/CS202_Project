@@ -5,7 +5,7 @@
 
 class SceneNode {
 public:
-    typedef std::unique_ptr<SceneNode> Ptr;
+    typedef std::shared_ptr<SceneNode> Ptr;
     SceneNode();
     virtual ~SceneNode() {};
     void attachChild(Ptr child);
@@ -13,6 +13,7 @@ public:
     void detachFirstChild();
     void detachLastChild();
     void detachAllChildren();
+    std::vector<Ptr> &getChildren();
     virtual void drawThis() = 0;
     virtual void draw();
     virtual void updateThis(float dt);

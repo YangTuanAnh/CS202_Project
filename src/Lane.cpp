@@ -22,7 +22,7 @@ void Lane::init(float y) {
     pos1.x -= 40.0f;
     pos2.x -= 40.0f;
     pos3.x -= 40.0f;
-    std::cerr << "pos1: " << pos1.x << ", " << pos1.y << std::endl;
+    // std::cerr << "pos1: " << pos1.x << ", " << pos1.y << std::endl;
     addObstacles();
     //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
     //addRandomObject();

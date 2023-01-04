@@ -34,7 +34,8 @@ bool GameOverState::update(float dt) {
     if (IsMouseButtonPressed(0)) {
         if (CheckCollisionPointRec(GetMousePosition(), recButton[Resume])) {
             //please reset game function here
-            requestStackPop();
+            requestStackPop(), requestStackPop();
+            requestStackPush(States::Game);
         }
         if (CheckCollisionPointRec(GetMousePosition(), recButton[Return])) {
             //please reset game function here
