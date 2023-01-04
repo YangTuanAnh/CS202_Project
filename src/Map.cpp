@@ -47,9 +47,8 @@ void Map::updateThis(float dt) {
 bool Map::isOver(){
     auto currentLane = this->mChildren[(int)(abs(floor((player->getY())/40.0f)))];
     auto objects = currentLane->getChildren();
-    for(auto i = 0 ; i < (int)objects.size();i++){
+    for(auto i = 0 ; i < (int)objects.size(); i++){
         std::shared_ptr<Object> obj = std::dynamic_pointer_cast<Object>(objects[i]);
-        std::cerr << type_name<decltype(obj)>() << std::endl;
         if(player->collision(obj.get()))
             return true;
     }
