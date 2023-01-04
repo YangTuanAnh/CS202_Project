@@ -42,6 +42,7 @@ public:
     bool isDead();
     void drawThis();
     void updateThis(float);
+    bool collision(SceneNode *);
     bool collision(Object *);
     ~Player();
 };

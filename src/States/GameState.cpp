@@ -43,6 +43,10 @@ void GameState::draw() {
 
 bool GameState::update(float dt) {
     bool updatePrevState = false;
+    if(map->isover()){
+        requestStackPush(States::GameOver);
+        return updatePrevState;
+    }
     if (IsKeyPressed(KEY_TAB)) {
         requestStackPush(States::Pause);
         return updatePrevState;

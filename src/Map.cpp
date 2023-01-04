@@ -43,11 +43,17 @@ void Map::updateThis(float dt) {
         removeFirstLane();
     }
 }
+bool Map::isover(){
+    for(auto i = 0 ; i  <this->mChildren[player->getY()/40.0f]->mChildren.size();i++){
+        if(player->collision(this->mChildren[player->getY()/40.0f]->mChildren[i].get()))
+            return true;
+    }
+    return false;
+}
 
 void Map::drawThis() {
     // DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLUE);
 }
-
 Lanes::ID Map::getRandomLane() {
     return Lanes::ID(GetRandomValue(1, LANE_COUNT));
 }
