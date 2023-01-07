@@ -34,6 +34,35 @@ void Lane::drawThis() {
     //DrawRectangle(0, SCREEN_HEIGHT - mY, GetScreenWidth(), 100, BLACK);
 }
 
+void Lane::addObject(Objects::ID type) {
+    float speed = 0;
+    float x;
+    switch (type) {
+    case Objects::Car:
+        speed = CAR_SPEED;
+        break;
+    case Objects::Truck:
+        speed = TRUCK_SPEED;
+        break;
+    case Objects::Bird:
+        speed = BIRD_SPEED;
+        break;
+    case Objects::Dinosaur:
+        speed = DINOSAUR_SPEED;
+        break;
+    default:
+        break;
+    }
+    direction = GetRandomValue(0, 1);
+    x = -40.0f;
+    if (!direction) {
+        direction = -1;
+        x = 600.0f;
+    }
+    auto newObject = mFactories.create(type, x, mY, direction, speed, mTextures);
+    attachChild(std::move(newObject));
+}
+
 void Lane::addObject(Objects::ID type, float x) {
     float speed = 0;
     switch (type) {
@@ -52,6 +81,7 @@ void Lane::addObject(Objects::ID type, float x) {
     default:
         break;
     }
+    direction = 1;
     auto newObject = mFactories.create(type, x, mY, direction, speed, mTextures);
     attachChild(std::move(newObject));
 }
@@ -65,7 +95,7 @@ void Lane::addRandomObject(Objects::ID type, float dt) {
     nextSpawnTime = (float)GetRandomValue(100, MAX_SPAWN_TIME*100) / 100.0f;
     //auto randObj = Objects::ID(GetRandomValue(2, OBJECT_COUNT));
     // addObject(type, randX);
-    addObject(type, -40.0f);
+    addObject(type);
 }
 
 void Lane::addObstacles() {

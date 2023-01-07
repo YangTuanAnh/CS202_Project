@@ -105,17 +105,19 @@ void Dinosaur::updateThis(float dt) {
     this->mX += displacement;
     // pos = Vector2{ this->mX, this->mY };
     this->pos = convertCar2IsoVector({ this->mX, this->mY });
-    this->pos.x -= 50.0f;
-    this->pos.y -= 30.0f;
 }
 
 void Dinosaur::drawThis() {
     Texture2D texture;
     if (this->direction == 1) {
         texture = mTextures->get(Textures::Dinosaur_right);  // get texture
+        this->pos.x -= 50.0f;
+        this->pos.y -= 30.0f;
     }
     else {  // flip texture to the suitable direction
         texture = mTextures->get(Textures::Dinosaur_left);  // get texture
+        this->pos.x -= 25.0f;
+        this->pos.y -= 25.0f;
         // Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
         // ImageFlipHorizontal(&inverseDirect);
         // Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
@@ -137,17 +139,19 @@ Dinosaur::~Dinosaur() {
 void Car::updateThis(float dt) {
     this->mX += this->speed * dt * this->direction;
     this->pos = convertCar2IsoVector({ this->mX, this->mY });
-    this->pos.x -= 28.0f;
-    this->pos.y -= 5.0f;
 }
 
 void Car::drawThis() {
     Texture2D texture;
     if (this->direction == 1) {
         texture = mTextures->get(Textures::Car_right);  // get texture
+        this->pos.x -= 25.0f;
+        this->pos.y -= 5.0f;
     }
     else {  // flip texture to the suitable direction
         texture = mTextures->get(Textures::Car_left);  // get texture
+        this->pos.x -= 25.0f;
+        this->pos.y -= 5.0f;
         // Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
         // ImageFlipHorizontal(&inverseDirect);
         // Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
@@ -170,18 +174,19 @@ Car::~Car() {
 void Truck::updateThis(float dt) {
     this->mX += this->speed * dt * this->direction;
     this->pos = convertCar2IsoVector({ this->mX, this->mY });
-    this->pos.x -= 46.0f;
-    this->pos.y -= 25.0f;
-
 }
 
 void Truck::drawThis() {
     Texture2D texture;
     if (this->direction == 1) {
         texture = mTextures->get(Textures::Truck_right);  // get texture
+        this->pos.x -= 50.0f;
+        this->pos.y -= 30.0f;
     }
     else {  // flip texture to the suitable direction
         texture = mTextures->get(Textures::Truck_left);  // get texture
+        this->pos.x -= 20.0f;
+        this->pos.y -= 10.0f;
         // Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
         // ImageFlipHorizontal(&inverseDirect);
         // Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);
@@ -202,17 +207,19 @@ Truck::~Truck(){
 void Bird::updateThis(float dt) {
     this->mX += this->speed * dt * this->direction;
     this->pos = convertCar2IsoVector({ this->mX, this->mY });
-    this->pos.x -= 20.0f;
-    this->pos.y -= 10.0f;
 }
 
 void Bird::drawThis() {
     Texture2D texture;
     if (this->direction == 1) {
         texture = mTextures->get(Textures::Bird_right);  // get texture
+        this->pos.x -= 20.0f;
+        this->pos.y -= 30.0f;
     }
     else {  // flip texture to the suitable direction
         texture = mTextures->get(Textures::Bird_left);  // get texture
+        this->pos.x -= 10.0f;
+        this->pos.y -= 25.0f;
         // Image inverseDirect = ImageCopy(LoadImageFromTexture(texture));
         // ImageFlipHorizontal(&inverseDirect);
         // Texture2D inverseTexture = LoadTextureFromImage(inverseDirect);

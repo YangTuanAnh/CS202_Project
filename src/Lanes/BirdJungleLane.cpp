@@ -15,5 +15,5 @@ void BirdJungleLane::drawThis() {
 }
 
 void BirdJungleLane::updateThis(float dt) {
-    addRandomObject(this->type);
+    addRandomObject(this->type, dt);
 }
