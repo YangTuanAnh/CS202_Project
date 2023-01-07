@@ -85,6 +85,7 @@ void Player::updateThis(float dt) {
 bool Player::collision(Object *ob) {
     float X = ob->getX();
     float Y = ob->getY();
+
     if (ob->getType()==Objects::Dinosaur){
         if((this->mX >= X && this->mX <= X+50.0f)||(this->mX+40.0f >= X && this->mX+40.0f <=X+50.0f))//size is 60x40
             return true;
@@ -93,6 +94,7 @@ bool Player::collision(Object *ob) {
         // if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX > X&&this->mX <X+60.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+60.0f)))//size is 60x40
         //     return true;
     }
+
     if (ob->getType()==Objects::Bird){
         if(((this->mX > X&&this->mX <X+40.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+40.0f)))//size is 40x40
             return true;
@@ -101,6 +103,7 @@ bool Player::collision(Object *ob) {
         // if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX > X&&this->mX <X+40.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+40.0f)))//size is 40x40
         //     return true;
     }
+
     if (ob->getType()==Objects::Car){
         if(((this->mX > X&&this->mX <X+20.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+20.0f)))//size is 40x40
             return true;
@@ -109,6 +112,7 @@ bool Player::collision(Object *ob) {
         // if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX > X&&this->mX <X+40.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+40.0f)))//size is 40x40
         //     return true;
     }
+
     if (ob->getType()==Objects::Truck){
         if(((this->mX > X&&this->mX <X+60.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+60.0f)))//size is 60x40
             return true;
