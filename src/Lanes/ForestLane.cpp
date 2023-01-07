@@ -23,7 +23,7 @@ void ForestLane::addObstacles() {
     int randCnt = GetRandomValue(5, 10);
     vector<int> posX;
     for (int i=0; i<randCnt; i++) {
-        int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE -1;
+        int randX = GetRandomValue(0, MAP_WIDTH - 1)*BLOCK_SIZE;
         posX.push_back(randX);
     }
     for (int i=0; i<randCnt-1; i++)
