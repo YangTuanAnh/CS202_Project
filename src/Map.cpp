@@ -19,7 +19,7 @@ Lane::Ptr Map::createLane(Lanes::ID laneID) {
 }
 
 void Map::init() {
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 11; i++) {
         addLane(Lanes::Plain);
     }
 
@@ -39,13 +39,13 @@ void Map::removeFirstLane() {
 
 void Map::updateThis(float dt) {
     // std::cerr << player->getY() << " " << mY << std::endl;
-    if (player->getY() < BLOCK_SIZE * (size + 16)) {
+    if (player->getY() < BLOCK_SIZE * (size + 30)) {
         addLane(getRandomLane());
         removeFirstLane();
     }
 }
 bool Map::isOver(){
-    auto currentLane = this->mChildren[(int)(abs(floor((player->getY())/40.0f)))];
+    auto currentLane = this->mChildren[10];
     auto objects = currentLane->getChildren();
     for(auto i = 0 ; i < (int)objects.size(); i++){
         std::shared_ptr<Object> obj = std::dynamic_pointer_cast<Object>(objects[i]);
