@@ -18,10 +18,10 @@ const float DINOSAUR_SPEED = 110.0f;
 const float BIRD_SPEED = 250.0f;
 const int OBJECT_COUNT = 5;
 const int MAX_SPAWN_TIME = 5;
-const int LAMP_TIME = 5;
+const int LAMP_TIME = 3;
 
 const float BLOCK_SIZE = 40.0f;
-const int MAP_WIDTH = 30;
+const int MAP_WIDTH = 15;
 const int LANE_COUNT = 5;
 
 // Global functions

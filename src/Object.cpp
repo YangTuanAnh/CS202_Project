@@ -280,7 +280,6 @@ void TrafficLamp::drawThis() {
 }
 
 void TrafficLamp::updateThis(float dt) {
-    cerr << nextStateTime << '\n';
     if (nextStateTime--) return;
     switch (states) {
         case TrafficLampStates::ID::Green:
