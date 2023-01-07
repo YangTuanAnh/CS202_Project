@@ -70,3 +70,4 @@ void Lane::updateThis(float dt) {
     addRandomObject(this->type);
     //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
 }
+float Lane::getY(){return this->mY;}

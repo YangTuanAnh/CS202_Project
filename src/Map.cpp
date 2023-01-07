@@ -19,11 +19,11 @@ Lane::Ptr Map::createLane(Lanes::ID laneID) {
 }
 
 void Map::init() {
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 13; i++) {
         addLane(Lanes::Plain);
     }
 
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < 27; i++)
         addLane(getRandomLane());
 }
 
@@ -45,8 +45,13 @@ void Map::updateThis(float dt) {
     }
 }
 bool Map::isOver(){
-    auto currentLane = this->mChildren[10];
-    auto objects = currentLane->getChildren();
+    auto lanes = this->getChildren();
+    int id = abs(player->getY() - std::dynamic_pointer_cast<Lane>(this->mChildren[0])->getY())/40.0f;
+    std::vector<SceneNode::Ptr> objects;
+    for (int i = id-1; i <= id+1; i++) {
+        auto tmp = lanes[i]->getChildren();
+        objects.insert(std::end(objects), std::begin(tmp), std::end(tmp));
+    }
     for(auto i = 0 ; i < (int)objects.size(); i++){
         std::shared_ptr<Object> obj = std::dynamic_pointer_cast<Object>(objects[i]);
         if(player->collision(obj.get()))

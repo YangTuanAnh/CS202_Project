@@ -23,7 +23,8 @@ protected:
 public:
     typedef std::unique_ptr<Lane> Ptr;
     Lane(TextureHolder* mTextures);
-    ~Lane();
+    ~Lane(); 
+    float getY() ;
     void init(float y);
     virtual void drawThis();
     virtual void updateThis(float dt);
