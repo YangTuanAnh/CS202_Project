@@ -35,6 +35,9 @@ namespace Textures {
         Dinosaur_left,
         Dinosaur_right,
         Obstacle,
+        TrafficLamp_green,
+        TrafficLamp_yellow,
+        TrafficLamp_red,
         // ...
     };
 };
@@ -57,6 +60,16 @@ namespace PlayerStates {
     };
 };
 
+// List of Traffic lamp states
+namespace TrafficLampStates {
+    enum ID {
+        Green,
+        Yellow,
+        Red,
+        // ...
+    };
+};
+
 namespace Directions {
     enum ID {
         None,
@@ -75,7 +88,8 @@ namespace Objects {
         Car,
         Truck,
         Bird,
-        Dinosaur
+        Dinosaur,
+        TrafficLamp
         // ...
     };
 };

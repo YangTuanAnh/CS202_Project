@@ -31,4 +31,5 @@ public:
     void addObject(Objects::ID type, float x);
     virtual void addRandomObject(Objects::ID);
     virtual void addObstacles();
+    virtual void addTrafficLamp();
 };
