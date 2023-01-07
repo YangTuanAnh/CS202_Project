@@ -148,6 +148,10 @@ void Player::setPoint(int p) {
     this->point = p;
 }
 
+bool Player::isIdle() {
+    return mState->stateID == PlayerStates::Idle;
+}
+
 bool Player::isDead() {
     return mState->stateID == PlayerStates::Dead;
 }
