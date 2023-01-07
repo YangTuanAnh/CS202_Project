@@ -72,5 +72,8 @@ void Map::drawThis() {
     // DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLUE);
 }
 Lanes::ID Map::getRandomLane() {
-    return Lanes::ID(GetRandomValue(1, LANE_COUNT));
+    int random = GetRandomValue(1, 9);
+    if (random >= LANE_COUNT + 1)
+        random = 4;
+    return Lanes::ID(random);
 }

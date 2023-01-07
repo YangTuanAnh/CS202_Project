@@ -27,7 +27,7 @@ void Player::init(TextureHolder *mTextures) {
 }
 
 void Player::reset() {
-    this->mX = 10 * BLOCK_SIZE;
+    this->mX = 7 * BLOCK_SIZE;
     this->mY = -10 * BLOCK_SIZE;
     this->point = 0;
     this->mState = createState(PlayerStates::Idle);
@@ -80,6 +80,7 @@ void Player::drawThis() {
 
 void Player::updateThis(float dt) {
     mState->update(dt);
+    this->point = max(this->point, abs((int)(this->mY/40.0f))) - 10;
 }
 
 bool Player::collision(Object *ob) {
@@ -132,7 +133,7 @@ bool Player::collision(Object *ob) {
 }
 
 int Player::getPoint() {
-    this->point = abs(mY-7*BLOCK_SIZE)/40.0f;
+    // this->point = abs(mY-7*BLOCK_SIZE)/40.0f;
     return this->point;
 }
 
