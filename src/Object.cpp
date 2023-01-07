@@ -98,6 +98,7 @@ void Dinosaur::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
+    DrawRectanglePro((Rectangle){pos.x+10.0f,pos.y+5.0f,85.0f,35.0f},{0,0},29.0f,RED);
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -129,6 +130,7 @@ void Car::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
+    DrawRectanglePro((Rectangle){pos.x+10.0f,pos.y-3.0f,40.0f,35.0f},{0,0},28.0f,RED);
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -144,6 +146,7 @@ void Truck::updateThis(float dt) {
     Vector2 pos = convertCar2IsoVector({ this->mX, this->mY });
     pos.x -= 46.0f;
     pos.y -= 25.0f;
+    
 }
 
 void Truck::drawThis() {
@@ -160,8 +163,8 @@ void Truck::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
+    DrawRectanglePro((Rectangle){pos.x+10.0f,pos.y,40.0f,35.0f},{0,0},29.0f,RED);
     DrawTextureV(texture, pos, WHITE);
-    // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 
 Truck::~Truck(){
@@ -191,6 +194,7 @@ void Bird::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
+    DrawRectanglePro((Rectangle){pos.x+10.0f,pos.y,40.0f,35.0f},{0,0},29.0f,RED);
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -201,7 +205,6 @@ Bird::~Bird(){
     this->mY = 0;
 
 }
-
 void Obstacle::drawThis() {
     Texture2D texture = mTextures->get(Textures::Obstacle);  // get texture
     // if (this->direction == 1) {
@@ -212,7 +215,8 @@ void Obstacle::drawThis() {
     //     // UnloadImageColors(pixels);
     // }
     // pos.y -= texture.height*0.25;
-    DrawTexture(texture, (int)pos.x, (int)pos.y, WHITE);
+    DrawRectanglePro((Rectangle){pos.x+30.0f,pos.y+65.0f,40.0f,38.0f},{0,0},29.0f,RED);
+    DrawTextureV(texture,pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 

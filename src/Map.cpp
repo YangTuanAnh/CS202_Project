@@ -50,7 +50,15 @@ bool Map::isOver(){
     for(auto i = 0 ; i < (int)objects.size(); i++){
         std::shared_ptr<Object> obj = std::dynamic_pointer_cast<Object>(objects[i]);
         if(player->collision(obj.get()))
+        {
+            std::cerr<<player->getX() << " "<<player->getY()<<" :: "<<obj.get()->getX()<<" "<<obj.get()->getY()<<'\n';
+            if(obj.get()->getType()==Objects::Dinosaur)cerr<<"Dino\n";
+            if(obj.get()->getType()==Objects::Bird)cerr<<"Bird\n";
+            if(obj.get()->getType()==Objects::Truck)cerr<<"Truck\n";
+            if(obj.get()->getType()==Objects::Car)cerr<<"Car\n";
+            if(obj.get()->getType()==Objects::Obstacle)cerr<<"Tree\n";
             return true;
+        }
     }
     return false;
 }
