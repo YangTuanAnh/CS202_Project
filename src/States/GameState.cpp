@@ -7,6 +7,7 @@
 #include "../Lanes/JungleLane.h"
 #include "../Lanes/ForestLane.h"
 #include "../Lanes/PlainLane.h"
+#include "../Lanes/BirdJungleLane.h"
 
 #include <iostream>
 
@@ -26,6 +27,7 @@ void GameState::registerLanes() {
     map->registerLane<TruckLane>(Lanes::Truck);
     map->registerLane<ForestLane>(Lanes::Forest);
     map->registerLane<JungleLane>(Lanes::Jungle);
+    map->registerLane<BirdJungleLane>(Lanes::BirdJungle);
     map->registerLane<PlainLane>(Lanes::Plain);
 }
 

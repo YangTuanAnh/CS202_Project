@@ -192,7 +192,6 @@ void Bird::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    DrawRectangleV(this->pos, { 40.0f, 40.0 }, BLUE);
     DrawTextureV(texture, this->pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -213,7 +212,6 @@ void Obstacle::drawThis() {
     //     // UnloadImageColors(pixels);
     // }
     // pos.y -= texture.height*0.25;
-    DrawRectangleV(this->pos, { 40.0f, 40.0f }, YELLOW);
     DrawTexture(texture, this->pos.x, this->pos.y, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }

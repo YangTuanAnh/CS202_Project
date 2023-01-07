@@ -87,6 +87,7 @@ namespace Lanes {
         Truck,
         Jungle,
         Forest,
+        BirdJungle,
         Plain,
         // ...
     };
