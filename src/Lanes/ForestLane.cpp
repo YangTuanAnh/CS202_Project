@@ -20,10 +20,10 @@ void ForestLane::updateThis(float dt) {
 
 void ForestLane::addObstacles() {
     //mTextures->load(Textures::Obstacle, "../asset/tree2.png");
-    int randCnt = GetRandomValue(5, 10);
+    int randCnt = GetRandomValue(5, 10)*2;
     vector<int> posX;
     for (int i=0; i<randCnt; i++) {
-        int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE -1;
+        int randX = GetRandomValue(-MAP_WIDTH, MAP_WIDTH)*BLOCK_SIZE -1;
         posX.push_back(randX);
     }
     for (int i=0; i<randCnt-1; i++)

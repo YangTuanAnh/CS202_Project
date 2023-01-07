@@ -51,12 +51,16 @@ Obstacle::Obstacle(int x, int y, int d, float speed, TextureHolder *mTextures) :
 }
 
 TrafficLamp::TrafficLamp(int x, int y, int d) : Object(x, y, d, Objects::TrafficLamp) {
+    this->nextStateTime = GetRandomValue(0, LAMP_TIME)*FPS;
+    this->states = TrafficLampStates::ID(GetRandomValue(0, 3));
     this->pos = convertCar2IsoVector({ this->mX, this->mY });
     this->pos.x+=52.f;
     this->pos.y-=32.f;
 }
 
 TrafficLamp::TrafficLamp(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::TrafficLamp) {
+    this->nextStateTime = GetRandomValue(0, LAMP_TIME)*FPS;
+    this->states = TrafficLampStates::ID(GetRandomValue(0, 3));
     this->pos = convertCar2IsoVector({ this->mX, this->mY });
     this->pos.x+=32.f;
     this->pos.y-=22.f;
@@ -235,7 +239,21 @@ Obstacle::~Obstacle(){
 };
 
 void TrafficLamp::drawThis() {
-    Texture2D texture = mTextures->get(Textures::TrafficLamp_green);  // get texture
+    Texture2D texture;
+    switch (this->states) {
+        case TrafficLampStates::ID::Green:
+            texture = mTextures->get(Textures::TrafficLamp_green);
+            break;
+        case TrafficLampStates::ID::Yellow:
+            texture = mTextures->get(Textures::TrafficLamp_yellow);
+            break;
+        case TrafficLampStates::ID::Red:
+            texture = mTextures->get(Textures::TrafficLamp_red);
+            break;
+        default:
+            break;
+    }
+      // get texture
     // if (this->direction == 1) {
     // }
     // else {  // flip texture to the suitable direction
@@ -246,6 +264,26 @@ void TrafficLamp::drawThis() {
     // pos.y -= texture.height*0.25;
     DrawTexture(texture, (int)pos.x, (int)pos.y, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
+}
+
+void TrafficLamp::updateThis(float dt) {
+    
+    cerr << nextStateTime << '\n';
+    if (nextStateTime--) return;
+    switch (states) {
+        case TrafficLampStates::ID::Green:
+            states = TrafficLampStates::ID::Yellow;
+            nextStateTime = LAMP_TIME * FPS / 2;
+            break;
+        case TrafficLampStates::ID::Yellow:
+            states = TrafficLampStates::ID::Red;
+            nextStateTime = LAMP_TIME * FPS;
+            break;
+        case TrafficLampStates::ID::Red:
+            states = TrafficLampStates::ID::Green;
+            nextStateTime = LAMP_TIME * FPS;
+            break;
+    }
 }
 
 TrafficLamp::~TrafficLamp(){

@@ -79,10 +79,13 @@ public:
 };
 
 class TrafficLamp : public Object {
+protected:
+	int nextStateTime;
+	TrafficLampStates::ID states;
 public:
 	TrafficLamp(int x, int y, int d);
 	TrafficLamp(int x, int y, int d, float speed, TextureHolder *mTextures);
-	//void updateThis(float dt);
+	void updateThis(float dt);
 	void drawThis();
 	~TrafficLamp();
 };

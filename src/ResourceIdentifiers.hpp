@@ -60,6 +60,16 @@ namespace PlayerStates {
     };
 };
 
+// List of Traffic lamp states
+namespace TrafficLampStates {
+    enum ID {
+        Green,
+        Yellow,
+        Red,
+        // ...
+    };
+};
+
 namespace Directions {
     enum ID {
         None,
