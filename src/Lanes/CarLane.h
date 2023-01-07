@@ -6,7 +6,6 @@
 class CarLane : public Lane {
 private:
     float speed;
-    int nextLightState = 0;
     Objects::ID type = Objects::Car;
 public:
     CarLane(TextureHolder *textures);

@@ -22,6 +22,7 @@ public:
 	// get info
 	float getX();
 	float getY();
+	virtual TrafficLampStates::ID getLampState();
 
 	// set up obstacle
 	virtual Objects::ID getType();
@@ -30,6 +31,7 @@ public:
 	Object(float x, float y, int d, float speed, TextureHolder *mTextures, Objects::ID type);
 	virtual void updateThis(float dt);
 	virtual void drawThis() = 0;
+	void setSpeed(float sp);
 	virtual ~Object();
 };
 
@@ -87,5 +89,6 @@ public:
 	TrafficLamp(int x, int y, int d, float speed, TextureHolder *mTextures);
 	void updateThis(float dt);
 	void drawThis();
+	TrafficLampStates::ID getLampState();
 	~TrafficLamp();
 };

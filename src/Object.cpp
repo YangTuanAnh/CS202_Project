@@ -73,6 +73,10 @@ float Object::getY(){
     return this->mY;
 }
 
+void Object::setSpeed(float sp) {
+    this->speed = sp;
+}
+
 Objects::ID Object::getType() {
     return this->type;
 }
@@ -83,6 +87,10 @@ int Object::getDirection() {
 
 void Object::updateThis(float dt){
     this->mX += this->speed * dt * this->direction;
+}
+
+TrafficLampStates::ID Object::getLampState() {
+    return TrafficLampStates::ID::Green;
 }
 
 Object::~Object(){
@@ -267,7 +275,6 @@ void TrafficLamp::drawThis() {
 }
 
 void TrafficLamp::updateThis(float dt) {
-    
     cerr << nextStateTime << '\n';
     if (nextStateTime--) return;
     switch (states) {
@@ -292,4 +299,6 @@ TrafficLamp::~TrafficLamp(){
     this->mY = 0;
 };
 
-
+TrafficLampStates::ID TrafficLamp::getLampState() {
+    return this->states;
+}
