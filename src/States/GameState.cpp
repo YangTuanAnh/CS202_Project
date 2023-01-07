@@ -51,7 +51,7 @@ bool GameState::update(float dt) {
         requestStackPush(States::GameOver);
         return updatePrevState;
     }
-    if (IsKeyPressed(KEY_TAB)) {
+    if (IsKeyPressed(KEY_TAB) && player->isIdle()) {
         requestStackPush(States::Pause);
         return updatePrevState;
     }
