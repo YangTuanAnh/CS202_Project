@@ -14,7 +14,7 @@ void TruckLane::drawThis() {
 }
 
 void TruckLane::updateThis(float dt) {
-    addRandomObject(this->type);
+    addRandomObject(this->type, dt);
 
     TrafficLampStates::ID state;
     auto objects = getChildren();

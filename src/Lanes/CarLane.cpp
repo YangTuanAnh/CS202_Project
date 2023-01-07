@@ -14,7 +14,7 @@ void CarLane::drawThis() {
 }
 
 void CarLane::updateThis(float dt) {
-    addRandomObject(this->type);
+    addRandomObject(this->type, dt);
 
     TrafficLampStates::ID state;
     auto objects = getChildren();
