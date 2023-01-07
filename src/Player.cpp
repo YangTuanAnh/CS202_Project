@@ -96,25 +96,25 @@ bool Player::collision(Object *ob) {
     }
 
     if (ob->getType()==Objects::Bird){
-        if(((this->mY==Y)&&((this->mX > X&&this->mX <X+30.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+30.0f))))//size is 40x40
+        if(((this->mY==Y)&&((this->mX+5.0f > X&&this->mX+5.0f <X+10.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+10.0f))))//size is 40x40
             return true;
-        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX > X&&this->mX <X+30.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+30.0f)))//size is 40x40
+        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX+5.0f > X&&this->mX <X+10.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+10.0f)))//size is 40x40
             return true;
-        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX > X&&this->mX <X+30.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+30.0f)))//size is 40x40
+        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX+5.0f > X&&this->mX <X+10.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+10.0f)))//size is 40x40
             return true;
     }
 
     if (ob->getType()==Objects::Car){
-        if(((this->mY==Y)&&((this->mX > X&&this->mX <X+20.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+20.0f))))//size is 40x40
+        if(((this->mY==Y)&&((this->mX+5.0f > X&&this->mX+5.0f <X+20.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+20.0f))))//size is 40x40
             return true;
-        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX > X&&this->mX <X+20.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+20.0f)))//size is 40x40
+        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX+5.0f > X&&this->mX+5.0f <X+20.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+20.0f)))//size is 40x40
             return true;
-        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX > X&&this->mX <X+20.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+20.0f)))//size is 40x40
+        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX+5.0f > X&&this->mX+5.0f <X+20.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+20.0f)))//size is 40x40
             return true;
     }
 
     if (ob->getType()==Objects::Truck){
-        if(((this->mY==Y)&&((this->mX > X&&this->mX <X+40.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+40.0f))))//size is 60x40
+        if(((this->mY==Y)&&((this->mX >= X&&this->mX <X+40.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+40.0f))))//size is 60x40
             return true;
         if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX > X&&this->mX <X+40.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+40.0f)))//size is 60x40
             return true;
@@ -124,9 +124,9 @@ bool Player::collision(Object *ob) {
     if (ob->getType()==Objects::Obstacle){
         if((this->mY==Y)&&((this->mX >= X&&this->mX <X+40.0f))) //size is 40x40
             return true;
-        if((this->mY > Y&&this->mY<Y+40.0f) && (this->mX >= X&&this->mX <X+40.0f))//size is 40x40
+        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX >= X&&this->mX <X+30.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+30.0f)))//size is 40x40
             return true;
-        if((this->mY < Y&&this->mY>Y-40.0f) && (this->mX >= X&&this->mX <X+40.0f))//size is 40x40
+        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX >= X&&this->mX <X+30.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+30.0f)))//size is 40x40
             return true;
     }
     return false;
