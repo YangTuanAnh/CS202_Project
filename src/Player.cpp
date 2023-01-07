@@ -8,8 +8,8 @@
 
 Player::Player() {
     std::cerr << "Player constructor" << std::endl;
-    this->mX = 7 * BLOCK_SIZE;
-    this->mY = -7 * BLOCK_SIZE;
+    this->mX = 10 * BLOCK_SIZE;
+    this->mY = -10 * BLOCK_SIZE;
     this->point = 0;
 }
 
@@ -27,8 +27,8 @@ void Player::init(TextureHolder *mTextures) {
 }
 
 void Player::reset() {
-    this->mX = 7 * BLOCK_SIZE;
-    this->mY = -7 * BLOCK_SIZE;
+    this->mX = 10 * BLOCK_SIZE;
+    this->mY = -10 * BLOCK_SIZE;
     this->point = 0;
     this->mState = createState(PlayerStates::Idle);
 }
@@ -85,7 +85,6 @@ void Player::updateThis(float dt) {
 bool Player::collision(Object *ob) {
     float X = ob->getX();
     float Y = ob->getY();
-
     if (ob->getType()==Objects::Dinosaur){
         if((this->mX >= X && this->mX <= X+50.0f)||(this->mX+40.0f >= X && this->mX+40.0f <=X+50.0f))//size is 60x40
             return true;
