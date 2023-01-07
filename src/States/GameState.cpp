@@ -42,6 +42,7 @@ void GameState::draw() {
     map->draw();
     player->draw();
     EndMode2D();
+    DrawText("Tab - pause game", 20, 20, 20, GRAY);
 }
 
 bool GameState::update(float dt) {
