@@ -129,7 +129,7 @@ bool Player::collision(Object *ob) {
 }
 
 int Player::getPoint() {
-    this->point = mY/40.0f;
+    this->point = abs(mY-7*BLOCK_SIZE)/40.0f;
     return this->point;
 }
 
