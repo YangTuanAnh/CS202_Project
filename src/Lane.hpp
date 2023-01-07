@@ -17,17 +17,19 @@ protected:
     // Isometric position
     Vector2 pos1, pos2, pos3;
     int direction = 1;
-    int nextSpawnTime = 0;
+    float nextSpawnTime = 0;
     TextureHolder *mTextures;
     ObjectFactory<Object, float, float, int, float, TextureHolder*> mFactories;
 public:
     typedef std::unique_ptr<Lane> Ptr;
     Lane(TextureHolder* mTextures);
-    ~Lane();
+    ~Lane(); 
+    float getY() ;
     void init(float y);
     virtual void drawThis();
     virtual void updateThis(float dt);
     void addObject(Objects::ID type, float x);
-    virtual void addRandomObject(Objects::ID);
+    virtual void addRandomObject(Objects::ID, float dt);
     virtual void addObstacles();
+    virtual void addTrafficLamp();
 };

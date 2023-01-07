@@ -38,6 +38,9 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
     mTextures->load(Textures::Dinosaur_left, "../asset/object/animal_dinosaur_left.png");
     mTextures->load(Textures::Dinosaur_right, "../asset/object/animal_dinosaur_right.png");
     mTextures->load(Textures::Obstacle, "../asset/Tree.png");
+    mTextures->load(Textures::TrafficLamp_green, "../asset/object/green_light.png");
+    mTextures->load(Textures::TrafficLamp_yellow, "../asset/object/yellow_light.png");
+    mTextures->load(Textures::TrafficLamp_red, "../asset/object/red_light.png");
 
     mStateStack.pushState(States::Menu);
 }

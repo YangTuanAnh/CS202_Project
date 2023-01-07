@@ -14,7 +14,38 @@ void CarLane::drawThis() {
 }
 
 void CarLane::updateThis(float dt) {
-    addRandomObject(this->type);
+    addRandomObject(this->type, dt);
+
+    TrafficLampStates::ID state;
+    auto objects = getChildren();
+    for(auto i = 0 ; i < (int)objects.size(); i++){
+        std::shared_ptr<Object> obj = std::dynamic_pointer_cast<Object>(objects[i]);
+        if (obj->getType()==Objects::TrafficLamp) {
+            state = obj->getLampState();
+            break;
+        }
+    }
+    for(auto i = 0 ; i < (int)objects.size(); i++){
+        std::shared_ptr<Object> obj = std::dynamic_pointer_cast<Object>(objects[i]);
+        switch (state) {
+            case TrafficLampStates::ID::Green:
+                obj->setSpeed(CAR_SPEED);
+                break;
+            case TrafficLampStates::ID::Yellow:
+                obj->setSpeed(CAR_SPEED/2);
+                break;
+            case TrafficLampStates::ID::Red:
+                obj->setSpeed(0);
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 void CarLane::addObstacles() {}
+
+void CarLane::addTrafficLamp() {
+    int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE;
+    addObject(Objects::TrafficLamp, randX);
+}

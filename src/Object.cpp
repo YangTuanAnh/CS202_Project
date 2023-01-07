@@ -51,11 +51,31 @@ Obstacle::Obstacle(int x, int y, int d, float speed, TextureHolder *mTextures) :
     this->pos.y -= 70.0f;
 }
 
+TrafficLamp::TrafficLamp(int x, int y, int d) : Object(x, y, d, Objects::TrafficLamp) {
+    this->nextStateTime = GetRandomValue(0, LAMP_TIME)*FPS;
+    this->states = TrafficLampStates::ID(GetRandomValue(0, 3));
+    this->pos = convertCar2IsoVector({ this->mX, this->mY });
+    this->pos.x+=52.f;
+    this->pos.y-=32.f;
+}
+
+TrafficLamp::TrafficLamp(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::TrafficLamp) {
+    this->nextStateTime = GetRandomValue(0, LAMP_TIME)*FPS;
+    this->states = TrafficLampStates::ID(GetRandomValue(0, 3));
+    this->pos = convertCar2IsoVector({ this->mX, this->mY });
+    this->pos.x+=32.f;
+    this->pos.y-=22.f;
+}
+
 float Object::getX(){
     return this->mX;
 }
 float Object::getY(){
     return this->mY;
+}
+
+void Object::setSpeed(float sp) {
+    this->speed = sp;
 }
 
 Objects::ID Object::getType() {
@@ -68,6 +88,10 @@ int Object::getDirection() {
 
 void Object::updateThis(float dt){
     this->mX += this->speed * dt * this->direction;
+}
+
+TrafficLampStates::ID Object::getLampState() {
+    return TrafficLampStates::ID::Green;
 }
 
 Object::~Object(){
@@ -99,7 +123,7 @@ void Dinosaur::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    DrawRectanglePro((Rectangle){pos.x+10.0f,pos.y+5.0f,85.0f,35.0f},{0,0},29.0f,RED);
+    DrawRectanglePro(Rectangle{pos.x+10.0f,pos.y+5.0f,85.0f,35.0f},{0,0},29.0f,RED);
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -132,7 +156,7 @@ void Car::drawThis() {
         // UnloadImageColors(pixels);
     }
 
-    DrawRectanglePro((Rectangle){pos.x+10.0f,pos.y-3.0f,40.0f,35.0f},{0,0},28.0f,RED);
+    DrawRectanglePro(Rectangle{pos.x+10.0f,pos.y-3.0f,40.0f,35.0f},{0,0},28.0f,RED);
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -165,7 +189,7 @@ void Truck::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    DrawRectanglePro((Rectangle){pos.x+10.0f,pos.y,40.0f,35.0f},{0,0},29.0f,RED);
+    DrawRectanglePro(Rectangle{pos.x+10.0f,pos.y,40.0f,35.0f},{0,0},29.0f,RED);
     DrawTextureV(texture, this->pos, WHITE);
 }
 
@@ -196,7 +220,7 @@ void Bird::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    DrawRectanglePro((Rectangle){pos.x+10.0f,pos.y,40.0f,35.0f},{0,0},29.0f,RED);
+    DrawRectanglePro(Rectangle{pos.x+10.0f,pos.y,40.0f,35.0f},{0,0},29.0f,RED);
     DrawTextureV(texture, this->pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -216,7 +240,7 @@ void Obstacle::drawThis() {
     //     // UnloadImageColors(pixels);
     // }
     // pos.y -= texture.height*0.25;
-    DrawRectanglePro((Rectangle){pos.x+30.0f,pos.y+65.0f,40.0f,38.0f},{0,0},29.0f,RED);
+    DrawRectanglePro(Rectangle{pos.x+30.0f,pos.y+65.0f,40.0f,38.0f},{0,0},29.0f,RED);
     DrawTextureV(texture, this->pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -225,4 +249,60 @@ Obstacle::~Obstacle(){
     this->direction = 0;
     this->mX = 0;
     this->mY = 0;
+};
+
+void TrafficLamp::drawThis() {
+    Texture2D texture;
+    switch (this->states) {
+        case TrafficLampStates::ID::Green:
+            texture = mTextures->get(Textures::TrafficLamp_green);
+            break;
+        case TrafficLampStates::ID::Yellow:
+            texture = mTextures->get(Textures::TrafficLamp_yellow);
+            break;
+        case TrafficLampStates::ID::Red:
+            texture = mTextures->get(Textures::TrafficLamp_red);
+            break;
+        default:
+            break;
+    }
+      // get texture
+    // if (this->direction == 1) {
+    // }
+    // else {  // flip texture to the suitable direction
+    //     // Color* pixels = LoadImageColors(inverseDirect);
+    //     // UpdateTexture(inverseTexture, pixels);
+    //     // UnloadImageColors(pixels);
+    // }
+    // pos.y -= texture.height*0.25;
+    DrawTexture(texture, (int)pos.x, (int)pos.y, WHITE);
+    // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
+}
+
+void TrafficLamp::updateThis(float dt) {
+    if (nextStateTime--) return;
+    switch (states) {
+        case TrafficLampStates::ID::Green:
+            states = TrafficLampStates::ID::Yellow;
+            nextStateTime = LAMP_TIME * FPS / 2;
+            break;
+        case TrafficLampStates::ID::Yellow:
+            states = TrafficLampStates::ID::Red;
+            nextStateTime = LAMP_TIME * FPS;
+            break;
+        case TrafficLampStates::ID::Red:
+            states = TrafficLampStates::ID::Green;
+            nextStateTime = LAMP_TIME * FPS;
+            break;
+    }
+}
+
+TrafficLamp::~TrafficLamp(){
+    this->direction = 0;
+    this->mX = 0;
+    this->mY = 0;
+};
+
+TrafficLampStates::ID TrafficLamp::getLampState() {
+    return this->states;
 }

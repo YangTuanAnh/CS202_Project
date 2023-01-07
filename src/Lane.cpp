@@ -4,6 +4,7 @@
 
 Lane::Lane(TextureHolder *textures) : mTextures(textures) {
     mFactories.registerType<Obstacle>(Objects::Obstacle);
+    mFactories.registerType<TrafficLamp>(Objects::TrafficLamp);
     mFactories.registerType<Car>(Objects::Car);
     mFactories.registerType<Truck>(Objects::Truck);
     mFactories.registerType<Bird>(Objects::Bird);
@@ -24,6 +25,7 @@ void Lane::init(float y) {
     pos3.x -= 40.0f;
     // std::cerr << "pos1: " << pos1.x << ", " << pos1.y << std::endl;
     addObstacles();
+    addTrafficLamp();
     //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
     //addRandomObject();
 }
@@ -54,10 +56,13 @@ void Lane::addObject(Objects::ID type, float x) {
     attachChild(std::move(newObject));
 }
 
-void Lane::addRandomObject(Objects::ID type) {
+void Lane::addRandomObject(Objects::ID type, float dt) {
     // int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE -1;
-    if (nextSpawnTime--) return;
-    nextSpawnTime = GetRandomValue(1, MAX_SPAWN_TIME) * FPS;
+    if (nextSpawnTime > 0.0f) {
+        nextSpawnTime -= dt;
+        return;
+    } 
+    nextSpawnTime = (float)GetRandomValue(100, MAX_SPAWN_TIME*100) / 100.0f;
     //auto randObj = Objects::ID(GetRandomValue(2, OBJECT_COUNT));
     // addObject(type, randX);
     addObject(type, -40.0f);
@@ -67,6 +72,10 @@ void Lane::addObstacles() {
 }
 
 void Lane::updateThis(float dt) {
-    addRandomObject(this->type);
+    addRandomObject(this->type, dt);
     //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
+}
+float Lane::getY(){return this->mY;}
+
+void Lane::addTrafficLamp() {
 }

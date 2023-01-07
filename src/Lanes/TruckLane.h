@@ -13,4 +13,5 @@ public:
     void drawThis();
     void updateThis(float dt);
     void addObstacles();
+    void addTrafficLamp();
 };
