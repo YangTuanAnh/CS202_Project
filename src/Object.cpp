@@ -40,14 +40,15 @@ Dinosaur::Dinosaur(int x, int y, int d, float speed, TextureHolder *mTextures) :
 
 Obstacle::Obstacle(int x, int y, int d) : Object(x, y, d, Objects::Obstacle) {
     this->pos = convertCar2IsoVector({ this->mX, this->mY });
-    this->pos.x+=52.f;
-    this->pos.y-=32.f;
+    this->pos.x -= 31.0f;
+    this->pos.y -= 70.0f;
 }
 
 Obstacle::Obstacle(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::Obstacle) {
+    // this->mX++;
     this->pos = convertCar2IsoVector({ this->mX, this->mY });
-    this->pos.x+=52.f;
-    this->pos.y-=32.f;
+    this->pos.x -= 31.0f;
+    this->pos.y -= 70.0f;
 }
 
 TrafficLamp::TrafficLamp(int x, int y, int d) : Object(x, y, d, Objects::TrafficLamp) {
@@ -103,9 +104,9 @@ void Dinosaur::updateThis(float dt) {
     float displacement = this->speed * dt * (float)this->direction;
     this->mX += displacement;
     // pos = Vector2{ this->mX, this->mY };
-    pos = convertCar2IsoVector({ this->mX, this->mY });
-    pos.x -= 50.0f;
-    pos.y -= 30.0f;
+    this->pos = convertCar2IsoVector({ this->mX, this->mY });
+    this->pos.x -= 50.0f;
+    this->pos.y -= 30.0f;
 }
 
 void Dinosaur::drawThis() {
@@ -122,6 +123,7 @@ void Dinosaur::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
+    DrawRectanglePro((Rectangle){pos.x+10.0f,pos.y+5.0f,85.0f,35.0f},{0,0},29.0f,RED);
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -134,9 +136,9 @@ Dinosaur::~Dinosaur() {
 
 void Car::updateThis(float dt) {
     this->mX += this->speed * dt * this->direction;
-    pos = convertCar2IsoVector({ this->mX, this->mY });
-    pos.x -= 28.0f;
-    pos.y -= 5.0f;
+    this->pos = convertCar2IsoVector({ this->mX, this->mY });
+    this->pos.x -= 28.0f;
+    this->pos.y -= 5.0f;
 }
 
 void Car::drawThis() {
@@ -153,6 +155,8 @@ void Car::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
+
+    DrawRectanglePro((Rectangle){pos.x+10.0f,pos.y-3.0f,40.0f,35.0f},{0,0},28.0f,RED);
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -165,9 +169,10 @@ Car::~Car() {
 
 void Truck::updateThis(float dt) {
     this->mX += this->speed * dt * this->direction;
-    Vector2 pos = convertCar2IsoVector({ this->mX, this->mY });
-    pos.x -= 46.0f;
-    pos.y -= 25.0f;
+    this->pos = convertCar2IsoVector({ this->mX, this->mY });
+    this->pos.x -= 46.0f;
+    this->pos.y -= 25.0f;
+
 }
 
 void Truck::drawThis() {
@@ -184,8 +189,8 @@ void Truck::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    DrawTextureV(texture, pos, WHITE);
-    // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
+    DrawRectanglePro((Rectangle){pos.x+10.0f,pos.y,40.0f,35.0f},{0,0},29.0f,RED);
+    DrawTextureV(texture, this->pos, WHITE);
 }
 
 Truck::~Truck(){
@@ -196,9 +201,9 @@ Truck::~Truck(){
 
 void Bird::updateThis(float dt) {
     this->mX += this->speed * dt * this->direction;
-    Vector2 pos = convertCar2IsoVector({ this->mX, this->mY });
-    pos.x -= 20.0f;
-    pos.y -= 10.0f;
+    this->pos = convertCar2IsoVector({ this->mX, this->mY });
+    this->pos.x -= 20.0f;
+    this->pos.y -= 10.0f;
 }
 
 void Bird::drawThis() {
@@ -215,7 +220,8 @@ void Bird::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    DrawTextureV(texture, pos, WHITE);
+    DrawRectanglePro((Rectangle){pos.x+10.0f,pos.y,40.0f,35.0f},{0,0},29.0f,RED);
+    DrawTextureV(texture, this->pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 
@@ -223,9 +229,7 @@ Bird::~Bird(){
     this->direction = 0;
     this->mX = 0;
     this->mY = 0;
-
 }
-
 void Obstacle::drawThis() {
     Texture2D texture = mTextures->get(Textures::Obstacle);  // get texture
     // if (this->direction == 1) {
@@ -236,7 +240,8 @@ void Obstacle::drawThis() {
     //     // UnloadImageColors(pixels);
     // }
     // pos.y -= texture.height*0.25;
-    DrawTexture(texture, (int)pos.x, (int)pos.y, WHITE);
+    DrawRectanglePro((Rectangle){pos.x+30.0f,pos.y+65.0f,40.0f,38.0f},{0,0},29.0f,RED);
+    DrawTextureV(texture, this->pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 

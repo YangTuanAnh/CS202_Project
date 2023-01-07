@@ -45,5 +45,4 @@ public:
     void updateThis(float);
     // bool collision(SceneNode *);
     bool collision(Object *);
-    ~Player();
 };
