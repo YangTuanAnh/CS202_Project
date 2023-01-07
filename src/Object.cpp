@@ -50,6 +50,18 @@ Obstacle::Obstacle(int x, int y, int d, float speed, TextureHolder *mTextures) :
     this->pos.y-=32.f;
 }
 
+TrafficLamp::TrafficLamp(int x, int y, int d) : Object(x, y, d, Objects::TrafficLamp) {
+    this->pos = convertCar2IsoVector({ this->mX, this->mY });
+    this->pos.x+=52.f;
+    this->pos.y-=32.f;
+}
+
+TrafficLamp::TrafficLamp(int x, int y, int d, float speed, TextureHolder *mTextures) : Object(x, y, d, speed, mTextures, Objects::TrafficLamp) {
+    this->pos = convertCar2IsoVector({ this->mX, this->mY });
+    this->pos.x+=32.f;
+    this->pos.y-=22.f;
+}
+
 float Object::getX(){
     return this->mX;
 }
@@ -220,4 +232,26 @@ Obstacle::~Obstacle(){
     this->direction = 0;
     this->mX = 0;
     this->mY = 0;
+};
+
+void TrafficLamp::drawThis() {
+    Texture2D texture = mTextures->get(Textures::TrafficLamp_green);  // get texture
+    // if (this->direction == 1) {
+    // }
+    // else {  // flip texture to the suitable direction
+    //     // Color* pixels = LoadImageColors(inverseDirect);
+    //     // UpdateTexture(inverseTexture, pixels);
+    //     // UnloadImageColors(pixels);
+    // }
+    // pos.y -= texture.height*0.25;
+    DrawTexture(texture, (int)pos.x, (int)pos.y, WHITE);
+    // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
+
+TrafficLamp::~TrafficLamp(){
+    this->direction = 0;
+    this->mX = 0;
+    this->mY = 0;
+};
+
+

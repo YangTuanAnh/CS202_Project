@@ -77,3 +77,12 @@ public:
 	void drawThis();
 	~Obstacle();
 };
+
+class TrafficLamp : public Object {
+public:
+	TrafficLamp(int x, int y, int d);
+	TrafficLamp(int x, int y, int d, float speed, TextureHolder *mTextures);
+	//void updateThis(float dt);
+	void drawThis();
+	~TrafficLamp();
+};

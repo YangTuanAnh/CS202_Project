@@ -28,7 +28,7 @@ void ForestLane::addObstacles() {
     }
     for (int i=0; i<randCnt-1; i++)
         for (int j=i+1; j<randCnt; j++)
-            if (posX[i]>posX[j])
+            if (posX[i]<posX[j])
                 swap(posX[i], posX[j]);
                 
     for (auto pos : posX)

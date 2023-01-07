@@ -9,7 +9,7 @@
 Player::Player() {
     std::cerr << "Player constructor" << std::endl;
     this->mX = 7 * BLOCK_SIZE;
-    this->mY = -7 * BLOCK_SIZE;
+    this->mY = -9 * BLOCK_SIZE;
     this->point = 0;
 }
 
@@ -28,7 +28,7 @@ void Player::init(TextureHolder *mTextures) {
 
 void Player::reset() {
     this->mX = 7 * BLOCK_SIZE;
-    this->mY = -7 * BLOCK_SIZE;
+    this->mY = -9 * BLOCK_SIZE;
     this->point = 0;
     this->mState = createState(PlayerStates::Idle);
 }

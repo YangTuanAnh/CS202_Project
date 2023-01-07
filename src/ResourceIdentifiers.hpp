@@ -35,6 +35,9 @@ namespace Textures {
         Dinosaur_left,
         Dinosaur_right,
         Obstacle,
+        TrafficLamp_green,
+        TrafficLamp_yellow,
+        TrafficLamp_red,
         // ...
     };
 };
@@ -75,7 +78,8 @@ namespace Objects {
         Car,
         Truck,
         Bird,
-        Dinosaur
+        Dinosaur,
+        TrafficLamp
         // ...
     };
 };

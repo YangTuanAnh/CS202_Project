@@ -18,3 +18,8 @@ void CarLane::updateThis(float dt) {
 }
 
 void CarLane::addObstacles() {}
+
+void CarLane::addTrafficLamp() {
+    int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE -1;
+    addObject(Objects::TrafficLamp, randX);
+}

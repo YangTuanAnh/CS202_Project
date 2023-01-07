@@ -4,6 +4,7 @@
 
 Lane::Lane(TextureHolder *textures) : mTextures(textures) {
     mFactories.registerType<Obstacle>(Objects::Obstacle);
+    mFactories.registerType<TrafficLamp>(Objects::TrafficLamp);
     mFactories.registerType<Car>(Objects::Car);
     mFactories.registerType<Truck>(Objects::Truck);
     mFactories.registerType<Bird>(Objects::Bird);
@@ -24,6 +25,7 @@ void Lane::init(float y) {
     pos3.x -= 40.0f;
     // std::cerr << "pos1: " << pos1.x << ", " << pos1.y << std::endl;
     addObstacles();
+    addTrafficLamp();
     //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
     //addRandomObject();
 }
@@ -69,4 +71,7 @@ void Lane::addObstacles() {
 void Lane::updateThis(float dt) {
     addRandomObject(this->type);
     //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
+}
+
+void Lane::addTrafficLamp() {
 }
