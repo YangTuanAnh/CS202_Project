@@ -7,6 +7,7 @@
 #include "../Lanes/JungleLane.h"
 #include "../Lanes/ForestLane.h"
 #include "../Lanes/PlainLane.h"
+#include "../Lanes/BirdJungleLane.h"
 
 #include <iostream>
 
@@ -26,6 +27,7 @@ void GameState::registerLanes() {
     map->registerLane<TruckLane>(Lanes::Truck);
     map->registerLane<ForestLane>(Lanes::Forest);
     map->registerLane<JungleLane>(Lanes::Jungle);
+    map->registerLane<BirdJungleLane>(Lanes::BirdJungle);
     map->registerLane<PlainLane>(Lanes::Plain);
 }
 
@@ -40,6 +42,7 @@ void GameState::draw() {
     map->draw();
     player->draw();
     EndMode2D();
+    DrawText("Tab - pause game", 20, 20, 20, GRAY);
 }
 
 bool GameState::update(float dt) {
@@ -48,7 +51,7 @@ bool GameState::update(float dt) {
         requestStackPush(States::GameOver);
         return updatePrevState;
     }
-    if (IsKeyPressed(KEY_TAB)) {
+    if (IsKeyPressed(KEY_TAB) && player->isIdle()) {
         requestStackPush(States::Pause);
         return updatePrevState;
     }

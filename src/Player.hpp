@@ -40,6 +40,7 @@ public:
     void setY(float);
     void setPoint(int);
     void setState(PlayerStates::ID);
+    bool isIdle();
     bool isDead();
     void drawThis();
     void updateThis(float);

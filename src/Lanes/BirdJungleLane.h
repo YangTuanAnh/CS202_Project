@@ -3,14 +3,13 @@
 #include "../Lane.hpp"
 // #include "../Global.h"
 
-class PlainLane : public Lane {
+class BirdJungleLane : public Lane {
 private:
     float speed;
-    Objects::ID type = Objects::None;
-    Vector2 posTree;
+    Objects::ID type = Objects::Bird;
 public:
-    PlainLane(TextureHolder *textures);
-    ~PlainLane();
+    BirdJungleLane(TextureHolder *textures);
+    ~BirdJungleLane();
     void drawThis();
     void updateThis(float dt);
 };
