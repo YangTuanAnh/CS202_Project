@@ -91,8 +91,9 @@ bool GameState::update(float dt) {
 }
 
 bool GameState::checkOutOfBounds() {
-    // std::cerr << player->getY() * (2.0f/3.0f) << camera->target.y << '\n';
-    return player->getY() * (2.0f/3.0f) > camera->target.y;
+    std::cerr << player->getY() << ' ' << camera->target.y << '\n';
+    float offset = -160 - camera->target.y;
+    return player->getY() + offset > camera->target.y;
 }
 
 void GameState::saveGame() {
