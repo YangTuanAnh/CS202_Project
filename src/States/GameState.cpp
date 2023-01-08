@@ -8,19 +8,26 @@
 #include "../Lanes/ForestLane.h"
 #include "../Lanes/PlainLane.h"
 #include "../Lanes/BirdJungleLane.h"
+#include "../StateStack.hpp"
 
 #include <iostream>
 
 GameState::GameState(StateStack *stack, Context context) : State(stack, context) {
     mBackgroundTexture = &context.textures->get(Textures::GameBackground);
     player = context.player;
-    player->reset();
+    camera = new CustomCamera(player);
     map = new Map(context.textures, player);
     registerLanes();
-    map->init();
+    if(mStack->getSaveFlag()) {
+        loadGame();
+    } else {
+        player->reset();
+        camera->reset();
+        map->init();
+    }
     context.music->play(Audio::GameTheme);
-    camera = new CustomCamera(player);
     promptTime = 0;
+    mStack->setSaveFlag(false);
 }
 
 void GameState::registerLanes() {
@@ -33,6 +40,8 @@ void GameState::registerLanes() {
 }
 
 GameState::~GameState() {
+    if (!gameOver)
+        saveGame();
     delete map;
     delete camera;
 }
@@ -49,6 +58,7 @@ void GameState::draw() {
     DrawText("L - save game", 20, 130, 20, SKYBLUE);
 
     if (promptTime) {
+        saveGame();
         string saveGame = "Saved game!";
         DrawText(saveGame.c_str(), 
                 SCREEN_WIDTH - MeasureText(saveGame.c_str(), 20) - 20,
@@ -60,6 +70,7 @@ void GameState::draw() {
 bool GameState::update(float dt) {
     bool updatePrevState = false;
     if(map->isOver()){
+        this->gameOver = true;
         requestStackPush(States::GameOver);
         return updatePrevState;
     }
@@ -77,47 +88,19 @@ bool GameState::update(float dt) {
     return updatePrevState;
 }
 
-void GameState::saveGame(ostream fout) {
-    // for (int i = 0; i < map.size(); i++) {
-    //     fout << map[i]->getType() << '\n';
-    //     fout << map[i]->getX() << '\n';
-    //     fout << map[i]->getY() << '\n';
-    //     fout << map[i]->getDirection() << '\n';
-    // }
-
-    // fout << player->getX() << '\n';
-    // fout << player->getY() << '\n';
-    // fout << player->getPoint() << '\n';
+void GameState::saveGame() {
+    std::ofstream fout("save.txt");
+    player->save(fout);
+    camera->save(fout);
+    map->save(fout);
+    fout.close();
 }
 
-void GameState::loadGame(istream fin) {
-    // int a;
-    // int x, y, dir, point;
-    // while (!fin.eof()) {
-    //     fin >> a;
-    //     switch (a) {
-    //     case 2:
-    //         fin >> x >> y >> dir;
-    //         map.push_back(new Car(x, y, dir));
-    //         break;
-    //     case 3:
-    //         fin >> x >> y >> dir;
-    //         map.push_back(new Truck(x, y, dir));
-    //         break;
-    //     case 4:
-    //         fin >> x >> y >> dir;
-    //         map.push_back(new Bird(x, y, dir));
-    //         break;
-    //     case 5:
-    //         fin >> x >> y >> dir;
-    //         map.push_back(new Dinosaur(x, y, dir));
-    //         break;
-    //     case 1:
-    //         fin >> x >> y >> dir;
-    //         map.push_back(new Obstacle(x, y, dir));
-    //         break;
-    //     }
-    // }
-    // fin >> x >> y >> point;
-    // Player A(x, y, point);
+void GameState::loadGame() {
+    std::cerr << "Loading game..." << std::endl;
+    std::ifstream fin("save.txt");
+    player->load(fin);
+    camera->load(fin);
+    map->load(fin);
+    fin.close();
 }

@@ -1,6 +1,6 @@
 #include "ForestLane.h"
 
-ForestLane::ForestLane(TextureHolder *textures) : Lane(textures) {
+ForestLane::ForestLane(TextureHolder *textures) : Lane(textures, Lanes::Forest, Objects::Obstacle) {
 }
 
 ForestLane::~ForestLane() {}

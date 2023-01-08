@@ -74,3 +74,11 @@ void StateStack::applyPendingChanges() {
     }
     mPendingList.clear();
 }
+
+void StateStack::setSaveFlag(bool flag) {
+    mContext.saveFlag = flag;
+}
+
+bool StateStack::getSaveFlag() {
+    return mContext.saveFlag;
+}

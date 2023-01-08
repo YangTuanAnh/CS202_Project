@@ -18,6 +18,9 @@ public:
     virtual void draw();
     virtual void updateThis(float dt);
     virtual void update(float dt);
+    virtual void load(std::ifstream&);
+    virtual void save(std::ofstream&);
+    virtual void saveThis(std::ofstream&);
 protected:
     std::vector<Ptr> mChildren;
     SceneNode *mParent;

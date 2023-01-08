@@ -15,7 +15,7 @@ public:
     typedef std::unique_ptr<State> Ptr;
     struct Context {
         Context(TextureHolder* textures, Player* player, MusicPlayer* music);
-
+        bool saveFlag = false;
         TextureHolder* textures;
         // FontHolder* fonts;
         Player* player;
@@ -23,10 +23,10 @@ public:
     };
 
 private:
-    StateStack* mStack;
     Context mContext;
 
 protected:
+    StateStack* mStack;
     Context getContext() const;
     void requestStackPush(States::ID stateID);
     void requestStackPop();
