@@ -6,6 +6,8 @@
 class JungleLane : public Lane {
 private:
     float speed;
+    int random;
+    int nextTime = 0;
     Objects::ID type = Objects::Dinosaur;
 public:
     JungleLane(TextureHolder *textures);

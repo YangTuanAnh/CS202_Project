@@ -6,6 +6,8 @@
 class BirdJungleLane : public Lane {
 private:
     float speed;
+    int random;
+    int nextTime = 0;
     Objects::ID type = Objects::Bird;
 public:
     BirdJungleLane(TextureHolder *textures);

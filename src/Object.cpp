@@ -260,6 +260,7 @@ Obstacle::~Obstacle(){
 
 void TrafficLamp::drawThis() {
     Texture2D texture;
+    bool check = 0;
     switch (this->states) {
         case TrafficLampStates::ID::Green:
             texture = mTextures->get(Textures::TrafficLamp_green);
@@ -271,18 +272,13 @@ void TrafficLamp::drawThis() {
             texture = mTextures->get(Textures::TrafficLamp_red);
             break;
         default:
+            check = true;
             break;
     }
-      // get texture
-    // if (this->direction == 1) {
-    // }
-    // else {  // flip texture to the suitable direction
-    //     // Color* pixels = LoadImageColors(inverseDirect);
-    //     // UpdateTexture(inverseTexture, pixels);
-    //     // UnloadImageColors(pixels);
-    // }
-    // pos.y -= texture.height*0.25;
-    DrawTexture(texture, (int)pos.x, (int)pos.y, WHITE);
+
+    // DrawRectangleV(this->pos, { 40.0f, 40.0f }, BLUE);
+    if (!check)
+        DrawTexture(texture, (int)pos.x, (int)pos.y, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 

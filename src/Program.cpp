@@ -27,7 +27,9 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
 
     mTextures->load(Textures::Plain, "../asset/lane/Plain_final.png");
     mTextures->load(Textures::Road, "../asset/lane/Road_final.png");
-    mTextures->load(Textures::Jungle, "../asset/lane/Jungle_final.png");
+    mTextures->load(Textures::Jungle_1, "../asset/lane/Jungle_final_1.png");
+    mTextures->load(Textures::Jungle_2, "../asset/lane/Jungle_final_2.png");
+    mTextures->load(Textures::Jungle_3, "../asset/lane/Jungle_final_3.png");
 
     mTextures->load(Textures::Car_left, "../asset/object/vehicle_car_left.png");
     mTextures->load(Textures::Car_right, "../asset/object/vehicle_car_right.png");
