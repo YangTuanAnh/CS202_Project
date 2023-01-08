@@ -25,6 +25,7 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
     mTextures->load(Textures::Player_up, "../asset/player/chicken_up.png");
     mTextures->load(Textures::Player_down, "../asset/player/chicken_down.png");
     mTextures->load(Textures::Player_break, "../asset/img/chicken_break.png");
+    mTextures->load(Textures::Player_hospital, "../asset/img/chicken_hospital.png");
     mPlayer->init(this->mTextures);
 
     mTextures->load(Textures::Plain, "../asset/lane/Plain_final.png");
