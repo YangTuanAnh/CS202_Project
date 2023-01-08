@@ -99,7 +99,7 @@ bool Player::collision(Object *ob) {
     }
 
     if (ob->getType()==Objects::Bird){
-        if(((this->mY==Y)&&((this->mX > X&&this->mX <X+10.0f)||(this->mX+20.0f > X&&this->mX+20.0f <X+10.0f))))//size is 40x40
+        if(((this->mY==Y)&&((this->mX+5.0f > X&&this->mX <X+10.0f)||(this->mX+20.0f > X&&this->mX+20.0f <X+10.0f))))//size is 40x40
             return true;
         if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX+5.0f > X&&this->mX <X+5.0f)||(this->mX+15.0f > X&&this->mX+15.0f <X+5.0f)))//size is 40x40
             return true;
