@@ -20,14 +20,17 @@ void ForestLane::updateThis(float dt) {
 
 void ForestLane::addObstacles() {
     //mTextures->load(Textures::Obstacle, "../asset/tree2.png");
-    int randCnt = GetRandomValue(5, 10)/2;
+    int randCnt = MAP_WIDTH/GetRandomValue(1, MAP_WIDTH);
     vector<int> posX;
+    for (int i=-MAP_WIDTH; i<0; i++) posX.push_back(i*BLOCK_SIZE);
+    for (int i=MAP_WIDTH; i<MAP_WIDTH*2; i++) posX.push_back(i*BLOCK_SIZE);
     for (int i=0; i<randCnt; i++) {
-        int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE;
+        int randX = GetRandomValue(0, MAP_WIDTH-1)*BLOCK_SIZE;
         posX.push_back(randX);
     }
-    for (int i=0; i<randCnt-1; i++)
-        for (int j=i+1; j<randCnt; j++)
+    int len = posX.size();
+    for (int i=0; i<len-1; i++)
+        for (int j=i+1; j<len; j++)
             if (posX[i]<posX[j])
                 swap(posX[i], posX[j]);
                 

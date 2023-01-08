@@ -61,7 +61,7 @@ bool Map::isOver(){
             if(obj.get()->getType()==Objects::Bird)cerr<<"Bird\n";
             if(obj.get()->getType()==Objects::Truck)cerr<<"Truck\n";
             if(obj.get()->getType()==Objects::Car)cerr<<"Car\n";
-            if(obj.get()->getType()==Objects::Obstacle)cerr<<"Tree\n";
+            if(obj.get()->getType()==Objects::Obstacle) {cerr<<"Tree\n"; return false;}
             return true;
         }
     }

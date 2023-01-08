@@ -247,8 +247,11 @@ void Obstacle::drawThis() {
     //     // UnloadImageColors(pixels);
     // }
     // pos.y -= texture.height*0.25;
-    DrawRectanglePro(Rectangle{pos.x+30.0f,pos.y+65.0f,40.0f,38.0f},{0,0},29.0f,RED);
-    DrawTextureV(texture, this->pos, WHITE);
+    if (this->mX>=0 && this->mX<MAP_WIDTH*BLOCK_SIZE)
+        DrawRectanglePro(Rectangle{pos.x+30.0f,pos.y+65.0f,40.0f,38.0f},{0,0},29.0f,RED);
+    if (this->mX>=0 && this->mX<MAP_WIDTH*BLOCK_SIZE)
+        DrawTextureV(texture, this->pos, WHITE);
+    else DrawTextureV(texture, this->pos, GRAY);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 
