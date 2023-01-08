@@ -18,7 +18,7 @@ GameState::GameState(StateStack *stack, Context context) : State(stack, context)
     camera = new CustomCamera(player);
     map = new Map(context.textures, player);
     registerLanes();
-    if(mStack->getSaveFlag()) {
+    if(mStack->getSaveFlag() && checkSaveFile()) {
         loadGame();
     } else {
         player->reset();
@@ -42,6 +42,8 @@ void GameState::registerLanes() {
 GameState::~GameState() {
     if (!gameOver)
         saveGame();
+    else
+        resetSaveFile();
     delete map;
     delete camera;
 }
@@ -103,4 +105,18 @@ void GameState::loadGame() {
     camera->load(fin);
     map->load(fin);
     fin.close();
+}
+
+void GameState::resetSaveFile() {
+    std::ofstream fout("save.txt");
+    fout.close();
+}
+
+bool GameState::checkSaveFile() {
+    std::ifstream fin("save.txt");
+    bool ret = fin.is_open();
+    fin.seekg(0, std::ios::end);
+    ret &= fin.tellg() > 0;
+    fin.close();
+    return ret;
 }
