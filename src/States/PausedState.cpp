@@ -12,11 +12,16 @@ PausedState::PausedState(StateStack* stack, Context context) : State(stack, cont
 void PausedState::draw() {
     DrawTexture(*mBackgroundTexture, 0, 0, WHITE);
     int len = mOptions.size();
-    for (int i = 0; i < len; i++)
-        DrawText(mOptions[i].c_str(), recButton[i].x + 150-MeasureText(mOptions[i].c_str(), 20)/2, recButton[i].y+15, 20, BLACK);
     for (int i = 0; i < len; i++) {
+        DrawRectangleRec({recButton[i].x+5, recButton[i].y+5, recButton[i].width, recButton[i].height}, {0, 0, 0, 255/2});
+
         if (CheckCollisionPointRec(GetMousePosition(), recButton[i]))
-            DrawRectangleRec(recButton[i], {0, 0, 0, 255/4});
+            DrawRectangleRec(recButton[i], LIGHTGRAY);
+        else 
+            DrawRectangleRec(recButton[i], RAYWHITE);
+
+        DrawRectangleLinesEx(recButton[i], 1, {0, 0, 0, 255/4});
+        DrawText(mOptions[i].c_str(), recButton[i].x + 150-MeasureText(mOptions[i].c_str(), 20)/2, recButton[i].y+15, 20, BLACK);
     }
 }
 
