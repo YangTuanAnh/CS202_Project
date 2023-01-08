@@ -16,6 +16,7 @@ public:
     float mX, mY;
     PlayerState::Ptr mState;
     int point;
+    int maxPoint;
     Texture2D *chicken;
     TextureHolder *mTextures;
     std::map<PlayerStates::ID, std::function<PlayerState::Ptr()>> mFactories;
@@ -36,6 +37,7 @@ public:
     Vector2 getPos();
     void reset();
     int getPoint();
+    int getMaxPoint();
     void setX(float);
     void setY(float);
     void setPoint(int);

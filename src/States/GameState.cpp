@@ -43,7 +43,8 @@ void GameState::draw() {
     player->draw();
     EndMode2D();
     DrawText(TextFormat("Score: %04i", this->player->getPoint()), 20, 20, 30, SKYBLUE);
-    DrawText("Tab - pause game", 20, 50, 20, SKYBLUE);
+    DrawText(TextFormat("Max score: %04i", this->player->getMaxPoint()), 20, 50, 30, SKYBLUE);
+    DrawText("Tab - pause game", 20, 90, 20, SKYBLUE);
 }
 
 bool GameState::update(float dt) {
