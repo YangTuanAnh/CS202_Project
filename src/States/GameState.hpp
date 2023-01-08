@@ -24,5 +24,7 @@ public:
     bool update(float dt);
     void loadGame();
     void saveGame();
+    void resetSaveFile();
+    bool checkSaveFile();
     void registerLanes();
 };
