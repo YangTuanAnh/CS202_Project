@@ -16,4 +16,5 @@ void BirdJungleLane::drawThis() {
 
 void BirdJungleLane::updateThis(float dt) {
     addRandomObject(this->type, dt);
+    removeOutOfView();
 }

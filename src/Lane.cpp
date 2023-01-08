@@ -103,9 +103,30 @@ void Lane::addObstacles() {
 
 void Lane::updateThis(float dt) {
     addRandomObject(this->type, dt);
+    removeOutOfView();
     //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
 }
 float Lane::getY(){return this->mY;}
 
 void Lane::addTrafficLamp() {
+}
+
+void Lane::removeOutOfView() {
+    auto objects = getChildren();
+    
+    int len = objects.size();
+    for (int i=0; i<len; i++) {
+        std::shared_ptr<Object> obj = std::dynamic_pointer_cast<Object>(objects[i]);
+        if (obj->getType()==Objects::ID::TrafficLamp || obj->getType()==Objects::ID::Obstacle) 
+            continue;
+        if (obj->getX() > BLOCK_SIZE*(MAP_WIDTH+10) || obj->getX()< -10*BLOCK_SIZE) {
+            cerr<<"Deleting ";
+            if(obj.get()->getType()==Objects::Dinosaur)cerr<<"Dino\n";
+            if(obj.get()->getType()==Objects::Bird)cerr<<"Bird\n";
+            if(obj.get()->getType()==Objects::Truck)cerr<<"Truck\n";
+            if(obj.get()->getType()==Objects::Car)cerr<<"Car\n";
+            detachChild(*obj);
+        }
+        break;
+    }
 }

@@ -30,6 +30,7 @@ public:
     virtual void updateThis(float dt);
     void addObject(Objects::ID type);
     void addObject(Objects::ID type, float x);
+    virtual void removeOutOfView();
     virtual void addRandomObject(Objects::ID, float dt);
     virtual void addObstacles();
     virtual void addTrafficLamp();
