@@ -1,7 +1,6 @@
 #include "PlainLane.h"
 
-PlainLane::PlainLane(TextureHolder *textures) : Lane(textures) {
-}
+PlainLane::PlainLane(TextureHolder *textures) : Lane(textures, Lanes::Plain, Objects::Obstacle) {}
 
 PlainLane::~PlainLane() {}
 

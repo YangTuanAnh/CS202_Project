@@ -46,6 +46,8 @@ public:
     bool isDead();
     void drawThis();
     void updateThis(float);
+    void saveThis(std::ofstream&);
+    void load(std::ifstream&);
     // bool collision(SceneNode *);
     bool collision(Object *);
 };

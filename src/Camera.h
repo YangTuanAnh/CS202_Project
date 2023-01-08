@@ -13,6 +13,8 @@ private:
     float velocity = -10.0f;
 public:
     CustomCamera(Player *player);
-    void getCamera();
+    void reset();
     void update(float dt);
+    void save(std::ofstream&);
+    void load(std::ifstream&);
 };
