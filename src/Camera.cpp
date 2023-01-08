@@ -25,3 +25,13 @@ void CustomCamera::update(float dt) {
     }
     this->target = convertCar2IsoVector(pos);
 }
+
+void CustomCamera::save(std::ofstream& out) {
+    // out << "Camera: ";
+    out << this->pos.x << ' ' << this->pos.y << '\n';
+}
+
+void CustomCamera::load(std::ifstream& in) {
+    in >> this->pos.x >> this->pos.y;
+    this->target = convertCar2IsoVector(this->pos);
+}

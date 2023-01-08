@@ -1,6 +1,6 @@
 #include "BirdJungleLane.h"
 
-BirdJungleLane::BirdJungleLane(TextureHolder *textures) : Lane(textures) {
+BirdJungleLane::BirdJungleLane(TextureHolder *textures) : Lane(textures, Lanes::BirdJungle, Objects::Bird) {
 }
 
 BirdJungleLane::~BirdJungleLane() {}

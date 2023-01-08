@@ -21,7 +21,7 @@ public:
     ~GameState();
     void draw();
     bool update(float dt);
-    void loadGame(std::istream);
-    void saveGame(std::ostream);
+    void loadGame();
+    void saveGame();
     void registerLanes();
 };

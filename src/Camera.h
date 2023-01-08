@@ -15,4 +15,6 @@ public:
     CustomCamera(Player *player);
     void getCamera();
     void update(float dt);
+    void save(std::ofstream&);
+    void load(std::ifstream&);
 };

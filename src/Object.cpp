@@ -18,6 +18,11 @@ Object::Object(float x, float y, int d, float speed, TextureHolder *mTextures, O
     this->type = type;
 }
 
+void Object::saveThis(std::ofstream& out) {
+    // out << "Object: ";
+    out << (int)this->type << ' ' << this->mX << ' ' << this->mY << '\n';
+}
+
 Car::Car(int x, int y, int d) : Object(x, y, d, Objects::Car) {
 }
 

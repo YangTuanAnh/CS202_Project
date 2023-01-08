@@ -1,6 +1,6 @@
 #include "JungleLane.h"
 
-JungleLane::JungleLane(TextureHolder *textures) : Lane(textures) {
+JungleLane::JungleLane(TextureHolder *textures) : Lane(textures, Lanes::Jungle, Objects::Dinosaur) {
 }
 
 JungleLane::~JungleLane() {}

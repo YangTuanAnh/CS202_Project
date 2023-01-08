@@ -163,3 +163,12 @@ bool Player::isIdle() {
 bool Player::isDead() {
     return mState->stateID == PlayerStates::Dead;
 }
+
+void Player::saveThis(std::ofstream &out) {
+    // out << "Player: ";
+    out << mX << ' ' << mY << ' ' << point << '\n';
+}
+
+void Player::load(std::ifstream &in) {
+    in >> mX >> mY >> point;
+}

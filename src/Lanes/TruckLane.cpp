@@ -1,6 +1,6 @@
 #include "TruckLane.h"
 
-TruckLane::TruckLane(TextureHolder *textures) : Lane(textures) {}
+TruckLane::TruckLane(TextureHolder *textures) : Lane(textures, Lanes::Truck, Objects::Truck) {}
 
 TruckLane::~TruckLane() {}
 

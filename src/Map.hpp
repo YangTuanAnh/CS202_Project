@@ -25,10 +25,12 @@ public:
         };
     }
     Lane::Ptr createLane(Lanes::ID laneID);
-    void addLane(Lanes::ID laneID);
+    void addLane(Lanes::ID laneID, int direction);
     void removeFirstLane();
     void updateThis(float dt);
     void drawThis();
+    void saveThis(std::ofstream&);
+    void load(std::ifstream&);
     bool isOver();
     Lanes::ID getRandomLane();
     void init();

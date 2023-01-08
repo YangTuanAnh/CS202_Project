@@ -1,6 +1,6 @@
 #include "CarLane.h"
 
-CarLane::CarLane(TextureHolder *textures) : Lane(textures) {}
+CarLane::CarLane(TextureHolder *textures) : Lane(textures, Lanes::Car, Objects::Car) {}
 
 CarLane::~CarLane() {}
 
