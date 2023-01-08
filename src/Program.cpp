@@ -17,6 +17,7 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
     // Load textures
     mTextures->load(Textures::None, "../image/none.png");
     mTextures->load(Textures::GameBackground, "../asset/img/CrossyRoadBg.png", SCREEN_WIDTH, SCREEN_HEIGHT);
+    mTextures->load(Textures::MenuBackground, "../asset/img/background.png", SCREEN_WIDTH, SCREEN_HEIGHT);
     // mTextures->load(Textures::Player_down, "../asset/img/3.png");
     mTextures->load(Textures::PausedBackground, "../asset/img/PausedScreen.png", SCREEN_WIDTH, SCREEN_HEIGHT);
     mTextures->load(Textures::Player_right, "../asset/player/chicken_right.png");
