@@ -10,7 +10,7 @@ private:
     Player *player;
     // non-isometric position
     Vector2 pos;
-    float velocity = -10.0f;
+    float velocity = -30.0f;
 public:
     CustomCamera(Player *player);
     void reset();
