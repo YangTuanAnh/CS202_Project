@@ -7,6 +7,8 @@ GameOverState::GameOverState(StateStack* stack, Context context) : State(stack, 
     mOptions.push_back("Resume");
     mOptions.push_back("Return to Main menu");
     context.music->setPaused(true);
+    score = context.player->getPoint();
+    maxScore = context.player->getMaxPoint();
     mBackgroundTexture = &context.textures->get(Textures::Player_hospital);
 }
 
@@ -14,6 +16,12 @@ void GameOverState::draw() {
     //DrawTexture(*mBackgroundTexture, 0, 0, WHITE);
     DrawRectangleGradientH(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, WHITE, RAYWHITE);
     DrawText("GAME OVER", (SCREEN_WIDTH-MeasureText("GAMEOVER", 60))/2, 150, 60, BLACK);
+    string scoreMsg = "Score: " + to_string(score);
+    string maxScoreMsg = "High score: " + to_string(maxScore);
+    if (score == maxScore) maxScoreMsg = "New high score!";
+
+    DrawText(scoreMsg.c_str(), (SCREEN_WIDTH - MeasureText(scoreMsg.c_str(), 20))/2, 220, 20, BLACK);
+    DrawText(maxScoreMsg.c_str(), (SCREEN_WIDTH - MeasureText(maxScoreMsg.c_str(), 20))/2, 250, 20, BLACK);
     DrawTexture(*mBackgroundTexture, 800, 250, WHITE);
     // ClearBackground(RAYWHITE);
     // DrawTextEx(GetFontDefault(), "GAME OVER", 

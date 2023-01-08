@@ -45,8 +45,8 @@ void GameState::draw() {
     EndMode2D();
     DrawText(TextFormat("Score: %04i", this->player->getPoint()), 20, 20, 30, SKYBLUE);
     DrawText(TextFormat("Max score: %04i", this->player->getMaxPoint()), 20, 60, 30, SKYBLUE);
-    DrawText("Tab - pause game", 20, 90, 20, SKYBLUE);
-    DrawText("L - save game", 20, 120, 20, SKYBLUE);
+    DrawText("Tab - pause game", 20, 100, 20, SKYBLUE);
+    DrawText("L - save game", 20, 130, 20, SKYBLUE);
 
     if (promptTime) {
         string saveGame = "Saved game!";
@@ -67,8 +67,10 @@ bool GameState::update(float dt) {
         requestStackPush(States::Pause);
         return updatePrevState;
     }
+
     if (IsKeyPressed(KEY_L)) 
-        promptTime = PROMPT_TIME*dt;
+        promptTime = PROMPT_TIME*FPS;
+
     player->update(dt);
     map->update(dt);
     camera->update(dt);
