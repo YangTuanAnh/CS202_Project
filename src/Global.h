@@ -19,6 +19,7 @@ const float BIRD_SPEED = 210.0f;
 const int OBJECT_COUNT = 3;
 const int MAX_SPAWN_TIME = 5;
 const int LAMP_TIME = 3;
+const int PROMPT_TIME = 3;
 
 const float BLOCK_SIZE = 40.0f;
 const int MAP_WIDTH = 15;

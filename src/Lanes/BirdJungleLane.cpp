@@ -1,6 +1,6 @@
 #include "BirdJungleLane.h"
 
-BirdJungleLane::BirdJungleLane(TextureHolder *textures) : Lane(textures) {
+BirdJungleLane::BirdJungleLane(TextureHolder *textures) : Lane(textures, Lanes::BirdJungle, Objects::Bird) {
 }
 
 BirdJungleLane::~BirdJungleLane() {}
@@ -27,4 +27,5 @@ void BirdJungleLane::drawThis() {
 
 void BirdJungleLane::updateThis(float dt) {
     addRandomObject(this->type, dt);
+    removeOutOfView();
 }

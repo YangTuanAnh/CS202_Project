@@ -7,20 +7,39 @@ GameOverState::GameOverState(StateStack* stack, Context context) : State(stack, 
     mOptions.push_back("Resume");
     mOptions.push_back("Return to Main menu");
     context.music->setPaused(true);
+    score = context.player->getPoint();
+    maxScore = context.player->getMaxPoint();
+    mBackgroundTexture = &context.textures->get(Textures::Player_hospital);
 }
 
 void GameOverState::draw() {
     //DrawTexture(*mBackgroundTexture, 0, 0, WHITE);
-    ClearBackground(RAYWHITE);
-    DrawTextEx(GetFontDefault(), "GAME OVER", 
-                {(1200-MeasureText("GAME OVER", 60))/2.f, 200},
-                60, 1, BLACK);
+    DrawRectangleGradientH(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, WHITE, RAYWHITE);
+    DrawText("GAME OVER", (SCREEN_WIDTH-MeasureText("GAMEOVER", 60))/2, 150, 60, BLACK);
+    string scoreMsg = "Score: " + to_string(score);
+    string maxScoreMsg = "High score: " + to_string(maxScore);
+    if (score == maxScore) maxScoreMsg = "New high score!";
+
+    DrawText(scoreMsg.c_str(), (SCREEN_WIDTH - MeasureText(scoreMsg.c_str(), 20))/2, 220, 20, BLACK);
+    DrawText(maxScoreMsg.c_str(), (SCREEN_WIDTH - MeasureText(maxScoreMsg.c_str(), 20))/2, 250, 20, BLACK);
+    DrawTexture(*mBackgroundTexture, 800, 250, WHITE);
+    // ClearBackground(RAYWHITE);
+    // DrawTextEx(GetFontDefault(), "GAME OVER", 
+    //             {(1200-MeasureText("GAME OVER", 60))/2.f, 200},
+    //             60, 1, BLACK);
     int len = mOptions.size();
     for (int i = 0; i < len; i++)
         DrawText(mOptions[i].c_str(), recButton[i].x + 150-MeasureText(mOptions[i].c_str(), 20)/2, recButton[i].y+15, 20, BLACK);
     for (int i = 0; i < len; i++) {
+        DrawRectangleRec({recButton[i].x+5, recButton[i].y+5, recButton[i].width, recButton[i].height}, {0, 0, 0, 255/2});
+
         if (CheckCollisionPointRec(GetMousePosition(), recButton[i]))
-            DrawRectangleRec(recButton[i], {0, 0, 0, 255/4});
+            DrawRectangleRec(recButton[i], LIGHTGRAY);
+        else 
+            DrawRectangleRec(recButton[i], RAYWHITE);
+
+        DrawRectangleLinesEx(recButton[i], 1, {0, 0, 0, 255/4});
+        DrawText(mOptions[i].c_str(), recButton[i].x + 150-MeasureText(mOptions[i].c_str(), 20)/2, recButton[i].y+15, 20, BLACK);
     }
 }
 

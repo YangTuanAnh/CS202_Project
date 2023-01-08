@@ -2,3 +2,4 @@ raylib-master
 .vs
 .vscode
 build/*.exe
+build/*.txt

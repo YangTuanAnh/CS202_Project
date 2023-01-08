@@ -12,6 +12,7 @@
 
 class Lane : public SceneNode {
 protected:
+    Lanes::ID laneID;
     Objects::ID type;
     float mY;
     // Isometric position
@@ -22,14 +23,17 @@ protected:
     ObjectFactory<Object, float, float, int, float, TextureHolder*> mFactories;
 public:
     typedef std::unique_ptr<Lane> Ptr;
-    Lane(TextureHolder* mTextures);
+    Lane(TextureHolder* mTextures, Lanes::ID laneID, Objects::ID type);
     ~Lane(); 
-    float getY() ;
-    void init(float y);
+    float getY();
+    void init(float y, int d, bool flag);
     virtual void drawThis();
     virtual void updateThis(float dt);
+    virtual void saveThis(std::ofstream&);
+    virtual void load(std::ifstream&);
     void addObject(Objects::ID type);
     void addObject(Objects::ID type, float x);
+    virtual void removeOutOfView();
     virtual void addRandomObject(Objects::ID, float dt);
     virtual void addObstacles();
     virtual void addTrafficLamp();

@@ -1,6 +1,6 @@
 #include "JungleLane.h"
 
-JungleLane::JungleLane(TextureHolder *textures) : Lane(textures) {
+JungleLane::JungleLane(TextureHolder *textures) : Lane(textures, Lanes::Jungle, Objects::Dinosaur) {
 }
 
 JungleLane::~JungleLane() {}
@@ -27,4 +27,5 @@ void JungleLane::drawThis() {
 
 void JungleLane::updateThis(float dt) {
     addRandomObject(this->type, dt);
+    removeOutOfView();
 }

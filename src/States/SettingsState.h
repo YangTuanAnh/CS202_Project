@@ -10,7 +10,7 @@ private:
     };
     std::vector<std::string> mOptions;
     Texture2D* mBackgroundTexture;
-    Rectangle recButton[2] = {{300, 200, 600, 50}, {300, 500, 600, 50}};
+    Rectangle recButton[2] = {{400, 200, 400, 50}, {400, 500, 400, 50}};
     int mVolume;
 public:
     SettingsState(StateStack* stack, Context context);

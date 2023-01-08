@@ -31,6 +31,7 @@ public:
 	Object(float x, float y, int d, float speed, TextureHolder *mTextures, Objects::ID type);
 	virtual void updateThis(float dt);
 	virtual void drawThis() = 0;
+	virtual void saveThis(std::ofstream&);
 	void setSpeed(float sp);
 	virtual ~Object();
 };

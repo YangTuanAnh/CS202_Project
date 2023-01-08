@@ -18,6 +18,7 @@ namespace Textures {
     enum ID {
         None,
         GameBackground,
+        MenuBackground,
         PausedBackground,
         Road,
         Jungle_1,
@@ -28,6 +29,8 @@ namespace Textures {
         Player_left,
         Player_up,
         Player_down,
+        Player_break,
+        Player_hospital,
         Car_left,
         Car_right,
         Truck_left,

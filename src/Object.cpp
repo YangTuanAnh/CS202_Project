@@ -18,6 +18,11 @@ Object::Object(float x, float y, int d, float speed, TextureHolder *mTextures, O
     this->type = type;
 }
 
+void Object::saveThis(std::ofstream& out) {
+    // out << "Object: ";
+    out << (int)this->type << ' ' << this->mX << ' ' << this->mY << '\n';
+}
+
 Car::Car(int x, int y, int d) : Object(x, y, d, Objects::Car) {
 }
 
@@ -125,7 +130,7 @@ void Dinosaur::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    DrawRectanglePro(Rectangle{pos.x+10.0f,pos.y+5.0f,85.0f,35.0f},{0,0},29.0f,RED);
+    //DrawRectanglePro(Rectangle{pos.x+10.0f,pos.y+5.0f,85.0f,35.0f},{0,0},29.0f,RED);
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -160,7 +165,7 @@ void Car::drawThis() {
         // UnloadImageColors(pixels);
     }
 
-    DrawRectanglePro(Rectangle{pos.x+10.0f,pos.y-3.0f,40.0f,35.0f},{0,0},28.0f,RED);
+    //DrawRectanglePro(Rectangle{pos.x+10.0f,pos.y-3.0f,40.0f,35.0f},{0,0},28.0f,RED);
     DrawTextureV(texture, pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -194,7 +199,7 @@ void Truck::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    DrawRectanglePro(Rectangle{pos.x+10.0f,pos.y,40.0f,35.0f},{0,0},29.0f,RED);
+    //DrawRectanglePro(Rectangle{pos.x+10.0f,pos.y,40.0f,35.0f},{0,0},29.0f,RED);
     DrawTextureV(texture, this->pos, WHITE);
 }
 
@@ -227,7 +232,7 @@ void Bird::drawThis() {
         // UpdateTexture(inverseTexture, pixels);
         // UnloadImageColors(pixels);
     }
-    DrawRectanglePro(Rectangle{pos.x+10.0f,pos.y,40.0f,35.0f},{0,0},29.0f,RED);
+    //DrawRectanglePro(Rectangle{pos.x+10.0f,pos.y,40.0f,35.0f},{0,0},29.0f,RED);
     DrawTextureV(texture, this->pos, WHITE);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
@@ -247,8 +252,11 @@ void Obstacle::drawThis() {
     //     // UnloadImageColors(pixels);
     // }
     // pos.y -= texture.height*0.25;
-    DrawRectanglePro(Rectangle{pos.x+30.0f,pos.y+65.0f,40.0f,38.0f},{0,0},29.0f,RED);
-    DrawTextureV(texture, this->pos, WHITE);
+    // if (this->mX>=0 && this->mX<MAP_WIDTH*BLOCK_SIZE)
+    //     DrawRectanglePro(Rectangle{pos.x+30.0f,pos.y+65.0f,40.0f,38.0f},{0,0},29.0f,RED);
+    if (this->mX>=0 && this->mX<MAP_WIDTH*BLOCK_SIZE)
+        DrawTextureV(texture, this->pos, WHITE);
+    else DrawTextureV(texture, this->pos, GRAY);
     // DrawRectangle(this->mX, this->mY, texture.width, texture.height, RED);
 }
 

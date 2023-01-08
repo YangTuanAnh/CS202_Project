@@ -8,6 +8,7 @@ private:
         Resume,
         Return,
     };
+    int score, maxScore;
     std::vector<std::string> mOptions;
     Texture2D* mBackgroundTexture;
     Rectangle recButton[2] = {{200, 400, 300, 50}, {700, 400, 300, 50}};
