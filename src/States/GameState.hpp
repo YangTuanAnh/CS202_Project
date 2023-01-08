@@ -12,6 +12,7 @@
 class GameState : public State {
 private:
     int promptTime;
+    bool gameOver = false;
     Map* map;
     Player* player;
     Texture2D* mBackgroundTexture;

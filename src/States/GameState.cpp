@@ -8,19 +8,26 @@
 #include "../Lanes/ForestLane.h"
 #include "../Lanes/PlainLane.h"
 #include "../Lanes/BirdJungleLane.h"
+#include "../StateStack.hpp"
 
 #include <iostream>
 
 GameState::GameState(StateStack *stack, Context context) : State(stack, context) {
     mBackgroundTexture = &context.textures->get(Textures::GameBackground);
     player = context.player;
-    player->reset();
+    camera = new CustomCamera(player);
     map = new Map(context.textures, player);
     registerLanes();
-    map->init();
+    if(mStack->getSaveFlag()) {
+        loadGame();
+    } else {
+        player->reset();
+        camera->reset();
+        map->init();
+    }
     context.music->play(Audio::GameTheme);
-    camera = new CustomCamera(player);
     promptTime = 0;
+    mStack->setSaveFlag(false);
 }
 
 void GameState::registerLanes() {
@@ -33,7 +40,8 @@ void GameState::registerLanes() {
 }
 
 GameState::~GameState() {
-    saveGame();
+    if (!gameOver)
+        saveGame();
     delete map;
     delete camera;
 }
@@ -62,6 +70,7 @@ void GameState::draw() {
 bool GameState::update(float dt) {
     bool updatePrevState = false;
     if(map->isOver()){
+        this->gameOver = true;
         requestStackPush(States::GameOver);
         return updatePrevState;
     }
@@ -86,5 +95,10 @@ void GameState::saveGame() {
 }
 
 void GameState::loadGame() {
-    
+    std::cerr << "Loading game..." << std::endl;
+    std::ifstream fin("save.txt");
+    player->load(fin);
+    camera->load(fin);
+    map->load(fin);
+    fin.close();
 }

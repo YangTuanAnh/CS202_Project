@@ -13,7 +13,9 @@ CustomCamera::CustomCamera(Player *player) {
     std::cerr << "Camera offset: " << this->offset.x << ", " << this->offset.y << std::endl;
 }
 
-void CustomCamera::getCamera() {
+void CustomCamera::reset() {
+    this->pos = player->getPos();
+    this->target = convertCar2IsoVector(this->pos);
 }
 
 void CustomCamera::update(float dt) {

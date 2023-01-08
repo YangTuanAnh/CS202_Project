@@ -25,8 +25,8 @@ public:
     typedef std::unique_ptr<Lane> Ptr;
     Lane(TextureHolder* mTextures, Lanes::ID laneID, Objects::ID type);
     ~Lane(); 
-    float getY() ;
-    void init(float y, int d);
+    float getY();
+    void init(float y, int d, bool flag);
     virtual void drawThis();
     virtual void updateThis(float dt);
     virtual void saveThis(std::ofstream&);

@@ -31,6 +31,8 @@ public:
     void popState();
     void clearStates();
     bool isEmpty() const;
+    void setSaveFlag(bool flag);
+    bool getSaveFlag();
 
 private:
     struct PendingChange {

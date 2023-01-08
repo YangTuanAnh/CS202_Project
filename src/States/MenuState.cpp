@@ -1,4 +1,6 @@
 #include "MenuState.h"
+#include "../StateStack.hpp"
+
 MenuState::MenuState(StateStack *stack, Context context) : State(stack, context) {
     mOptions.push_back("Start Game");
     mOptions.push_back("Load Game");
@@ -26,6 +28,11 @@ bool MenuState::update(float dt) {
 
     if (IsMouseButtonPressed(0)) {
         if (CheckCollisionPointRec(GetMousePosition(), recMenu[Play])) {
+            requestStackPush(States::Game);
+            return updatePrevState;
+        }
+        if (CheckCollisionPointRec(GetMousePosition(), recMenu[Load])) {
+            mStack->setSaveFlag(true);
             requestStackPush(States::Game);
             return updatePrevState;
         }

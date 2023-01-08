@@ -15,7 +15,7 @@ Lane::~Lane() {
     detachAllChildren();
 }
 
-void Lane::init(float y, int d) {
+void Lane::init(float y, int d, bool flag) {
     this->mY = y;
     this->direction = d;
     pos1 = convertCar2IsoVector({ 0.0f, this->mY });
@@ -25,8 +25,10 @@ void Lane::init(float y, int d) {
     pos2.x -= 40.0f;
     pos3.x -= 40.0f;
     // std::cerr << "pos1: " << pos1.x << ", " << pos1.y << std::endl;
-    addObstacles();
-    addTrafficLamp();
+    if (flag) {
+        addObstacles();
+        addTrafficLamp();
+    }
     //addObject(  Objects::ID(GetRandomValue(2, OBJECT_COUNT)), 0);
     //addRandomObject();
 }

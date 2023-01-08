@@ -13,6 +13,7 @@ Map::~Map() {
 }
 
 Lane::Ptr Map::createLane(Lanes::ID laneID) {
+    std::cerr << "Creating lane " << laneID << std::endl;
     auto found = mFactories.find(laneID);
     assert(found != mFactories.end());
     return found->second();
@@ -29,7 +30,13 @@ void Map::init() {
 
 void Map::addLane(Lanes::ID laneID, int direction) {
     auto newLane = createLane(laneID);
-    newLane->init(BLOCK_SIZE * size--, direction);
+    newLane->init(BLOCK_SIZE * size--, direction, true);
+    attachChild(std::move(newLane));
+}
+
+void Map::loadLane(Lanes::ID laneID, int direction, float y) {
+    auto newLane = createLane(laneID);
+    newLane->init(y, direction, false);
     attachChild(std::move(newLane));
 }
 
@@ -39,7 +46,9 @@ void Map::removeFirstLane() {
 
 void Map::updateThis(float dt) {
     // std::cerr << player->getY() << " " << mY << std::endl;
-    if (player->getY() < BLOCK_SIZE * (size + 30)) {
+    auto lanes = this->getChildren();
+    auto checkLane = std::dynamic_pointer_cast<Lane>(lanes[13]).get();
+    if (player->getY() < checkLane->getY() - 40) {
         addLane(getRandomLane(), GetRandomValue(0, 1) ? 1 : -1);
         removeFirstLane();
     }
@@ -91,7 +100,7 @@ void Map::load(std::ifstream& in) {
         int laneID, objType, direction;
         float y;
         in >> laneID >> objType >> y >> direction;
-        addLane(Lanes::ID(laneID), direction);
+        loadLane(Lanes::ID(laneID), direction, y);
         auto lane = std::dynamic_pointer_cast<Lane>(mChildren.back());
         lane->load(in);
     }
