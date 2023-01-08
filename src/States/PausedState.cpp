@@ -5,7 +5,7 @@
 PausedState::PausedState(StateStack* stack, Context context) : State(stack, context) {
     mBackgroundTexture = &context.textures->get(Textures::PausedBackground);
     mOptions.push_back("Resume");
-    mOptions.push_back("Return to Main menu");
+    mOptions.push_back("Save & Exit");
     context.music->setPaused(true);
     mBackgroundTexture = &context.textures->get(Textures::Player_break);
 }
