@@ -20,6 +20,7 @@ GameState::GameState(StateStack *stack, Context context) : State(stack, context)
     map->init();
     context.music->play(Audio::GameTheme);
     camera = new CustomCamera(player);
+    promptTime = 0;
 }
 
 void GameState::registerLanes() {
@@ -43,8 +44,18 @@ void GameState::draw() {
     player->draw();
     EndMode2D();
     DrawText(TextFormat("Score: %04i", this->player->getPoint()), 20, 20, 30, SKYBLUE);
-    DrawText(TextFormat("Max score: %04i", this->player->getMaxPoint()), 20, 50, 30, SKYBLUE);
+    DrawText(TextFormat("Max score: %04i", this->player->getMaxPoint()), 20, 60, 30, SKYBLUE);
     DrawText("Tab - pause game", 20, 90, 20, SKYBLUE);
+    DrawText("L - save game", 20, 120, 20, SKYBLUE);
+
+    if (IsKeyDown(KEY_L)) promptTime = PROMPT_TIME*FPS;
+    if (promptTime) {
+        string saveGame = "Saved game!";
+        DrawText(saveGame.c_str(), 
+                SCREEN_WIDTH - MeasureText(saveGame.c_str(), 20) - 20,
+                SCREEN_HEIGHT - 20 - 20, 20, WHITE);
+        promptTime--;
+    }
 }
 
 bool GameState::update(float dt) {

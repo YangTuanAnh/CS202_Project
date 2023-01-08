@@ -11,6 +11,7 @@
 
 class GameState : public State {
 private:
+    int promptTime;
     Map* map;
     Player* player;
     Texture2D* mBackgroundTexture;
