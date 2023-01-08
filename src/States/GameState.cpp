@@ -71,7 +71,7 @@ void GameState::draw() {
 
 bool GameState::update(float dt) {
     bool updatePrevState = false;
-    if(map->isOver()){
+    if(map->isOver() || checkOutOfBounds()){
         this->gameOver = true;
         requestStackPush(States::GameOver);
         return updatePrevState;
@@ -88,6 +88,11 @@ bool GameState::update(float dt) {
     map->update(dt);
     camera->update(dt);
     return updatePrevState;
+}
+
+bool GameState::checkOutOfBounds() {
+    // std::cerr << player->getY() * (2.0f/3.0f) << camera->target.y << '\n';
+    return player->getY() * (2.0f/3.0f) > camera->target.y;
 }
 
 void GameState::saveGame() {

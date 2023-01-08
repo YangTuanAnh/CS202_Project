@@ -22,6 +22,7 @@ public:
     ~GameState();
     void draw();
     bool update(float dt);
+    bool checkOutOfBounds();
     void loadGame();
     void saveGame();
     void resetSaveFile();

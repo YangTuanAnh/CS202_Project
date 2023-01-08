@@ -8,8 +8,8 @@
 
 Player::Player() {
     std::cerr << "Player constructor" << std::endl;
-    this->mX = 10 * BLOCK_SIZE;
-    this->mY = -10 * BLOCK_SIZE;
+    this->mX = 7 * BLOCK_SIZE;
+    this->mY = -12 * BLOCK_SIZE;
     this->point = 0;
     this->maxPoint = 0;
 }
@@ -30,7 +30,7 @@ void Player::init(TextureHolder *mTextures) {
 
 void Player::reset() {
     this->mX = 7 * BLOCK_SIZE;
-    this->mY = -10 * BLOCK_SIZE;
+    this->mY = -12 * BLOCK_SIZE;
     this->point = 0;
     this->mState = createState(PlayerStates::Idle);
 }
@@ -82,7 +82,7 @@ void Player::drawThis() {
 
 void Player::updateThis(float dt) {
     mState->update(dt);
-    this->point = max(this->point, abs((int)(this->mY/40.0f))) - 10;
+    this->point = max(this->point, abs((int)(this->mY/40.0f))) - 12;
     this->maxPoint = max(this->point, this->maxPoint);
 }
 
