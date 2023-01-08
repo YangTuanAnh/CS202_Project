@@ -27,6 +27,7 @@ namespace Textures {
         Player_left,
         Player_up,
         Player_down,
+        Player_break,
         Car_left,
         Car_right,
         Truck_left,

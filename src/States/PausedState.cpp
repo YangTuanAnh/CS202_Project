@@ -7,10 +7,14 @@ PausedState::PausedState(StateStack* stack, Context context) : State(stack, cont
     mOptions.push_back("Resume");
     mOptions.push_back("Return to Main menu");
     context.music->setPaused(true);
+    mBackgroundTexture = &context.textures->get(Textures::Player_break);
 }
 
 void PausedState::draw() {
-    DrawTexture(*mBackgroundTexture, 0, 0, WHITE);
+    //DrawTexture(*mBackgroundTexture, 0, 0, WHITE);
+    DrawRectangleGradientH(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SKYBLUE, BLUE);
+    DrawText("PAUSED", (SCREEN_WIDTH-MeasureText("PAUSED", 60))/2, 150, 60, WHITE);
+    DrawTexture(*mBackgroundTexture, 800, 250, WHITE);
     int len = mOptions.size();
     for (int i = 0; i < len; i++) {
         DrawRectangleRec({recButton[i].x+5, recButton[i].y+5, recButton[i].width, recButton[i].height}, {0, 0, 0, 255/2});
