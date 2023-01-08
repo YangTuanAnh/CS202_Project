@@ -1,6 +1,6 @@
 #include "TruckLane.h"
 
-TruckLane::TruckLane(TextureHolder *textures) : Lane(textures) {}
+TruckLane::TruckLane(TextureHolder *textures) : Lane(textures, Lanes::Truck, Objects::Truck) {}
 
 TruckLane::~TruckLane() {}
 
@@ -15,6 +15,7 @@ void TruckLane::drawThis() {
 
 void TruckLane::updateThis(float dt) {
     addRandomObject(this->type, dt);
+    removeOutOfView();
 
     TrafficLampStates::ID state;
     auto objects = getChildren();
@@ -46,6 +47,6 @@ void TruckLane::updateThis(float dt) {
 void TruckLane::addObstacles() {}
 
 void TruckLane::addTrafficLamp() {
-    int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE;
+    int randX = GetRandomValue(0, MAP_WIDTH-1)*BLOCK_SIZE;
     addObject(Objects::TrafficLamp, randX);
 }

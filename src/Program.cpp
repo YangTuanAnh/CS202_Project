@@ -17,17 +17,22 @@ Program::Program() : mStateStack(State::Context(mTextures = new TextureHolder(),
     // Load textures
     mTextures->load(Textures::None, "../image/none.png");
     mTextures->load(Textures::GameBackground, "../asset/img/CrossyRoadBg.png", SCREEN_WIDTH, SCREEN_HEIGHT);
+    mTextures->load(Textures::MenuBackground, "../asset/img/background.png", SCREEN_WIDTH, SCREEN_HEIGHT);
     // mTextures->load(Textures::Player_down, "../asset/img/3.png");
     mTextures->load(Textures::PausedBackground, "../asset/img/PausedScreen.png", SCREEN_WIDTH, SCREEN_HEIGHT);
     mTextures->load(Textures::Player_right, "../asset/player/chicken_right.png");
     mTextures->load(Textures::Player_left, "../asset/player/chicken_left.png");
     mTextures->load(Textures::Player_up, "../asset/player/chicken_up.png");
     mTextures->load(Textures::Player_down, "../asset/player/chicken_down.png");
+    mTextures->load(Textures::Player_break, "../asset/img/chicken_break.png");
+    mTextures->load(Textures::Player_hospital, "../asset/img/chicken_hospital.png");
     mPlayer->init(this->mTextures);
 
     mTextures->load(Textures::Plain, "../asset/lane/Plain_final.png");
     mTextures->load(Textures::Road, "../asset/lane/Road_final.png");
-    mTextures->load(Textures::Jungle, "../asset/lane/Jungle_final.png");
+    mTextures->load(Textures::Jungle_1, "../asset/lane/Jungle_final_1.png");
+    mTextures->load(Textures::Jungle_2, "../asset/lane/Jungle_final_2.png");
+    mTextures->load(Textures::Jungle_3, "../asset/lane/Jungle_final_3.png");
 
     mTextures->load(Textures::Car_left, "../asset/object/vehicle_car_left.png");
     mTextures->load(Textures::Car_right, "../asset/object/vehicle_car_right.png");

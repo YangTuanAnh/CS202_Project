@@ -13,6 +13,7 @@ Map::~Map() {
 }
 
 Lane::Ptr Map::createLane(Lanes::ID laneID) {
+    std::cerr << "Creating lane " << laneID << std::endl;
     auto found = mFactories.find(laneID);
     assert(found != mFactories.end());
     return found->second();
@@ -20,16 +21,22 @@ Lane::Ptr Map::createLane(Lanes::ID laneID) {
 
 void Map::init() {
     for (int i = 0; i < 13; i++) {
-        addLane(Lanes::Plain);
+        addLane(Lanes::Plain, 1);
     }
 
     for (int i = 0; i < 27; i++)
-        addLane(getRandomLane());
+        addLane(getRandomLane(), GetRandomValue(0, 1) ? 1 : -1);
 }
 
-void Map::addLane(Lanes::ID laneID) {
+void Map::addLane(Lanes::ID laneID, int direction) {
     auto newLane = createLane(laneID);
-    newLane->init(BLOCK_SIZE * size--);
+    newLane->init(BLOCK_SIZE * size--, direction, true);
+    attachChild(std::move(newLane));
+}
+
+void Map::loadLane(Lanes::ID laneID, int direction, float y) {
+    auto newLane = createLane(laneID);
+    newLane->init(y, direction, false);
     attachChild(std::move(newLane));
 }
 
@@ -39,11 +46,14 @@ void Map::removeFirstLane() {
 
 void Map::updateThis(float dt) {
     // std::cerr << player->getY() << " " << mY << std::endl;
-    if (player->getY() < BLOCK_SIZE * (size + 30)) {
-        addLane(getRandomLane());
+    auto lanes = this->getChildren();
+    auto checkLane = std::dynamic_pointer_cast<Lane>(lanes[13]).get();
+    if (player->getY() < checkLane->getY() - 40) {
+        addLane(getRandomLane(), GetRandomValue(0, 1) ? 1 : -1);
         removeFirstLane();
     }
 }
+
 bool Map::isOver(){
     auto lanes = this->getChildren();
     int id = abs(player->getY() - std::dynamic_pointer_cast<Lane>(this->mChildren[0])->getY())/40.0f;
@@ -61,7 +71,7 @@ bool Map::isOver(){
             if(obj.get()->getType()==Objects::Bird)cerr<<"Bird\n";
             if(obj.get()->getType()==Objects::Truck)cerr<<"Truck\n";
             if(obj.get()->getType()==Objects::Car)cerr<<"Car\n";
-            if(obj.get()->getType()==Objects::Obstacle)cerr<<"Tree\n";
+            if(obj.get()->getType()==Objects::Obstacle) {cerr<<"Tree\n"; return false;}
             return true;
         }
     }
@@ -76,4 +86,22 @@ Lanes::ID Map::getRandomLane() {
     if (random >= LANE_COUNT + 1)
         random = 4;
     return Lanes::ID(random);
+}
+
+void Map::saveThis(std::ofstream& out) {
+    // out << "Map: ";
+    out << mChildren.size() << '\n';
+}
+
+void Map::load(std::ifstream& in) {
+    int size;
+    in >> size;
+    while (size--) {
+        int laneID, objType, direction;
+        float y;
+        in >> laneID >> objType >> y >> direction;
+        loadLane(Lanes::ID(laneID), direction, y);
+        auto lane = std::dynamic_pointer_cast<Lane>(mChildren.back());
+        lane->load(in);
+    }
 }

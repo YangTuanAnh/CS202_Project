@@ -11,6 +11,7 @@ Player::Player() {
     this->mX = 10 * BLOCK_SIZE;
     this->mY = -10 * BLOCK_SIZE;
     this->point = 0;
+    this->maxPoint = 0;
 }
 
 Player::Player(float mX, float mY, int Point) {
@@ -18,6 +19,7 @@ Player::Player(float mX, float mY, int Point) {
     this->mX = mX;
     this->mY = mY;
     this->point = Point;
+    this->maxPoint = max(this->maxPoint, Point);
 }
 
 void Player::init(TextureHolder *mTextures) {
@@ -72,7 +74,7 @@ void Player::drawThis() {
         default:
             break;
         }
-        DrawRectangleLines(position.x,position.y+20.0f,40.0f,40.0f,RED);
+        //DrawRectangleLines(position.x,position.y+20.0f,40.0f,40.0f,RED);
         
         // DrawRectangle(this->mX,this->mY,PLAYER_BASE_SIZE,PLAYER_BASE_SIZE,RED);
     }
@@ -81,44 +83,45 @@ void Player::drawThis() {
 void Player::updateThis(float dt) {
     mState->update(dt);
     this->point = max(this->point, abs((int)(this->mY/40.0f))) - 10;
+    this->maxPoint = max(this->point, this->maxPoint);
 }
 
 bool Player::collision(Object *ob) {
     float X = ob->getX();
     float Y = ob->getY();
     if (ob->getType()==Objects::Dinosaur){
-        if((this->mY==Y)&&((this->mX >= X && this->mX <= X+30.0f)||(this->mX+40.0f >= X && this->mX+40.0f <=X+30.0f)))//size is 60x40
+        if((this->mY==Y)&&((this->mX >= X && this->mX <= X+25.0f)||(this->mX+30.0f >= X && this->mX+30.0f <=X+25.0f)))//size is 60x40
             return true;
-        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX > X&&this->mX <X+30.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+30.0f)))//size is 60x40
+        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX > X&&this->mX <X+15.0f)||(this->mX+30.0f > X&&this->mX+30.0f <X+15.0f)))//size is 60x40
             return true;
-        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX > X&&this->mX <X+30.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+30.0f)))//size is 60x40
+        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX > X&&this->mX <X+15.0f)||(this->mX+30.0f > X&&this->mX+30.0f <X+15.0f)))//size is 60x40
             return true;
     }
 
     if (ob->getType()==Objects::Bird){
-        if(((this->mY==Y)&&((this->mX+5.0f > X&&this->mX+5.0f <X+10.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+10.0f))))//size is 40x40
+        if(((this->mY==Y)&&((this->mX > X&&this->mX <X+10.0f)||(this->mX+20.0f > X&&this->mX+20.0f <X+10.0f))))//size is 40x40
             return true;
-        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX+5.0f > X&&this->mX <X+10.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+10.0f)))//size is 40x40
+        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX+5.0f > X&&this->mX <X+5.0f)||(this->mX+15.0f > X&&this->mX+15.0f <X+5.0f)))//size is 40x40
             return true;
-        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX+5.0f > X&&this->mX <X+10.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+10.0f)))//size is 40x40
+        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX+5.0f > X&&this->mX <X+5.0f)||(this->mX+15.0f > X&&this->mX+15.0f <X+5.0f)))//size is 40x40
             return true;
     }
 
     if (ob->getType()==Objects::Car){
-        if(((this->mY==Y)&&((this->mX+5.0f > X&&this->mX+5.0f <X+20.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+20.0f))))//size is 40x40
+        if(((this->mY==Y)&&((this->mX+5.0f > X&&this->mX+5.0f <X+20.0f)||(this->mX+30.0f > X&&this->mX+30.0f <X+20.0f))))//size is 40x40
             return true;
-        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX+5.0f > X&&this->mX+5.0f <X+20.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+20.0f)))//size is 40x40
+        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX+5.0f > X&&this->mX+5.0f <X+10.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+10.0f)))//size is 40x40
             return true;
-        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX+5.0f > X&&this->mX+5.0f <X+20.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+20.0f)))//size is 40x40
+        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX+5.0f > X&&this->mX+5.0f <X+10.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+10.0f)))//size is 40x40
             return true;
     }
 
     if (ob->getType()==Objects::Truck){
-        if(((this->mY==Y)&&((this->mX >= X&&this->mX <X+40.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+40.0f))))//size is 60x40
+        if(((this->mY==Y)&&((this->mX >= X&&this->mX <X+35.0f)||(this->mX+30.0f > X&&this->mX+30.0f <X+35.0f))))//size is 60x40
             return true;
-        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX > X&&this->mX <X+40.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+40.0f)))//size is 60x40
+        if((this->mY > Y&&this->mY<Y+40.0f) && ((this->mX > X&&this->mX <X+25.0f)||(this->mX+30.0f > X&&this->mX+30.0f <X+25.0f)))//size is 60x40
             return true;
-        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX > X&&this->mX <X+40.0f)||(this->mX+40.0f > X&&this->mX+40.0f <X+40.0f)))//size is 60x40
+        if((this->mY < Y&&this->mY>Y-40.0f) && ((this->mX > X&&this->mX <X+25.0f)||(this->mX+30.0f > X&&this->mX+30.0f <X+25.0f)))//size is 60x40
             return true;
     }
     if (ob->getType()==Objects::Obstacle){
@@ -135,6 +138,10 @@ bool Player::collision(Object *ob) {
 int Player::getPoint() {
     // this->point = abs(mY-7*BLOCK_SIZE)/40.0f;
     return this->point;
+}
+
+int Player::getMaxPoint() {
+    return this->maxPoint;
 }
 
 void Player::setX(float x) {
@@ -155,4 +162,13 @@ bool Player::isIdle() {
 
 bool Player::isDead() {
     return mState->stateID == PlayerStates::Dead;
+}
+
+void Player::saveThis(std::ofstream &out) {
+    // out << "Player: ";
+    out << mX << ' ' << mY << ' ' << point << '\n';
+}
+
+void Player::load(std::ifstream &in) {
+    in >> mX >> mY >> point;
 }

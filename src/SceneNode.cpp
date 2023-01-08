@@ -62,3 +62,14 @@ void SceneNode::update(float dt) {
 }
 
 void SceneNode::updateThis(float dt) {}
+
+void SceneNode::load(std::ifstream &in) {}
+
+void SceneNode::save(std::ofstream &out) {
+    saveThis(out);
+    for (auto &child : mChildren) {
+        child->save(out);
+    }
+}
+
+void SceneNode::saveThis(std::ofstream &out) {}

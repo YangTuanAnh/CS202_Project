@@ -20,10 +20,10 @@ private:
     std::vector<std::string> mOptions;
     std::size_t mOptionIndex;
     Texture2D *mBackgroundTexture;
-    Rectangle recMenu[4] = {{300, 200, 600, 50}, 
-                            {300, 270, 600, 50},
-                            {300, 340, 600, 50},
-                            {300, 410, 600, 50}};
+    Rectangle recMenu[4] = {{400, 250, 400, 50}, 
+                            {400, 320, 400, 50},
+                            {400, 390, 400, 50},
+                            {400, 460, 400, 50}};
 
 public:
     MenuState(StateStack *stack, Context context);

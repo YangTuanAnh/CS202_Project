@@ -1,6 +1,6 @@
 #include "CarLane.h"
 
-CarLane::CarLane(TextureHolder *textures) : Lane(textures) {}
+CarLane::CarLane(TextureHolder *textures) : Lane(textures, Lanes::Car, Objects::Car) {}
 
 CarLane::~CarLane() {}
 
@@ -15,6 +15,7 @@ void CarLane::drawThis() {
 
 void CarLane::updateThis(float dt) {
     addRandomObject(this->type, dt);
+    removeOutOfView();
 
     TrafficLampStates::ID state;
     auto objects = getChildren();
@@ -46,6 +47,6 @@ void CarLane::updateThis(float dt) {
 void CarLane::addObstacles() {}
 
 void CarLane::addTrafficLamp() {
-    int randX = GetRandomValue(1, MAP_WIDTH)*BLOCK_SIZE;
+    int randX = GetRandomValue(0, MAP_WIDTH-1)*BLOCK_SIZE;
     addObject(Objects::TrafficLamp, randX);
 }
