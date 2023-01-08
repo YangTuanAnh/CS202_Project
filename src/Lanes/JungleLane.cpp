@@ -16,4 +16,5 @@ void JungleLane::drawThis() {
 
 void JungleLane::updateThis(float dt) {
     addRandomObject(this->type, dt);
+    removeOutOfView();
 }

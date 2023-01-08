@@ -49,7 +49,6 @@ void GameState::draw() {
     DrawText("Tab - pause game", 20, 90, 20, SKYBLUE);
     DrawText("L - save game", 20, 120, 20, SKYBLUE);
 
-    if (IsKeyDown(KEY_L)) promptTime = PROMPT_TIME*FPS;
     if (promptTime) {
         saveGame();
         string saveGame = "Saved game!";
@@ -70,6 +69,8 @@ bool GameState::update(float dt) {
         requestStackPush(States::Pause);
         return updatePrevState;
     }
+    if (IsKeyPressed(KEY_L)) 
+        promptTime = PROMPT_TIME*dt;
     player->update(dt);
     map->update(dt);
     camera->update(dt);

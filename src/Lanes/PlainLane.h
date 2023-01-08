@@ -13,4 +13,5 @@ public:
     ~PlainLane();
     void drawThis();
     void updateThis(float dt);
+    void addObstacles();
 };
