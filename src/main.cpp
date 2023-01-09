@@ -5,6 +5,8 @@
 int main()
 {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Crash Course");
+    Image icon = LoadImage("../asset/player/chicken_down.png");
+    SetWindowIcon(icon);
     InitAudioDevice();
     SetTargetFPS(FPS);
     Program Program;
@@ -12,5 +14,6 @@ int main()
         Program.run();
     CloseAudioDevice();
     CloseWindow();
+    UnloadImage(icon);
     return 0;
 }
