@@ -28,14 +28,6 @@ void MenuState::draw() {
         else 
             DrawRectangleRec(recMenu[i], RAYWHITE);
 
-        if (OptionNames(i)==Load) {
-            ifstream fin("save.txt");
-            if (fin.peek() == std::ifstream::traits_type::eof()) {
-                DrawRectangleRec(recMenu[i], LIGHTGRAY);
-            }
-            fin.close();
-        }
-
         DrawRectangleLinesEx(recMenu[i], 1, {0, 0, 0, 255/4});
         DrawText(mOptions[i].c_str(), 600-MeasureText(mOptions[i].c_str(), 20)/2, recMenu[i].y+15, 20, BLACK);
     }
@@ -55,13 +47,9 @@ bool MenuState::update(float dt) {
             return updatePrevState;
         }
         if (CheckCollisionPointRec(GetMousePosition(), recMenu[Load])) {
-            ifstream fin("save.txt");
-            if (fin.peek() != std::ifstream::traits_type::eof()) {
-                mStack->setSaveFlag(true);
-                requestStackPush(States::Game);
-                return updatePrevState;
-            }
-            fin.close();
+            mStack->setSaveFlag(true);
+            requestStackPush(States::Game);
+            return updatePrevState;
         }
         if (CheckCollisionPointRec(GetMousePosition(), recMenu[Settings])) {
             requestStackPush(States::Settings);
