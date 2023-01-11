@@ -1,10 +1,4 @@
 # CS202_Project
-Crash Course - a C++ game about road crossing
+Inspired by Crossy Road, a 3D video game on C++ that lets players avoid obstacles such as cars and dinosaurs, on their way across the streets. Some special features include various lane types, traffic lamps and endless gameplay.
 
-
-Game would be on a 30x30 board pre-loaded.
-After jump 1, then new map will be set-up until lose (no timer)
-Player can move WASD
-Object is either Animal or Object
-Each type of object has 2 types big | small (size)
-If player touch then game end and store back
+![Crash Course UML](https://github.com/YangTuanAnh/CS202_Project/blob/main/CrossyRoad.drawio.png)
